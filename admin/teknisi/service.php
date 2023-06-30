@@ -52,6 +52,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 										<tr>
 											<th>NO</th>
 											<th>NO SERVICE</th>
+											<th>ID PELANGGAN</th>
 											<th>NAMA PELANGGAN</th>
 											<th>KATEGORI</th>
 											<th>TYPE</th>
@@ -72,6 +73,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 											<tr>
 												<td><?php echo $no++; ?></td>
 												<td>DC00<?php echo $data['no_service']; ?></td>
+												<td><?php echo $data['id_pelanggan']; ?></td>
 												<td><?php echo $data['nama']; ?></td>
 												<td><?php echo $data['kategori']; ?></td>
 												<td><?php echo $data['type']; ?></td>
@@ -169,9 +171,12 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 							</div>
 						</div>
 						<div class="card-footer">
-							<div class="d-flex align-items-center">
+							<div class="align-items-center">
 								<a class="btn btn-danger btn-round ml-auto" href="service_batal_tabel.php">
 									Data Service yang dibatalkan
+								</a>
+								<a class="btn btn-info btn-round ml-auto" href="service_selesai_tabel.php">
+									Data Service Yang Selesai
 								</a>
 							</div>
 						</div>

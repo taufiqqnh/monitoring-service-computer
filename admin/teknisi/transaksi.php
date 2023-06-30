@@ -15,20 +15,20 @@
 
 //jika sudah mendapatkan parameter GET id dari URL
 if (isset($_GET['no_service'])) {
-    //membuat variabel $No_Nota untuk menyimpan No_Nota dari GET No_Nota di URL
+    //membuat variabel $no_service untuk menyimpan no_service dari GET no_service di URL
     $no_service = $_GET['no_service'];
 
-    //query ke database SELECT tabel tservice berdasarkan No_Nota = $No_Nota
-    $sql = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE no_service= '$no_service'");
+    //query ke database SELECT tabel tservice berdasarkan no_service = $no_service
+    $select = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE no_service= '$no_service'");
     // jika hasil query = 0 maka muncul pesan error
-    if (mysqli_num_rows($sql) == 0) {
+    if (mysqli_num_rows($select) == 0) {
         echo '<div class="alert alert-warning">Id Barang tidak ada dalam database.</div>';
         exit();
         //jika hasil query > 0
     } else {
         //membuat variabel $data dan menyimpan data row dari query
-        // $data = mysqli_fetch_assoc($select);
-        $data = mysqli_fetch_array($sql);
+        $data = mysqli_fetch_assoc($select);
+        // $data = mysqli_fetch_assoc($sql);
     }
 }
 
@@ -52,16 +52,19 @@ if (isset($_POST['simpan'])) {
 <?php
 if (isset($_POST['Hargatroli'])) {
     $id_troli = $_POST['id_troli'];
-    $harga = $_POST['id_harga'];
+    $id_harga = $_POST['id_harga'];
     $no_service = $_POST['no_service'];
     $jumlah = 1;
     $teknisi = ($_SESSION['name']);
+    // $Harga_Barang = $_POST['Harga_Barang'];
+
 
 
     $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE id_troli='$id_troli'") or die(mysqli_error($koneksi));
+
     if (mysqli_num_rows($cek) == 0) {
 
-        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi) VALUES(NULL,'$no_service', '$harga','$jumlah', '$teknisi')");
+        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi) VALUES('$id_troli','$no_service', '$id_harga','$jumlah', '$teknisi')");
 
         if ($sql) {
             echo '<script>document.location="transaksi.php?no_service=' . $no_service . '#keranjang";</script>';
@@ -174,27 +177,33 @@ if (isset($_POST['Hargatroli'])) {
                                             <?php
                                             include '../../koneksi.php';
                                             $no = 1;
-                                            $data = mysqli_query($koneksi, "SELECT * FROM harga");
-                                            while ($d = mysqli_fetch_array($data)) {
-                                            ?>
-
+                                            $sqlharga = mysqli_query($koneksi, "SELECT * FROM harga");
+                                            if (mysqli_num_rows($sqlharga) > 0) {
+                                                while ($dharga = mysqli_fetch_assoc($sqlharga)) {
+                                                    echo '
                                                 <tr>
-                                                    <td><?php echo $no++; ?></td>
-                                                    <td><?php echo $d['jenis']; ?></td>
-                                                    <td><?php echo $d['kategori']; ?></td>
-                                                    <td><?php echo $d['type']; ?></td>
-                                                    <td><?php echo $d['harga']; ?></td>
+                                                    <td>' . $no++ . '</td>
+                                                    <td>' . $dharga['jenis'] . '</td>
+                                                    <td>' . $dharga['kategori'] . '</td>
+                                                    <td>' . $dharga['type'] . '</td>
+                                                    <td>' . $dharga['harga'] . '</td>
                                                     <td>
                                                         <div class="form-button-action">
-                                                            <button type="submit" class="btn btn-link btn-primary" name="Hargatroli" href="verifikasi_harga.php?id_harga=">
+                                                            <button type="submit" class="btn btn-link btn-primary" name="Hargatroli">
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
                                                         </div>
-                                                    <?php
-                                                }
-                                                    ?>
                                                     </td>
-                                                </tr>
+                                                    ';
+                                                }
+                                            } else {
+                                                echo '
+                                                <tr>
+                                                    <td colspan="4"> Tidak ada data. </td>
+                                                <tr>
+                                                    ';
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -202,121 +211,69 @@ if (isset($_POST['Hargatroli'])) {
                         </div>
                     </div>
                 </div>
-</form>
-<!-- Harga -->
+                <!-- Harga -->
 
-<!-- Jasa -->
-<!-- <div class="row" id="jasa">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header ">
-                <center>
-                    <h2>Daftar Jasa</h2>
-                </center>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="tablejasa" class="display table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th style="width: 1%">NO</th>
-                                <th>KATEGORI</th>
-                                <th>KETERANGAN</th>
-                                <th>HARGA</th>
-                                <th style="width: 10%">ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            include '../../koneksi.php';
-                            $no = 1;
-                            $data = mysqli_query($koneksi, "SELECT * FROM jasa");
-                            while ($d = mysqli_fetch_array($data)) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo $d['kategori']; ?></td>
-                                    <td><?php echo $d['keterangan']; ?></td>
-                                    <td><?php echo $d['harga']; ?></td>
-                                    <td>
-                                        <div class="form-button-action">
-                                            <button type="submit" class="btn btn-link btn-primary" name="Jasatroli" value="<?php echo $d['id_jasa']; ?>">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
+                <!-- Jasa -->
 
-                                    <?php
-                                }
-                                    ?>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+                <!-- Keranjang -->
+                <div class="row" id="keranjang">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header ">
+                                <center>
+                                    <h2>Keranjang</h2>
+                                </center>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="tablekeranjang" class="display table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 1%">NO</th>
+                                                <th>KATEGORI</th>
+                                                <th>KETERANGAN</th>
+                                                <th>HARGA</th>
+                                                <!-- <th style="width: 10%">ACTION</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            include '../../koneksi.php';
+                                            $no = 1;
+                                            $data = mysqli_query($koneksi, "SELECT * FROM troli ORDER BY id_troli desc");
 
-<!-- Keranjang -->
-<div class="row" id="keranjang">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header ">
-                <center>
-                    <h2>Keranjang</h2>
-                </center>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="tablekeranjang" class="display table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th style="width: 1%">NO</th>
-                                <th>KATEGORI</th>
-                                <th>KETERANGAN</th>
-                                <th>HARGA</th>
-                                <th style="width: 10%">ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            include '../../koneksi.php';
-                            $no = 1;
-                            $data = mysqli_query($koneksi, "SELECT * FROM troli ORDER BY id_troli desc");
-
-                            $data = mysqli_query($koneksi, "SELECT harga.kategori, harga.type, harga.harga FROM troli 
+                                            $data = mysqli_query($koneksi, "SELECT harga.kategori, harga.type, harga.harga FROM troli 
                             JOIN service on service.no_service = troli.no_service 
                             JOIN harga on harga.id_harga = troli.id_harga
                             WHERE troli.no_service='$no_service'");
-                            while ($d = mysqli_fetch_array($data)) {
-                            ?>
+                                            if (mysqli_num_rows($data) > 0) {
+                                                while ($d = mysqli_fetch_assoc($data)) {
+                                                    echo '
                                 <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo $d['kategori']; ?></td>
-                                    <td><?php echo $d['type']; ?></td>
-                                    <td><?php echo $d['harga']; ?></td>
-                                    <td>
-                                        <div class="form-button-action">
-                                            <button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-target="">
-                                                <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    <?php
-                                }
-
-                                    ?>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
+                                    <td>' . $no++ . '</td>
+                                    <td>' . $d['kategori'] . '</td>
+                                    <td>' . $d['type'] . '</td>
+                                    <td>' . $d['harga'] . '</td>
+                                    ';
+                                                }
+                                            } else {
+                                                echo '
+                                <tr>
+                                    <td colspan="4"> Tidak ada data. </td>
+                                <tr>
+                                    ';
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
+        <?php include 'footer.php'; ?>
     </div>
-</div>
-
-</div>
-</div>
-<?php include 'footer.php'; ?>
-</div>
+</form>
