@@ -55,14 +55,41 @@ if (isset($_POST['Hargatroli'])) {
     $harga = $_POST['id_harga'];
     $no_service = $_POST['no_service'];
     $jumlah = 1;
+    $id_jasa = NULL;
     $teknisi = ($_SESSION['name']);
 
 
     $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE id_troli='$id_troli'") or die(mysqli_error($koneksi));
     if (mysqli_num_rows($cek) == 0) {
 
-        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi) VALUES(NULL,'$no_service', '$harga','$jumlah', '$teknisi')");
+        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, id_jasa, jumlah, teknisi) VALUES(NULL,'$no_service', '$harga','$id_jasa','$jumlah', '$teknisi')");
 
+        $sql = mysqli_query($koneksi, "SELECT * FROM troli JOIN harga on harga.id_harga = troli.id_harga WHERE no_service='$no_service'") or die(mysqli_error($koneksi));
+        if ($sql) {
+            echo '<script>document.location="transaksi.php?no_service=' . $no_service . '#keranjang";</script>';
+        } else {
+            echo '<div class="alert alert-warning">Gagal melakukan proses tambah data.</div>';
+        }
+    } else {
+        echo '<div class="alert alert-warning">Gagal, Id Harga Sudah terdaftar.</div>';
+    }
+}
+
+if (isset($_POST['Jasatroli'])) {
+    $id_troli = $_POST['id_troli'];
+    $jasa = $_POST['id_jasa'];
+    $no_service = $_POST['no_service'];
+    $jumlah = 1;
+    $id_harga = NULL;
+    $teknisi = ($_SESSION['name']);
+
+
+    $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE id_troli='$id_troli'") or die(mysqli_error($koneksi));
+    if (mysqli_num_rows($cek) == 0) {
+
+        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, id_jasa, jumlah, teknisi) VALUES(NULL,'$no_service', '$id_harga','$jasa','$jumlah', '$teknisi')");
+
+        $sql = mysqli_query($koneksi, "SELECT * FROM troli JOIN jasa on jasa.id_jasa = troli.id_jasa WHERE no_service='$no_service'") or die(mysqli_error($koneksi));
         if ($sql) {
             echo '<script>document.location="transaksi.php?no_service=' . $no_service . '#keranjang";</script>';
         } else {
@@ -73,7 +100,6 @@ if (isset($_POST['Hargatroli'])) {
     }
 }
 ?>
-
 <form action="transaksi.php?no_service=<?php echo $no_service; ?>" method="post">
     <div class="main-panel">
         <div class="content">
@@ -186,7 +212,7 @@ if (isset($_POST['Hargatroli'])) {
                                                     <td><?php echo $d['harga']; ?></td>
                                                     <td>
                                                         <div class="form-button-action">
-                                                            <button type="submit" class="btn btn-link btn-primary" name="Hargatroli" href="verifikasi_harga.php?id_harga=">
+                                                            <button type="submit" class="btn btn-link btn-primary" name="Hargatroli" value="<?php echo $d['id_harga']; ?>">
                                                                 <i class="fa fa-plus"></i>
                                                             </button>
                                                         </div>
@@ -206,7 +232,7 @@ if (isset($_POST['Hargatroli'])) {
 <!-- Harga -->
 
 <!-- Jasa -->
-<!-- <div class="row" id="jasa">
+<div class="row" id="jasa">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header ">
@@ -256,7 +282,7 @@ if (isset($_POST['Hargatroli'])) {
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <!-- Keranjang -->
 <div class="row" id="keranjang">
@@ -289,6 +315,12 @@ if (isset($_POST['Hargatroli'])) {
                             JOIN service on service.no_service = troli.no_service 
                             JOIN harga on harga.id_harga = troli.id_harga
                             WHERE troli.no_service='$no_service'");
+
+                            // $data2 = mysqli_query($koneksi, "SELECT * FROM troli 
+                            // JOIN service on service.no_service = troli.no_service 
+                            // JOIN jasa on jasa.id_jasa = troli.id_jasa
+                            // WHERE troli.no_service");
+
                             while ($d = mysqli_fetch_array($data)) {
                             ?>
                                 <tr>
@@ -302,6 +334,8 @@ if (isset($_POST['Hargatroli'])) {
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
+
+
                                     <?php
                                 }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 09:58 AM
+-- Generation Time: Jun 30, 2023 at 07:27 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -42,7 +42,8 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `name`, `username`, `password`, `email`, `level`) VALUES
 (1, 'Taufiq NurHidayat', 'taufiq', 'f4eff635e6dfe584a1a536dbc7718f3d', 'taufiqnurhidayat124@gmail.com', 'Teknisi'),
-(2, 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', 'Owner');
+(2, 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', 'Owner'),
+(3, 'Defani Ahmad', 'defani', '22b28cff2ba4f394800da6778e9bcd83', 'defani@gmail.com', 'Teknisi');
 
 -- --------------------------------------------------------
 
@@ -54,6 +55,8 @@ CREATE TABLE `detservice` (
   `id_detserv` int(11) NOT NULL,
   `no_service` int(11) NOT NULL,
   `id_harga` int(11) NOT NULL,
+  `id_jasa` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
   `tgl_input` date NOT NULL,
   `teknisi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -77,10 +80,14 @@ CREATE TABLE `harga` (
 --
 
 INSERT INTO `harga` (`id_harga`, `jenis`, `kategori`, `type`, `harga`) VALUES
-(6, 'HDD', 'Komputer', 'Samsung', 30000),
+(6, 'HDD', 'Komputer', 'Samsung', 300000),
 (7, 'SSD', 'Komputer', 'Lenovo', 450000),
 (8, 'RAM', 'Komputer', 'Samsung', 450000),
-(9, 'Keyboard', 'Komputer', 'Lenovo G480', 15000);
+(9, 'Keyboard', 'Komputer', 'Lenovo G480', 150000),
+(10, 'Service', 'Komputer', 'Install Ulang', 30000),
+(11, 'Service', 'Komputer', 'Ganti Sparepart', 25000),
+(12, 'Service', 'Komputer', 'Service PC/Laptop', 25000),
+(13, 'Service', 'Printer', 'Service Printer', 25000);
 
 -- --------------------------------------------------------
 
@@ -127,10 +134,12 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `password`, `hp`, `email`, `jk`, `alamat`, `status`) VALUES
-(2, 'Taufiq NurHidayat', 'f4eff635e6dfe584a1a536dbc7718f3d', '089277266266', 't@gmail.com', 'Laki-laki', '    Krangkungan Sukoharjo																																																																																												', 'Member'),
-(18, 'nur', 'b55178b011bfb206965f2638d0f87047', '089277266266', 'n@gmail.com', 'laki-laki', ' Krangkungan Sukoharjo																							', 'Belum Member'),
-(24, 'Rifki', '2a5c4c5a5ba1c332279685ddec507cd9', '089277266266', 'r@gmail.com', 'laki-laki', 'Klaten', 'Belum Member'),
-(25, 'Rolan', '25d5ff0e2799d2072fdd57fef8982249', '089277266266', 'i@gmail.com', 'laki-laki', 'Krangkungan Sukoharjo', 'Belum Member');
+(2, 'Taufiq NurHidayat', 'f4eff635e6dfe584a1a536dbc7718f3d', '089277266266', 't@gmail.com', 'Laki-laki', 'Krangkungan Sukoharjo																																																																																																																																																																	', 'Member'),
+(18, 'Nur', 'b55178b011bfb206965f2638d0f87047', '089277266266', 'n@gmail.com', 'Laki-laki', '    Krangkungan Sukoharjo																																																																																												', 'Member'),
+(24, 'Rifki', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'r@gmail.com', 'Laki-laki', '  Klaten																																														', 'Member'),
+(25, 'Rolan', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'i@gmail.com', 'Laki-laki', ' Krangkungan Sukoharjo																							', 'Belum Member'),
+(26, 'Johan', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'johan@gmail.com', 'Laki-laki', ' Sragen																							', 'Belum Member'),
+(27, 'Juki', '87f39ffa3a64fd26beb2ea7442ad701f', '089277266266', 'j@gmail.com', 'Perempuan', 'Klaten', 'Belum Member');
 
 -- --------------------------------------------------------
 
@@ -155,12 +164,12 @@ CREATE TABLE `service` (
 
 INSERT INTO `service` (`no_service`, `id_pelanggan`, `kategori`, `type`, `keluhan`, `tanggal`, `progres`, `keterangan`) VALUES
 (16, 2, 'Komputer', 'Lenovo', 'Booting lama, Install Ulang                                ', '2023-06-16 15:46:48', 'Proses Pengerjaan', ' '),
-(17, 2, 'Printer', 'HP', 'Tinta Habis                                ', '2023-06-16 15:47:03', 'Proses Pengerjaan', ' '),
+(17, 2, 'Printer', 'HP', 'Tinta Habis                                ', '2023-06-16 15:47:03', 'Proses Pengerjaan', ' Penggantian tinta printer'),
 (18, 2, 'Komputer', 'Lenovo', ' Ganti Baterai\r\n                                ', '2023-06-16 16:24:07', 'Service Dibatalkan', 'Overload'),
 (19, 2, 'Printer', 'Lenovo', 'Service dan ganti tinta\r\n                                ', '2023-06-20 13:23:42', 'Service Dibatalkan', 'Batal                                    '),
-(20, 2, 'Komputer', 'Samsung', 'Install Ulang\r\n                                ', '2023-06-20 13:29:57', 'Dalam Antrian', ''),
+(20, 2, 'Komputer', 'Samsung', 'Install Ulang  Laptop                             ', '2023-06-20 13:29:57', 'Dalam Antrian', ' '),
 (21, 18, 'Komputer', 'Asus ROG', 'Upgrade SSD\r\n                                ', '2023-06-21 11:56:21', 'Dalam Antrian', ''),
-(22, 24, 'Komputer', 'Asus Thinkbook', 'Ganti Keyboard\r\n                                ', '2023-06-21 12:16:13', 'Dalam Antrian', '');
+(22, 24, 'Komputer', 'Asus Thinkbook', 'Ganti Keyboard                                ', '2023-06-21 12:16:13', 'Proses Pengerjaan', ' Proses ganti keyboard Laptop');
 
 -- --------------------------------------------------------
 
@@ -180,6 +189,28 @@ CREATE TABLE `transaksi_midtrans` (
   `status_code` char(5) NOT NULL,
   `batas_waktu` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `troli`
+--
+
+CREATE TABLE `troli` (
+  `id_troli` int(11) NOT NULL,
+  `no_service` int(11) NOT NULL,
+  `id_harga` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `teknisi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `troli`
+--
+
+INSERT INTO `troli` (`id_troli`, `no_service`, `id_harga`, `jumlah`, `teknisi`) VALUES
+(2, 17, 7, 1, 'Tassda'),
+(3, 17, 8, 1, 'adsdas');
 
 --
 -- Indexes for dumped tables
@@ -230,6 +261,12 @@ ALTER TABLE `transaksi_midtrans`
   ADD KEY `customer_id` (`id_pelanggan`);
 
 --
+-- Indexes for table `troli`
+--
+ALTER TABLE `troli`
+  ADD PRIMARY KEY (`id_troli`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -243,7 +280,7 @@ ALTER TABLE `detservice`
 -- AUTO_INCREMENT for table `harga`
 --
 ALTER TABLE `harga`
-  MODIFY `id_harga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_harga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jasa`
@@ -255,13 +292,19 @@ ALTER TABLE `jasa`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_pelanggan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
   MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `troli`
+--
+ALTER TABLE `troli`
+  MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- Constraints for dumped tables

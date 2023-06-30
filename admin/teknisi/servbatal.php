@@ -8,10 +8,10 @@
 
 //jika sudah mendapatkan parameter GET id dari URL
 if (isset($_GET['no_service'])) {
-    //membuat variabel $No_Nota untuk menyimpan No_Nota dari GET No_Nota di URL
+    //membuat variabel $No_Nota untuk menyimpan no_service dari GET no_service di URL
     $no_service = $_GET['no_service'];
 
-    //query ke database SELECT tabel tservice berdasarkan No_Nota = $No_Nota
+    //query ke database SELECT tabel tservice berdasarkan no_service = $no_service
     $sql = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE no_service= '$no_service'");
     // jika hasil query = 0 maka muncul pesan error
     if (mysqli_num_rows($sql) == 0) {
