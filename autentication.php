@@ -49,7 +49,7 @@
                         </div>
                         <div class="field-wrap">
                             <select class="form-control" name="jk" id="jk" required>
-                                <option selected>Pilih Jenis Kelamin</option>
+                                <option value="" selected>Pilih Jenis Kelamin</option>
                                 <option value="laki-laki">Laki-laki</option>
                                 <option value="perempuan">Perempuan</option>
                             </select>

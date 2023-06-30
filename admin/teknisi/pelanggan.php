@@ -202,7 +202,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																					<div class="col-md-6 pr-0">
 																						<div class="form-group form-group-default">
 																							<label>Jenis Kelamin</label>
-																							<select class="form-control input-border-buttom" name="jk" id="jk" value="">
+																							<select class="form-control input-border-buttom" name="jk" id="jk" required>
 																								<option selected><?php echo $d['jk']; ?></option>
 																								<option value="Laki-laki">Laki-laki</option>
 																								<option value="Perempuan">Perempuan</option>

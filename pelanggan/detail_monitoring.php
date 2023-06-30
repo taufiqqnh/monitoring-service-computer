@@ -146,13 +146,16 @@ if (isset($_GET['no_service'])) {
                                     <tr>
                                         <td>Keterangan</td>
                                     </tr>
+                                    <tr>
+                                        <td>Harga</td>
+                                    </tr>
                                 <?php
                                 }
                                 ?>
                             </thead>
                         </table>
                         <div>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a class="btn btn-secondary" href="index.php#monitoring">Close</a>
                             <button type="submit" class="btn btn-primary">Payment</button>
                         </div>
                     </div>
