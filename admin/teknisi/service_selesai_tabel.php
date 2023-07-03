@@ -6,7 +6,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 ?>
 <script>
     $(document).ready(function() {
-        $('#tablebatal').DataTable();
+        $('#tableselesai').DataTable();
     });
 </script>
 
@@ -41,13 +41,13 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                     </li>
                 </ul>
             </div>
-            <!-- Tabel Proses dibatalkan -->
+            <!-- Tabel Proses selesai -->
             <div class="row ">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h1 class="card-title">Data Service yang Dibatalkan</h1>
+                                <h1 class="card-title">Data Service Selesai Pengerjaan</h1>
                                 <a class="btn btn-danger btn-round ml-auto" href="service.php">
                                     <i class="fa fa-arrow-left"></i>
                                     Kembali
@@ -56,7 +56,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tablebatal" class="display table table-striped table-hover">
+                                <table id="tableselesai" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
@@ -102,7 +102,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                     </div>
                 </div>
             </div>
-            <!-- End Tabel Proses dibatalkan -->
+            <!-- End Tabel Proses selesai -->
         </div>
     </div>
     <?php include 'footer.php'; ?>

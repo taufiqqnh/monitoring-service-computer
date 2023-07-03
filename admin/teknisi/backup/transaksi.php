@@ -315,12 +315,6 @@ if (isset($_POST['Jasatroli'])) {
                             JOIN service on service.no_service = troli.no_service 
                             JOIN harga on harga.id_harga = troli.id_harga
                             WHERE troli.no_service='$no_service'");
-
-                            // $data2 = mysqli_query($koneksi, "SELECT * FROM troli 
-                            // JOIN service on service.no_service = troli.no_service 
-                            // JOIN jasa on jasa.id_jasa = troli.id_jasa
-                            // WHERE troli.no_service");
-
                             while ($d = mysqli_fetch_array($data)) {
                             ?>
                                 <tr>

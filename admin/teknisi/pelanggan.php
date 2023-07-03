@@ -203,7 +203,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																						<div class="form-group form-group-default">
 																							<label>Jenis Kelamin</label>
 																							<select class="form-control input-border-buttom" name="jk" id="jk" required>
-																								<option selected><?php echo $d['jk']; ?></option>
+																								<option selected value="<?php echo $d['jk']; ?>">Pilih Jenis Kelamin</option>
 																								<option value="Laki-laki">Laki-laki</option>
 																								<option value="Perempuan">Perempuan</option>
 																							</select>
@@ -213,8 +213,8 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																						<div class="form-group form-group-default">
 																							<label>Status</label>
 																							<select class="form-control input-border-buttom" name="status" id="status">
-																								<option selected><?php echo $d['status']; ?></option>
-																								<!-- <option value="Belum Member">Belum Member</option> -->
+																								<option selected value="<?php echo $d['status']; ?>">Pilih Status</option>
+																								<option value="Belum Member">Belum Member</option>
 																								<option value="Member">Member</option>
 																							</select>
 																						</div>

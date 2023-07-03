@@ -21,7 +21,7 @@ if (isset($_POST['deleteharga'])) {
 	if ($del) {
 		echo '<script>alert("Berhasil menghapus data."); document.location="harga.php";</script>';
 	} else {
-		echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
+		echo '<div class="alert alert-warning">Gagal melakukan proses hapus data.</div>';
 	}
 }
 
@@ -32,7 +32,7 @@ if (isset($_POST['deletejasa'])) {
 	if ($del) {
 		echo '<script>alert("Berhasil menghapus data."); document.location="harga.php";</script>';
 	} else {
-		echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
+		echo '<div class="alert alert-warning">Gagal melakukan proses hapus data.</div>';
 	}
 }
 ?>
@@ -99,26 +99,31 @@ if (isset($_POST['deletejasa'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Jenis</label>
-															<input id="jenis" name="jenis" type="text" class="form-control">
+															<input id="jenis" name="jenis" type="text" class="form-control" required>
 															</input>
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Kategori</label>
-															<input id="kategori" name="kategori" type="text" class="form-control">
+															<select class="form-control input-border-buttom" name="kategori" id="kategori" required>
+																<option selected value="">Pilih kategori</option>
+																<option value="Komputer">Komputer</option>
+																<option value="Printer">Printer</option>
+																<option value="Service">Service</option>
+															</select>
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Type</label>
-															<input type="text" class="form-control" name="type" id="type">
+															<input type="text" class="form-control" name="type" id="type" required>
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Harga</label>
-															<input type="text" class="form-control" name="harga" id="harga">
+															<input type="text" class="form-control" name="harga" id="harga" required>
 														</div>
 													</div>
 												</div>
@@ -222,7 +227,12 @@ if (isset($_POST['deletejasa'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Kategori</label>
-															<input id="kategori" name="kategori" type="text" value="<?php echo $d['kategori']; ?>" class="form-control">
+															<select class="form-control input-border-buttom" name="kategori" id="kategori" required>
+																<option selected value="<?php echo $d['kategori']; ?>">Pilih kategori</option>
+																<option value="Komputer">Komputer</option>
+																<option value="Printer">Printer</option>
+																<option value="Service">Service</option>
+															</select>
 														</div>
 													</div>
 													<div class="col-sm-12">
@@ -262,13 +272,13 @@ if (isset($_POST['deletejasa'])) {
 		</div>
 		<!-- End Tabel Harga -->
 
-		<!-- Tabel Jasa -->
+		<!-- Tabel Jasa Yang Disediakan-->
 		<div class="row ">
 			<div class="col-md-12">
 				<div class="card full-height">
 					<div class="card-header">
 						<div class="d-flex align-items-center">
-							<h1 class="card-title">Data Jasa</h1>
+							<h1 class="card-title">Data Jasa yang disediakan DFN Computer</h1>
 							<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#tambahjasa">
 								<i class="fa fa-plus"></i>
 								Tambah Data
@@ -297,19 +307,18 @@ if (isset($_POST['deletejasa'])) {
 												<div class="col-sm-12">
 													<div class="form-group form-group-default">
 														<label>Kategori</label>
-														<input id="kategori" name="kategori" type="text" class="form-control">
+														<select class="form-control input-border-buttom" name="kategori" id="kategori" required>
+															<option selected value="">Pilih kategori</option>
+															<option value="Komputer">Komputer</option>
+															<option value="Printer">Printer</option>
+															<option value="Service">Service</option>
+														</select>
 													</div>
 												</div>
 												<div class="col-sm-12">
 													<div class="form-group form-group-default">
 														<label>keterangan</label>
-														<input type="text" class="form-control" name="keterangan" id="keterangan">
-													</div>
-												</div>
-												<div class="col-sm-12">
-													<div class="form-group form-group-default">
-														<label>Harga</label>
-														<input type="text" class="form-control" name="harga" id="harga">
+														<input type="text" class="form-control" name="keterangan" id="keterangan" required>
 													</div>
 												</div>
 											</div>
@@ -330,7 +339,6 @@ if (isset($_POST['deletejasa'])) {
 										<th style="width: 1%">NO</th>
 										<th>KATEGORI</th>
 										<th>KETERANGAN</th>
-										<th>HARGA</th>
 										<th style="width: 10%">ACTION</th>
 									</tr>
 								</thead>
@@ -345,7 +353,6 @@ if (isset($_POST['deletejasa'])) {
 											<td><?php echo $no++; ?></td>
 											<td><?php echo $d['kategori']; ?></td>
 											<td><?php echo $d['keterangan']; ?></td>
-											<td><?php echo $d['harga']; ?></td>
 											<td>
 												<div class="form-button-action">
 													<button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-target="#editjasa_<?php echo $d['id_jasa']; ?>">
@@ -401,20 +408,20 @@ if (isset($_POST['deletejasa'])) {
 																		<div class="col-sm-12">
 																			<div class="form-group form-group-default">
 																				<label>Kategori</label>
+																				<select class="form-control input-border-buttom" name="kategori" id="kategori" required>
+																					<option selected value="<?php echo $d['kategori']; ?>">Pilih kategori</option>
+																					<option value="Komputer">Komputer</option>
+																					<option value="Printer">Printer</option>
+																					<option value="Service">Service</option>
+																				</select>
+
 																				<input type="hidden" name="id_jasa" value="<?php echo $d['id_jasa']; ?>">
-																				<input id="kategori" name="kategori" type="text" value="<?php echo $d['kategori']; ?>" class="form-control">
 																			</div>
 																		</div>
 																		<div class="col-sm-12">
 																			<div class="form-group form-group-default">
 																				<label>Keterangan</label>
 																				<input type="text" class="form-control" name="keterangan" id="keterangan" value="<?php echo $d['keterangan']; ?>">
-																			</div>
-																		</div>
-																		<div class="col-sm-12">
-																			<div class="form-group form-group-default">
-																				<label>Harga</label>
-																				<input type="text" class="form-control" name="harga" id="harga" value="<?php echo $d['harga']; ?>">
 																			</div>
 																		</div>
 																	</div>
