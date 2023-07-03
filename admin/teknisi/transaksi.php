@@ -34,12 +34,11 @@ if (isset($_POST['simpan'])) {
     $progres  = $_POST['progres'];
     $keterangan  = $_POST['keterangan'];
 
-    $sql = mysqli_query($koneksi, "UPDATE service SET 
-    progres='$progres',
-    keterangan='$keterangan' 
-    WHERE no_service='$no_service'");
+    $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan' WHERE no_service='$no_service'");
 
-    $sql = mysqli_query($koneksi, "INSERT into detservice (no_service, id_harga, jumlah, tgl_input, teknisi) SELECT no_service, id_harga, jumlah, tgl_input, teknisi FROM troli WHERE no_service='$no_service'") or die(mysqli_error($koneksi));
+    $sql = mysqli_query($koneksi, "INSERT into detservice (no_service, id_harga, jumlah, teknisi) SELECT no_service, id_harga, jumlah, teknisi FROM troli WHERE no_service='$no_service'");
+
+    $sql = mysqli_query($koneksi, "	DELETE FROM troli WHERE no_service='$no_service'") or die(mysqli_error($koneksi));
 
     if ($sql) {
         echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
@@ -55,7 +54,7 @@ if (isset($_POST['deletekeranjang'])) {
 
     $del = mysqli_query($koneksi, "DELETE FROM troli WHERE id_troli='$id_del'") or die(mysqli_error($koneksi));
     if ($del) {
-        echo '<script>alert("Berhasil menghapus data."); document.location="transaksi.php?no_service=' . $no_service . '#keranjang";</script>';
+        echo '<script>alert("Berhasil menghapus data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
     } else {
         echo '<div class="alert alert-warning">Gagal melakukan proses hapus data.</div>';
     }
@@ -77,7 +76,7 @@ if (isset($_POST['Hargatroli'])) {
         $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi) VALUES('$id_troli','$no_service', '$id_harga','$jumlah', '$teknisi')");
 
         if ($sql) {
-            echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '#keranjang";</script>';
+            echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
         } else {
             echo '<script>alert("Gagal melakukan proses tambah data.");</script>';
         }
@@ -218,15 +217,10 @@ if (isset($_POST['Hargatroli'])) {
                                                                             <div class="row">
                                                                                 <div class="col-sm-12">
                                                                                     <input type="hidden" name="id_harga" value="<?php echo $d['id_harga']; ?>">
-                                                                                    <input id="jenis" name="jenis" type="hidden" value="<?php echo $d['jenis']; ?>" class="form-control">
-                                                                                    </input>
-                                                                                    <input id="kategori" name="kategori" type="hidden" value="<?php echo $d['kategori']; ?>" class="form-control">
-                                                                                    <input type="hidden" class="form-control" name="type" id="type" value="<?php echo $d['type']; ?>">
-                                                                                    <input type="hidden" class="form-control" name="harga" id="harga" value="<?php echo $d['harga']; ?>">
+
                                                                                 </div>
                                                                             </div>
                                                                             <div class="modal-footer no-bd">
-
                                                                                 <button type="submit" name="Hargatroli" id="addRowButton" class="btn btn-primary">Add</button>
                                                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                                                             </div>
@@ -266,7 +260,7 @@ if (isset($_POST['Hargatroli'])) {
                                 <table id="tablekeranjang" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th style="width: 1%">NO</th>
+                                            <th>NO</th>
                                             <th>JENIS</th>
                                             <th>KATEGORI</th>
                                             <th>KETERANGAN</th>
@@ -336,7 +330,7 @@ if (isset($_POST['Hargatroli'])) {
                         <tfoot>
                             <tr>
                                 <th colspan="3" class="text-center"><b>Total</b></th>
-                                <th colspan="2"><b>Rp. <?php echo  number_format($total) ?></b></th>
+                                <th colspan="2"><b>Rp. <?php echo number_format($total) ?></b></th>
 
                             </tr>
                             </table>

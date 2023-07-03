@@ -142,7 +142,7 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Type</label>
-                                <input type="text" class="form-control" name="type" id="type" required>
+                                <input type="text" class="form-control" name="type" id="type" autocomplete="off" required>
                                 <input type="hidden" class="form-control" name="progres" id="progres" value="Dalam Antrian">
                             </div>
                             <div class="mb-3">

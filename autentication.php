@@ -23,7 +23,7 @@
                 <h1>Login</h1>
                 <form action="periksa_login_pelanggan.php" method="POST">
                     <div class="field-wrap">
-                        <input type="email" class="form-control" id="email" name="email" required placeholder="Email" />
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="off" required placeholder="Email" />
                     </div>
                     <div class="field-wrap">
                         <input type="password" class="form-control" id="password" name="password" required placeholder="Password" />
@@ -37,7 +37,7 @@
                 <form action="registrasi_act.php" method="post">
                     <div class="top-row">
                         <div class="field-wrap">
-                            <input type="text" class="form-control" id="nama" name="nama" required placeholder="Nama" />
+                            <input type="text" class="form-control" id="nama" name="nama" autocomplete="off" required placeholder="Nama" />
                         </div>
                         <div class="field-wrap">
                             <input type="password" class="form-control" id="password" name="password" required placeholder="Password" />
@@ -45,7 +45,7 @@
                     </div>
                     <div class="top-row">
                         <div class="field-wrap">
-                            <input type="text" class="form-control" id="hp" name="hp" required placeholder="No Hp" />
+                            <input type="text" class="form-control" id="hp" name="hp" autocomplete="off" required placeholder="No Hp" />
                         </div>
                         <div class="field-wrap">
                             <select class="form-control" name="jk" id="jk" required>
@@ -56,10 +56,10 @@
                         </div>
                     </div>
                     <div class="field-wrap">
-                        <input type="email" class="form-control" id="email" name="email" required placeholder="Email Address" />
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="off" required placeholder="Email Address" />
                     </div>
                     <div class="field-wrap">
-                        <input type="text" class="form-control" id="alamat" name="alamat" required placeholder="Alamat" />
+                        <input type="text" class="form-control" id="alamat" name="alamat" autocomplete="off" required placeholder="Alamat" />
                     </div>
                     <input type="hidden" class="form-control" id="status" name="status" value="Belum Member">
 
