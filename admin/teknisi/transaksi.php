@@ -37,7 +37,7 @@ if (isset($_POST['simpan'])) {
 
     $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan' WHERE no_service='$no_service'");
 
-    $sql = mysqli_query($koneksi, "INSERT into detservice (no_service, id_harga, jumlah, teknisi) SELECT no_service, id_harga, jumlah, teknisi FROM troli WHERE no_service='$no_service'");
+    $sql = mysqli_query($koneksi, "INSERT into detservice (no_service, id_harga, jumlah, teknisi, totharga) SELECT no_service, id_harga, jumlah, teknisi, totharga FROM troli WHERE no_service='$no_service'");
 
     $sql = mysqli_query($koneksi, "	DELETE FROM troli WHERE no_service='$no_service'") or die(mysqli_error($koneksi));
 
@@ -67,14 +67,14 @@ if (isset($_POST['deletekeranjang'])) {
 if (isset($_POST['Hargatroli'])) {
     $id_troli = $_POST['id_troli'];
     $id_harga = $_POST['id_harga'];
-    $jumlah = 1;
+    $jumlah = $_POST['harga'];
     $teknisi = ($_SESSION['name']);
-
+    $total = 1;
 
     $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE id_troli='$id_troli'") or die(mysqli_error($koneksi));
     if (mysqli_num_rows($cek) == 0) {
 
-        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi) VALUES('$id_troli','$no_service', '$id_harga','$jumlah', '$teknisi')");
+        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi, totharga) VALUES('$id_troli','$no_service', '$id_harga','$jumlah', '$teknisi' ,'$total')");
 
         if ($sql) {
             echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
@@ -202,7 +202,7 @@ if (isset($_POST['Hargatroli'])) {
                                                         <button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-target="#tambah_<?php echo $d['id_harga']; ?>">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
-                                                        <!-- Modal Edit Data-->
+                                                        <!-- Modal Troli-->
                                                         <div class="modal fade" id="tambah_<?php echo $d['id_harga']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -222,6 +222,7 @@ if (isset($_POST['Hargatroli'])) {
                                                                             <div class="row">
                                                                                 <div class="col-sm-12">
                                                                                     <input type="hidden" name="id_harga" value="<?php echo $d['id_harga']; ?>">
+                                                                                    <input type="hidden" name="harga" value="<?php echo $d['harga']; ?>">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="modal-footer no-bd">
@@ -233,7 +234,7 @@ if (isset($_POST['Hargatroli'])) {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- END Modal Edit Data-->
+                                                        <!-- END Modal Troli-->
                                                     </div>
 
                                                 <?php

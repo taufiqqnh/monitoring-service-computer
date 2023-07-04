@@ -161,7 +161,7 @@ if (isset($_GET['no_service'])) {
                         </table>
                         <div>
                             <a class="btn btn-secondary" href="index.php#monitoring">Close</a>
-                            <button type="submit" class="btn btn-primary">Payment</button>
+                            <a class="btn btn-primary" href="../midtrans/examples/snap/checkout-process-simple-version.php">Payment</a>
                         </div>
                     </div>
                 </div>
