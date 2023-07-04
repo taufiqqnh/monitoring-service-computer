@@ -17,6 +17,7 @@ if (isset($_GET['no_service'])) {
 
     //query ke database SELECT tabel tservice berdasarkan no_service = $no_service
     $select = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE no_service= '$no_service'");
+
     // jika hasil query = 0 maka muncul pesan error
     if (mysqli_num_rows($select) == 0) {
         echo '<div class="alert alert-warning">Id Barang tidak ada dalam database.</div>';
@@ -137,6 +138,10 @@ if (isset($_POST['Hargatroli'])) {
                                         <input type="text" class="form-control" id="type" name="type" value="<?php echo $data['type']; ?>" readonly>
                                     </div>
                                     <div class="mb-3">
+                                        <label class="form-label">Keluhan</label>
+                                        <input type="text" class="form-control" id="keluhan" name="keluhan" value="<?php echo $data['keluhan']; ?>" readonly>
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label">Progress</label>
                                         <select class="form-control input-border-buttom" name="progres" id="progres">
                                             <option selected><?php echo $data['progres']; ?></option>
@@ -182,8 +187,8 @@ if (isset($_POST['Hargatroli'])) {
                                         <?php
                                         include '../../koneksi.php';
                                         $no = 1;
-                                        $data = mysqli_query($koneksi, "SELECT * FROM harga");
-                                        while ($d = mysqli_fetch_array($data)) {
+                                        $dataharga = mysqli_query($koneksi, "SELECT * FROM harga");
+                                        while ($d = mysqli_fetch_array($dataharga)) {
                                         ?>
 
                                             <tr>
@@ -194,11 +199,11 @@ if (isset($_POST['Hargatroli'])) {
                                                 <td><?php echo $d['harga']; ?></td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-target="#editharga_<?php echo $d['id_harga']; ?>">
+                                                        <button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-target="#tambah_<?php echo $d['id_harga']; ?>">
                                                             <i class="fa fa-plus"></i>
                                                         </button>
                                                         <!-- Modal Edit Data-->
-                                                        <div class="modal fade" id="editharga_<?php echo $d['id_harga']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal fade" id="tambah_<?php echo $d['id_harga']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header" style=" background-color: blue; color:white;">
@@ -271,13 +276,13 @@ if (isset($_POST['Hargatroli'])) {
                                         <?php
                                         include '../../koneksi.php';
                                         $no = 1;
-                                        $data = mysqli_query($koneksi, "SELECT * FROM troli ORDER BY id_troli desc");
-                                        $data = mysqli_query($koneksi, "SELECT * FROM troli 
+                                        $datatroli = mysqli_query($koneksi, "SELECT * FROM troli ORDER BY id_troli desc");
+                                        $datatroli = mysqli_query($koneksi, "SELECT * FROM troli 
                                             JOIN service on service.no_service = troli.no_service 
                                             JOIN harga on harga.id_harga = troli.id_harga
                                             WHERE troli.no_service='$no_service'");
                                         $total = 0;
-                                        while ($d = mysqli_fetch_array($data)) {
+                                        while ($d = mysqli_fetch_array($datatroli)) {
                                             $total += $d['harga'];
                                         ?>
                                             <tr>
