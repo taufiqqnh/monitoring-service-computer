@@ -71,7 +71,7 @@ if (isset($_POST['Hargatroli'])) {
     $teknisi = ($_SESSION['name']);
     $total = 1;
 
-    $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE id_troli='$id_troli'") or die(mysqli_error($koneksi));
+    $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE no_service = '$no_service' AND id_harga='$id_harga'") or die(mysqli_error($koneksi));
     if (mysqli_num_rows($cek) == 0) {
 
         $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi, totharga) VALUES('$id_troli','$no_service', '$id_harga','$jumlah', '$teknisi' ,'$total')");
