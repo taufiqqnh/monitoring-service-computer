@@ -344,27 +344,34 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
                                 <?php
                                 $no = 1;
                                 $idp = $_SESSION['id_pelanggan'];
-                                $sql = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan') AND id_pelanggan='$idp' ORDER BY no_service desc");
-                                while ($data = mysqli_fetch_array($sql)) {
-                                ?>
-
-                                    <tr>
-                                        <td><?php echo $no++; ?></td>
-                                        <td>DC00<?php echo $data['no_service']; ?></td>
-                                        <td><?php echo $data['kategori']; ?></td>
-                                        <td><?php echo $data['type']; ?></td>
-                                        <td><?php echo $data['keluhan']; ?></td>
+                                $sql = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan', 'Di Ambil') AND id_pelanggan='$idp' ORDER BY no_service desc");
+                                if (mysqli_num_rows($sql) > 0) {
+                                    while ($data = mysqli_fetch_assoc($sql)) {
+                                        echo '
+                                        <tr>
+                                        <td>' . $no++ . '</td>
+                                        <td>DC00' . $data['no_service'] . '</td>
+                                        <td>' . $data['kategori'] . '</td>
+                                        <td>' . $data['type'] . '</td>
+                                        <td>' . $data['keluhan'] . '</td>
                                         <td>
                                             <!-- Button trigger modal -->
-                                            <a type="button" class="btn btn-primary" href="detail_monitoring.php?no_service=<?php echo $data['no_service']; ?>">
+                                            <a type="button" class="btn btn-primary" href="detail_monitoring.php?no_service=' . $data['no_service'] . '">
                                                 <i class="bi bi-info-square"></i>
                                             </a>
-
-                                        <?php
+                                            </td>
+                                        ';
                                     }
-                                        ?>
-                                        </td>
-                                    </tr>
+                                } else {
+                                    echo '
+                                    <tr>
+                                        <td colspan="4"> Tidak ada data. </td>
+                                    <tr>
+                                    ';
+                                }
+                                ?>
+                                </td>
+                                </tr>
                             </tbody>
 
                         </table>

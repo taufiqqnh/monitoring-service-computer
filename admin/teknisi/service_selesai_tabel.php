@@ -76,7 +76,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         include '../../koneksi.php';
                                         $no = 1;
                                         $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
+                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan','Di Ambil') ORDER BY no_service DESC");
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>

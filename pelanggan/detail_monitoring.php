@@ -118,7 +118,7 @@ if (isset($_GET['no_service'])) {
                             <thead>
                                 <?php
                                 $idp = $_SESSION['id_pelanggan'];
-                                $sql = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan') AND id_pelanggan='$idp' AND no_service = '$nomor'");
+                                $sql = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan', 'Di Ambil') AND id_pelanggan='$idp' AND no_service = '$nomor'");
 
                                 // $sql = mysqli_query($koneksi, "SELECT * FROM detservice JOIN service on service.no_service = detservice.no_service");
 
@@ -146,6 +146,10 @@ if (isset($_GET['no_service'])) {
                                     <tr>
                                         <td>Tanggal Service</td>
                                         <td><?php echo $data['tgl_input']; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Progres</td>
+                                        <td><?php echo $data['progres']; ?></td>
                                     </tr>
                                     <tr>
                                         <td>Keterangan</td>
