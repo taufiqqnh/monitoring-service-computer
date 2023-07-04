@@ -58,7 +58,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="pembayaran.php">
+					<a href="transaksi_service.php">
 						<i class="fas fa-pen-square"></i>
 						<p>Laporan Transaksi</p>
 					</a>

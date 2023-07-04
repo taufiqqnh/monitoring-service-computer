@@ -32,14 +32,14 @@ if (isset($_GET['no_service'])) {
 ?>
 <?php
 if (isset($_POST['simpan'])) {
+    $sql1 = mysqli_query($koneksi, "SELECT * FROM troli JOIN service on service.no_service = troli.no_service JOIN harga on harga.id_harga = troli.id_harga WHERE troli.no_service='$no_service'");
+    while ($e = mysqli_fetch_array($sql1)) {
+        $total1 += $e['harga'];
+    }
     $progres  = $_POST['progres'];
     $keterangan  = $_POST['keterangan'];
 
-    $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan' WHERE no_service='$no_service'");
-
-    $sql = mysqli_query($koneksi, "INSERT into detservice (no_service, id_harga, jumlah, teknisi, totharga) SELECT no_service, id_harga, jumlah, teknisi, totharga FROM troli WHERE no_service='$no_service'");
-
-    $sql = mysqli_query($koneksi, "	DELETE FROM troli WHERE no_service='$no_service'") or die(mysqli_error($koneksi));
+    $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan', totharga='$total1' WHERE no_service='$no_service'");
 
     if ($sql) {
         echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
@@ -68,13 +68,11 @@ if (isset($_POST['Hargatroli'])) {
     $id_troli = $_POST['id_troli'];
     $id_harga = $_POST['id_harga'];
     $jumlah = $_POST['harga'];
-    $teknisi = ($_SESSION['name']);
-    $total = 1;
 
     $cek = mysqli_query($koneksi, "SELECT * FROM troli WHERE no_service = '$no_service' AND id_harga='$id_harga'") or die(mysqli_error($koneksi));
     if (mysqli_num_rows($cek) == 0) {
 
-        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah, teknisi, totharga) VALUES('$id_troli','$no_service', '$id_harga','$jumlah', '$teknisi' ,'$total')");
+        $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah ) VALUES('$id_troli','$no_service', '$id_harga','$jumlah')");
 
         if ($sql) {
             echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';

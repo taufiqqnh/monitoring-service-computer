@@ -44,7 +44,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <tr>
                                             <th style="width: 1%">NO</th>
                                             <th>NO SERVICE</th>
-                                            <!-- <th>NAMA TEKNISI</th> -->
+                                            <th>NAMA TEKNISI</th>
                                             <th>NAMA PELANGGAN</th>
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
@@ -58,17 +58,16 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <?php
                                         include '../../koneksi.php';
                                         $no = 1;
-                                        $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                        // $data = mysqli_query($koneksi, "SELECT * FROM detservice");
+                                        $idadmin = $_GET['id'];
 
-                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Proses Pengerjaan') ORDER BY no_service DESC");
+                                        $data = mysqli_query($koneksi, "SELECT * FROM service,admin,pelanggan WHERE service.id_admin=admin.id AND service.id_admin= $idadmin AND service.id_pelanggan=pelanggan.id_pelanggan");
 
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td>DC00<?php echo $d['no_service']; ?></td>
-
+                                                <td><?php echo $d['name']; ?></td>
                                                 <td><?php echo $d['nama']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>

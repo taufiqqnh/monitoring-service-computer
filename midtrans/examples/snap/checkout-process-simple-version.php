@@ -19,25 +19,36 @@ printExampleWarningMessage();
 Config::$isSanitized = Config::$is3ds = true;
 
 // Required
+include '../../../koneksi.php';
+$no_service = $_GET['no_service'];
+$data = mysqli_query($koneksi, "SELECT * FROM service,pelanggan WHERE service.id_pelanggan = pelanggan.id_pelanggan AND service.no_service = '$no_service'");
+while ($d = mysqli_fetch_array($data)) {
+    $nama = $d['nama'];
+    $alamat = $d['alamat'];
+    $email = $d['email'];
+    $hp = $d['hp'];
+    $totalharga = $d['totharga'];
+    $noservice = $d['no_service'];
+}
 $transaction_details = array(
     'order_id' => rand(),
-    'gross_amount' => 94000, // no decimal allowed for creditcard
+    'gross_amount' => $totalharga, // no decimal allowed for creditcard
 );
 // Optional
 $item_details = array(
     array(
         'id' => 'a1',
-        'price' => 94000,
+        'price' => $totalharga,
         'quantity' => 1,
-        'name' => "Apple"
+        'name' => "No Service = $no_service"
     ),
 );
 // Optional
 $customer_details = array(
-    'first_name'    => "Andri",
-    'last_name'     => "Litani",
-    'email'         => "andri@litani.com",
-    'phone'         => "081122334455",
+    'first_name'    => $nama,
+    'last_name'     => "",
+    'email'         => $email,
+    'phone'         => $hp,
 );
 // Fill transaction details
 $transaction = array(
@@ -52,7 +63,7 @@ try {
 } catch (\Exception $e) {
     echo $e->getMessage();
 }
-echo "snapToken = " . $snap_token;
+// echo "snapToken = " . $snap_token;
 
 function printExampleWarningMessage()
 {

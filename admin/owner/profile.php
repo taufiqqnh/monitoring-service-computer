@@ -113,12 +113,7 @@ while ($d = mysqli_fetch_array($data)) {
                                         <div class="form-group">
                                             <label>Username</label>
                                             <input id="username" name="username" type="text" class="form-control" value="<?php echo $d['username']; ?>" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input id="password" name="password" type="password" class="form-control" readonly>
+                                            <input id="password" name="password" type="hidden" class="form-control" readonly>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">

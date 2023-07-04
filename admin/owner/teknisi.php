@@ -75,13 +75,13 @@ if (isset($_POST['deleteteknisi'])) {
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Nama</label>
-                                                            <input id="name" name="name" type="text" class="form-control">
+                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Username</label>
-                                                            <input id="username" name="username" type="text" class="form-control">
+                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12">
@@ -93,7 +93,7 @@ if (isset($_POST['deleteteknisi'])) {
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Email</label>
-                                                            <input id="email" type="email" name="email" class="form-control">
+                                                            <input id="email" type="email" name="email" class="form-control" autocomplete="off">
                                                         </div>
                                                         <input type="hidden" class="form-control" id="level" name="level" value="Teknisi">
                                                     </div>

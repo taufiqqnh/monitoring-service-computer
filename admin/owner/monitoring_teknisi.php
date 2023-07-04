@@ -54,7 +54,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <td><?php echo $d['name']; ?></td>
                                                 <td><?php echo $d['email']; ?></td>
                                                 <td>
-                                                    <a class="btn btn-link btn-primary" href="detmonitoring_teknisi.php" role="button">
+                                                    <a class="btn btn-link btn-primary" href="detmonitoring_teknisi.php?id=<?php echo $d['id']; ?>" role="button">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 <?php

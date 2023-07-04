@@ -65,7 +65,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                             <td><?php echo $d['tanggal']; ?> </td>
                                             <td>
                                                 <a class="btn btn-link btn-primary" href="" role="button">
-                                                    <i class="fa fa-edit"></i>
+                                                    <i class="fa fa-print"></i>
                                                 </a>
                                             <?php
                                         }

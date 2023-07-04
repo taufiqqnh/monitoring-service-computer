@@ -118,7 +118,7 @@ if (isset($_GET['no_service'])) {
                             <thead>
                                 <?php
                                 $idp = $_SESSION['id_pelanggan'];
-                                $sql = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan', 'Di Ambil') AND id_pelanggan='$idp' AND no_service = '$nomor'");
+                                $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name FROM service,admin WHERE service.id_admin = admin.id AND progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan', 'Di Ambil') AND id_pelanggan='$idp' AND no_service = '$nomor'");
 
                                 // $sql = mysqli_query($koneksi, "SELECT * FROM detservice JOIN service on service.no_service = detservice.no_service");
 
@@ -141,11 +141,11 @@ if (isset($_GET['no_service'])) {
                                     </tr>
                                     <tr>
                                         <td>Teknisi</td>
-                                        <td><?php echo $data['teknisi']; ?></td>
+                                        <td><?php echo $data['name']; ?></td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal Service</td>
-                                        <td><?php echo $data['tgl_input']; ?></td>
+                                        <td><?php echo $data['tgl_update']; ?></td>
                                     </tr>
                                     <tr>
                                         <td>Progres</td>
@@ -157,16 +157,17 @@ if (isset($_GET['no_service'])) {
                                     </tr>
                                     <tr>
                                         <td>Harga</td>
+                                        <td>RP. <?php echo number_format($data['totharga']) ?>,-</td>
                                     </tr>
-                                <?php
-                                }
-                                ?>
                             </thead>
                         </table>
                         <div>
                             <a class="btn btn-secondary" href="index.php#monitoring">Close</a>
-                            <a class="btn btn-primary" href="../midtrans/examples/snap/checkout-process-simple-version.php">Payment</a>
+                            <a class="btn btn-primary" href="../midtrans/examples/snap/checkout-process-simple-version.php?no_service=<?php echo $data['no_service']; ?>">Payment</a>
                         </div>
+                    <?php
+                                }
+                    ?>
                     </div>
                 </div>
             </div>
