@@ -217,7 +217,6 @@ if (isset($_POST['Hargatroli'])) {
                                                                             <div class="row">
                                                                                 <div class="col-sm-12">
                                                                                     <input type="hidden" name="id_harga" value="<?php echo $d['id_harga']; ?>">
-
                                                                                 </div>
                                                                             </div>
                                                                             <div class="modal-footer no-bd">

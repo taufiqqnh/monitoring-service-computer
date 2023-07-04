@@ -80,7 +80,7 @@
 				<li class="nav-item">
 					<a href="pembayaran.php">
 						<i class="fas fa-money-check-alt"></i>
-						<p>Transaksi Pembayaran</p>
+						<p>Transaksi</p>
 					</a>
 				</li>
 			</ul>

@@ -57,7 +57,6 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 											<th>KATEGORI</th>
 											<th>TYPE</th>
 											<th>KELUHAN</th>
-											<th>PROGRES</th>
 											<th>TANGGAL</th>
 											<th style="width: 5%">ACTION</th>
 										</tr>
@@ -78,7 +77,6 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 												<td><?php echo $data['kategori']; ?></td>
 												<td><?php echo $data['type']; ?></td>
 												<td><?php echo $data['keluhan']; ?></td>
-												<td><?php echo $data['progres']; ?> </td>
 												<td><?php echo $data['tanggal']; ?> </td>
 												<td>
 													<!-- EDIT MEMBER -->

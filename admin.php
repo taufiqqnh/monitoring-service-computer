@@ -17,7 +17,7 @@
             <h1>Login Admin</h1>
             <form action="periksa_login_admin.php" method="POST">
                 <div class="field-wrap">
-                    <input type="text" class="form-control" id="username" name="username" required placeholder="Username" />
+                    <input type="text" class="form-control" id="username" name="username" autocomplete="off" required placeholder="Username" />
                 </div>
                 <div class="field-wrap">
                     <input type="password" class="form-control" id="password" name="password" required placeholder="Password" />

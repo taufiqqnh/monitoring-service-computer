@@ -123,6 +123,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 									<thead>
 										<tr>
 											<th style="width: 1%">NO</th>
+											<th>ID</th>
 											<th>NAMA</th>
 											<th>NO HP</th>
 											<th>EMAIL</th>
@@ -141,6 +142,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 										?>
 											<tr>
 												<td><?php echo $no++; ?></td>
+												<td><?php echo $d['id_pelanggan']; ?></td>
 												<td><?php echo $d['nama']; ?></td>
 												<td><?php echo $d['hp']; ?></td>
 												<td><?php echo $d['email']; ?></td>
