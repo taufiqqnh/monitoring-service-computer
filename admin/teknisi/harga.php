@@ -79,7 +79,7 @@ if (isset($_POST['deleteharga'])) {
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
-										<!-- END Modal Tambah Data-->
+										<!-- Modal Tambah Data-->
 										<div class="modal-body">
 											<form action="harga_act.php" method="post">
 												<div class="row">

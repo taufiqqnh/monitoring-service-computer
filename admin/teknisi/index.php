@@ -89,7 +89,7 @@ session_start();
 				</div>
 				<div class="page-inner mt--5">
 					<div class="row mt--2">
-						<div class="col-xl-4">
+						<div class="col-xl-6">
 							<div class="card card-stats card-round">
 								<div class="card-body ">
 									<div class="row">
@@ -111,7 +111,7 @@ session_start();
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4">
+						<div class="col-xl-6">
 							<div class="card card-stats card-round">
 								<div class="card-body ">
 									<div class="row">
@@ -127,28 +127,6 @@ session_start();
 												?>
 												<p class="card-category">Jumlah Service</p>
 												<h4 class="card-title"><?php echo mysqli_num_rows($service); ?></h4>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4">
-							<div class="card card-stats card-round">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-5">
-											<div class="icon-big text-center">
-												<i class="flaticon-user-5 text-success"></i>
-											</div>
-										</div>
-										<div class="col-7 col-stats">
-											<div class="numbers">
-												<?php
-												$admin = mysqli_query($koneksi, "SELECT * FROM admin WHERE level='teknisi'");
-												?>
-												<p class="card-category">Jumlah Teknisi</p>
-												<h4 class="card-title"><?php echo mysqli_num_rows($admin); ?></h4>
 											</div>
 										</div>
 									</div>
@@ -260,12 +238,10 @@ session_start();
 					</div>
 				</div>
 			</div>
+			<?php
+			include 'footer.php';
+			?>
 		</div>
-		<?php
-		include 'footer.php';
-		?>
-	</div>
-
 	</div>
 
 	<!--   Core JS Files   -->

@@ -4,30 +4,31 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
     document.location='../../admin.php'</script>";
 }
 ?>
-<?php
-include '../../koneksi.php';
-$data = mysqli_query($koneksi, "SELECT * FROM admin WHERE level IN ('Owner')");
-while ($d = mysqli_fetch_array($data)) {
-?>
-    <div class="main-panel">
-        <div class="content">
-            <div class="page-inner ">
-                <div class="page-header">
-                    <h4 class="page-title">Profile</h4>
-                    <ul class="breadcrumbs">
-                        <li class="nav-home">
-                            <a href="index.php">
-                                <i class="flaticon-home"></i>
-                            </a>
-                        </li>
-                        <li class="separator">
-                            <i class="flaticon-right-arrow"></i>
-                        </li>
-                        <li class="nav-item">
-                            <a href="profile.php">My Profile</a>
-                        </li>
-                    </ul>
-                </div>
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner ">
+            <div class="page-header">
+                <h4 class="page-title">Profile</h4>
+                <ul class="breadcrumbs">
+                    <li class="nav-home">
+                        <a href="index.php">
+                            <i class="flaticon-home"></i>
+                        </a>
+                    </li>
+                    <li class="separator">
+                        <i class="flaticon-right-arrow"></i>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.php">My Profile</a>
+                    </li>
+                </ul>
+            </div>
+            <?php
+            include '../../koneksi.php';
+            $id = $_SESSION['id'];
+            $data = mysqli_query($koneksi, "SELECT * FROM admin WHERE id='$id'");
+            while ($d = mysqli_fetch_array($data)) {
+            ?>
                 <!-- Form Profile -->
                 <div class="row ">
                     <div class="col-md-12">
@@ -137,8 +138,8 @@ while ($d = mysqli_fetch_array($data)) {
                 </div>
                 <!-- Form Profile -->
             <?php
-        } ?>
-            </div>
+            } ?>
         </div>
-        <?php include 'footer.php'; ?>
     </div>
+    <?php include 'footer.php'; ?>
+</div>

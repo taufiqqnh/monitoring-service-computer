@@ -39,7 +39,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                             <th>NO</th>
                                             <th>NAMA TEKNISI</th>
                                             <th>EMAIL</th>
-                                            <th style="width: 5%">ACTION</th>
+                                            <th style="width: 5%">DETAIL</th>
                                         </tr>
                                     </thead>
                                     <tbody>

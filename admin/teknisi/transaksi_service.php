@@ -51,6 +51,23 @@ if (isset($_POST['simpanambil'])) {
             <div class="row ">
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center">
+                                <h1 class="card-title">Data Service
+                                    <b>
+                                        Selesai Pengerjaan
+                                    </b>
+                                </h1>
+                            </div>
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="">
+                                <i class="fa fa-print"></i>
+                                Print Data
+                            </a>
+                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="">
+                                <i class="fa fa-download"></i>
+                                Download
+                            </a>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="tablepembayaran" class="display table table-striped table-hover">
@@ -58,13 +75,12 @@ if (isset($_POST['simpanambil'])) {
                                         <tr>
                                             <th>NO</th>
                                             <th>NO SERVICE</th>
+                                            <th>TANGGAL MASUK</th>
                                             <th>NAMA PELANGGAN</th>
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
                                             <th>KELUHAN</th>
-                                            <th>PROGRES</th>
-                                            <th>TANGGAL MASUK</th>
-                                            <th style="width: 10%">ACTION</th>
+                                            <th style="width: 5%">ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,24 +89,25 @@ if (isset($_POST['simpanambil'])) {
                                         $no = 1;
                                         $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
 
-                                        // $data = mysqli_query($koneksi, "SELECT * FROM detservice JOIN service on service.no_service = detservice.no_service");
-
                                         $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td>DC00<?php echo $d['no_service']; ?></td>
+                                                <td><?php echo $d['tanggal']; ?> </td>
                                                 <td><?php echo $d['nama']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
                                                 <td><?php echo $d['keluhan']; ?></td>
-                                                <td><?php echo $d['progres']; ?> </td>
-                                                <td><?php echo $d['tanggal']; ?> </td>
                                                 <td>
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
+                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
+                                                        <i class="fa fa-print"></i>
+                                                    </button>
+
                                                     <!-- Modal Edit Data-->
                                                     <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl" role="document">
@@ -101,7 +118,8 @@ if (isset($_POST['simpanambil'])) {
                                                                             Form Edit data Service
                                                                         </span>
                                                                         <span class="fw- bold">
-                                                                            DC00<?php echo $d['no_service']; ?></span>
+                                                                            DC00<?php echo $d['no_service']; ?>
+                                                                        </span>
                                                                     </h3>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -155,6 +173,18 @@ if (isset($_POST['simpanambil'])) {
                                                                                     <div class="form-group">
                                                                                         <label>Harga</label>
                                                                                         <input id="harga" type="text" name="harga" class="form-control" value="<?php echo $d['totharga']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Tanggal Masuk</label>
+                                                                                        <input id="tanggal" type="text" name="harga" class="form-control" value="<?php echo $d['tanggal']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Tanggal Selesai Pengerjaan</label>
+                                                                                        <input id="tgl_update" type="text" name="tgl_update" class="form-control" value="<?php echo $d['tgl_update']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

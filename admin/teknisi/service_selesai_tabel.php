@@ -6,7 +6,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 ?>
 <script>
     $(document).ready(function() {
-        $('#tableselesai').DataTable();
+        $('#tableambil').DataTable();
     });
 </script>
 
@@ -41,28 +41,35 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h1 class="card-title">Data Service Selesai Pengerjaan</h1>
+                                <h1 class="card-title">Data Service Sudah di Ambil</h1>
                                 <a class="btn btn-danger btn-round ml-auto" href="transaksi_service.php">
                                     <i class="fa fa-arrow-left"></i>
                                     Kembali
                                 </a>
                             </div>
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="">
+                                <i class="fa fa-print"></i>
+                                Print Data
+                            </a>
+                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="">
+                                <i class="fa fa-download"></i>
+                                Download
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="tableselesai" class="display table table-striped table-hover">
+                                <table id="tableambil" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th>NO</th>
                                             <th>NO SERVICE</th>
-                                            <th>ID PELANGGAN</th>
+                                            <th>TANGGAL SERVICE</th>
                                             <th>NAMA PELANGGAN</th>
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
                                             <th>KELUHAN</th>
-                                            <th>PROGRES</th>
                                             <th>KETERANGAN</th>
-                                            <th>TANGGAL</th>
+                                            <th style="width: 10%">ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -76,17 +83,111 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td>DC00<?php echo $d['no_service']; ?></td>
-                                                <td><?php echo $d['id_pelanggan']; ?></td>
+                                                <td><?php echo $d['tanggal']; ?></td>
                                                 <td><?php echo $d['nama']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
                                                 <td><?php echo $d['keluhan']; ?></td>
-                                                <td><?php echo $d['progres']; ?></td>
                                                 <td><?php echo $d['keterangan']; ?></td>
-                                                <td><?php echo $d['tanggal']; ?></td>
-                                            <?php
-                                        }
-                                            ?>
+                                                <td>
+                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
+                                                        <i class="fa fa-edit"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
+                                                        <i class="fa fa-print"></i>
+                                                    </button>
+                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-danger" data-target="">
+                                                        <i class="fa fa-download"></i>
+                                                    </button>
+
+                                                    <!-- Modal Edit Data-->
+                                                    <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                        <div class="modal-dialog modal-xl" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header" style="background-color: blue; color:white;">
+                                                                    <h3 class="modal-title">
+                                                                        <span class="fw-light">
+                                                                            Form Edit data Service
+                                                                        </span>
+                                                                        <span class="fw- bold">
+                                                                            DC00<?php echo $d['no_service']; ?></span>
+                                                                    </h3>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="transaksi_service_act.php" method="post">
+                                                                        <form>
+                                                                            <div class="row">
+                                                                                <input id="no_service" type="hidden" name="no_service" class="form-control" value="<?php echo $d['no_service']; ?>">
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Nama Pelanggan</label>
+                                                                                        <input id="nama" type="text" name="nama" class="form-control" value="<?php echo $d['nama']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Kategori</label>
+                                                                                        <input id="kategori" type="text" name="kategori" class="form-control" value="<?php echo $d['kategori']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Type</label>
+                                                                                        <input id="type" type="text" name="type" class="form-control" value="<?php echo $d['type']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Keluhan</label>
+                                                                                        <input id="keluhan" type="text" name="keluhan" class="form-control" value="<?php echo $d['keluhan']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Progress</label>
+                                                                                        <input id="progres" type="text" name="progres" class="form-control" value="<?php echo $d['progres']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Keterangan</label>
+                                                                                        <input id="keterangan" type="text" name="keterangan" class="form-control" value="<?php echo $d['keterangan']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Harga</label>
+                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="<?php echo $d['totharga']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Tanggal Masuk</label>
+                                                                                        <input id="tanggal" type="text" name="harga" class="form-control" value="<?php echo $d['tanggal']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <div class="form-group">
+                                                                                        <label>Tanggal Ambil</label>
+                                                                                        <input id="tgl_update" type="text" name="tgl_update" class="form-control" value="<?php echo $d['tgl_update']; ?>" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer no-bd">
+                                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                            </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        </form>
+                                                        <!-- END Modal Edit Data-->
+
+                                                    <?php
+                                                }
+                                                    ?>
 
                                             </tr>
                                     </tbody>
