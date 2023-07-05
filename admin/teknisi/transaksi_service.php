@@ -62,7 +62,7 @@ if (isset($_POST['simpanambil'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_selesai.php">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
@@ -107,9 +107,9 @@ if (isset($_POST['simpanambil'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
+                                                    <!-- <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
                                                         <i class="fa fa-print"></i>
-                                                    </button>
+                                                    </button> -->
 
                                                     <!-- Modal Edit Data-->
                                                     <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
