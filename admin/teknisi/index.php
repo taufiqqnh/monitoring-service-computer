@@ -158,8 +158,8 @@ session_start();
 						<div class="col-md-6">
 							<div class="card">
 								<div class="card-body">
-									<div class="card-title">Data Service Masuk</div>
-									<div class="card-category">Daily information about statistics in system</div>
+									<div class="card-title">Data Service</div>
+									<div class="card-category">Informasi tentang data service</div>
 									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
 										<div class="px-2 pb-2 pb-md-0 text-center">
 											<?php
@@ -193,13 +193,78 @@ session_start();
 								</div>
 							</div>
 						</div>
+						<div class="col-md-6">
+							<div class="card full-height">
+								<div class="card-body">
+									<div class="card-title">Total Pelanggan</div>
+									<div class="row py-3">
+										<div class="col-md-4 d-flex flex-column justify-content-around">
+											<div>
+												<?php
+												$member = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Member')");
+												?>
+												<h6 class="fw-bold text-uppercase text-primary op-8">Total Member</h6>
+												<h3 class="fw-bold"><?php echo mysqli_num_rows($member); ?></h3>
+											</div>
+											<div>
+												<?php
+												$belmember = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Member')");
+												?>
+												<h6 class="fw-bold text-uppercase text-warning op-8">Total Belum Member</h6>
+												<h3 class="fw-bold"><?php echo mysqli_num_rows($belmember); ?></h3>
+											</div>
+										</div>
+										<div class="col-md-8">
+											<div id="chart-container">
+												<canvas id="totalIncomeChart"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Data Gender Pelanggan </div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container">
+										<?php
+										$lk = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE jk IN ('Laki-laki')");
+
+										$pr = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE jk IN ('Perempuan')");
+										?>
+										<canvas id="pieChart" style="width: 50%; height: 50%"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Data Kategori Service</div>
+								</div>
+								<div class="card-body">
+									<div class="chart-container">
+										<?php
+										$komputer = mysqli_query($koneksi, "SELECT * FROM service WHERE kategori IN ('Komputer')");
+
+										$printer = mysqli_query($koneksi, "SELECT * FROM service WHERE kategori IN ('Printer')");
+										?>
+										<canvas id="doughnutChart" style="width: 50%; height: 50%"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<?php
-			include 'footer.php';
-			?>
 		</div>
+		<?php
+		include 'footer.php';
+		?>
+	</div>
 
 	</div>
 
@@ -309,12 +374,12 @@ session_start();
 		var mytotalIncomeChart = new Chart(totalIncomeChart, {
 			type: 'bar',
 			data: {
-				labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+				labels: ["Member", "Belum Member"],
 				datasets: [{
-					label: "Total Income",
-					backgroundColor: '#ff9e27',
+					label: "Total Pelanggan",
+					backgroundColor: ['#068FFF', '#FFA41B'],
 					borderColor: 'rgb(23, 125, 255)',
-					data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+					data: [<?php echo mysqli_num_rows($member); ?>, <?php echo mysqli_num_rows($belmember); ?>],
 				}],
 			},
 			options: {
@@ -350,6 +415,75 @@ session_start();
 			lineWidth: '2',
 			lineColor: '#ffa534',
 			fillColor: 'rgba(255, 165, 52, .14)'
+		});
+
+
+		var myPieChart = new Chart(pieChart, {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [<?php echo mysqli_num_rows($lk); ?>, <?php echo mysqli_num_rows($pr); ?>],
+					backgroundColor: ["#1F6E8C", "#EA906C"],
+					borderWidth: 0
+				}],
+				labels: ['Laki-Laki', 'Perempuan']
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'bottom',
+					labels: {
+						fontColor: 'rgb(154, 154, 154)',
+						fontSize: 11,
+						usePointStyle: true,
+						padding: 20
+					}
+				},
+				pieceLabel: {
+					render: 'percentage',
+					fontColor: 'white',
+					fontSize: 14,
+				},
+				tooltips: false,
+				layout: {
+					padding: {
+						left: 20,
+						right: 20,
+						top: 20,
+						bottom: 20
+					}
+				}
+			}
+		})
+		var myDoughnutChart = new Chart(doughnutChart, {
+			type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [<?php echo mysqli_num_rows($komputer); ?>, <?php echo mysqli_num_rows($printer); ?>, ],
+					backgroundColor: ['#f3545d', '#1d7af3']
+				}],
+
+				labels: [
+					'Komputer',
+					'Printer'
+				]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				legend: {
+					position: 'bottom'
+				},
+				layout: {
+					padding: {
+						left: 20,
+						right: 20,
+						top: 20,
+						bottom: 20
+					}
+				}
+			}
 		});
 	</script>
 </body>

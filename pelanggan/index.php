@@ -135,7 +135,7 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
                             <div class="mb-3">
                                 <label class="form-label">Kategori</label>
                                 <select class="form-select" name="kategori" required>
-                                    <option selected>Pilih Kategori</option>
+                                    <option value="" selected>Pilih Kategori</option>
                                     <option value="Komputer">Komputer</option>
                                     <option value="Printer">Printer</option>
                                 </select>
