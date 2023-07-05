@@ -24,13 +24,38 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Transaksi Pembayaran</a>
+                        <a href="#">Transaksi</a>
                     </li>
                 </ul>
             </div>
             <div class="row ">
                 <div class="col-md-12">
                     <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex align-items-center">
+                                <h1 class="card-title">Data Service
+                                    <b>
+                                        Selesai Pengerjaan
+                                    </b>
+                                </h1>
+                                <ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="transaksi_service.php" role="tab" aria-controls="pills-home" aria-selected="true">Selesai Pengerjaan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="service_selesai_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="">
+                                <i class="fa fa-print"></i>
+                                Print Data
+                            </a>
+                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="">
+                                <i class="fa fa-download"></i>
+                                Download
+                            </a>
+                        </div>
                         <div class="card-body">
                             <table id="tablepembayaran" class="display table table-striped table-hover">
                                 <thead>
@@ -51,7 +76,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     include '../../koneksi.php';
                                     $no = 1;
                                     $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                    $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan','Di Ambil') ORDER BY no_service DESC");
+                                    $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
                                     while ($d = mysqli_fetch_array($data)) {
                                     ?>
                                         <tr>

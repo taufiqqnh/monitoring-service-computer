@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2023 at 03:35 AM
+-- Generation Time: Jul 05, 2023 at 10:15 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -43,32 +43,8 @@ CREATE TABLE `admin` (
 INSERT INTO `admin` (`id`, `name`, `username`, `password`, `email`, `level`) VALUES
 (1, 'Taufiq NurHidayat', 'taufiq', 'f4eff635e6dfe584a1a536dbc7718f3d', 'taufiqnurhidayat124@gmail.com', 'Teknisi'),
 (2, 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', 'Owner'),
-(3, 'Defani Ahmad', 'defani', '10cbda08a0da4de926bf1d3d79673354', 'defani@gmail.com', 'Teknisi');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detservice`
---
-
-CREATE TABLE `detservice` (
-  `id_detserv` int(11) NOT NULL,
-  `no_service` int(11) NOT NULL,
-  `id_harga` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `tgl_input` datetime NOT NULL DEFAULT current_timestamp(),
-  `teknisi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detservice`
---
-
-INSERT INTO `detservice` (`id_detserv`, `no_service`, `id_harga`, `jumlah`, `tgl_input`, `teknisi`) VALUES
-(13, 17, 13, 1, '2023-07-03 21:05:40', 'Defani Ahmad'),
-(14, 17, 15, 1, '2023-07-03 21:05:40', 'Defani Ahmad'),
-(16, 22, 10, 1, '2023-07-03 21:12:32', 'Taufiq NurHidayat'),
-(17, 22, 9, 1, '2023-07-03 21:12:32', 'Taufiq NurHidayat');
+(3, 'Defani Ahmad', 'defani', '10cbda08a0da4de926bf1d3d79673354', 'defani@gmail.com', 'Teknisi'),
+(4, 'Imam', 'imam', 'eaccb8ea6090a40a98aa28c071810371', 'imam@gmail.com', 'Teknisi');
 
 -- --------------------------------------------------------
 
@@ -97,7 +73,9 @@ INSERT INTO `harga` (`id_harga`, `jenis`, `kategori`, `type`, `harga`) VALUES
 (12, 'Service', 'Jasa', 'Service PC/Laptop', 25000),
 (13, 'Service', 'Jasa', 'Service Printer', 25000),
 (14, 'HDD', 'Komputer', 'Samsung', 450000),
-(15, 'Tinta Printer', 'Printer', 'Tinta', 200000);
+(15, 'Tinta Printer', 'Printer', 'Tinta', 200000),
+(16, 'LCD', 'Komputer', 'Acer', 350000),
+(17, 'LCD', 'Komputer', 'Asus', 300000);
 
 -- --------------------------------------------------------
 
@@ -116,10 +94,11 @@ CREATE TABLE `jasa` (
 --
 
 INSERT INTO `jasa` (`id_jasa`, `kategori`, `keterangan`) VALUES
-(1, 'Service', 'Install Ulang'),
+(1, 'Service', 'Install Ulang PC'),
 (3, 'Service', 'Ganti Sparepart'),
 (4, 'Printer', 'Service Printer'),
-(5, 'Komputer', 'Service Laptop/PC');
+(5, 'Komputer', 'Service Laptop/PC'),
+(7, 'Komputer', 'Upgrade/Downgrade');
 
 -- --------------------------------------------------------
 
@@ -146,7 +125,7 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `password`, `hp`, `email`, `jk`
 (2, 'Taufiq NurHidayat', 'f4eff635e6dfe584a1a536dbc7718f3d', '089277266266', 't@gmail.com', 'Laki-laki', '   Krangkungan Sukoharjo																																																																																																																																																																																																																																						', 'Member'),
 (18, 'Nur Hamsah', 'b55178b011bfb206965f2638d0f87047', '089277266266', 'n@gmail.com', 'Laki-laki', '     Krangkungan Sukoharjo																																																																																																																			', 'Member'),
 (24, 'Rifki', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'r@gmail.com', 'Laki-laki', '  Klaten																																														', 'Member'),
-(25, 'Rolan', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'i@gmail.com', 'Laki-laki', ' Krangkungan Sukoharjo																							', 'Belum Member'),
+(25, 'Rolan', 'f3385c508ce54d577fd205a1b2ecdfb7', '089277266266', 'i@gmail.com', 'Laki-laki', '  Krangkungan Sukoharjo																																														', 'Belum Member'),
 (26, 'Johan', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'johan@gmail.com', 'Laki-laki', ' Sragen																							', 'Belum Member'),
 (27, 'Juki', '87f39ffa3a64fd26beb2ea7442ad701f', '089277266266', 'j@gmail.com', 'Perempuan', 'Klaten', 'Belum Member');
 
@@ -164,22 +143,23 @@ CREATE TABLE `service` (
   `keluhan` text NOT NULL,
   `tanggal` datetime DEFAULT current_timestamp(),
   `progres` varchar(255) NOT NULL,
-  `keterangan` varchar(255) NOT NULL
+  `keterangan` varchar(255) NOT NULL,
+  `totharga` int(25) NOT NULL,
+  `id_admin` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `tgl_update` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`no_service`, `id_pelanggan`, `kategori`, `type`, `keluhan`, `tanggal`, `progres`, `keterangan`) VALUES
-(16, 2, 'Komputer', 'Lenovo', 'Booting lama, Install Ulang                                ', '2023-06-16 15:46:48', 'Selesai Pengerjaan', ' '),
-(17, 2, 'Printer', 'HP', 'Tinta Habis                                ', '2023-06-16 15:47:03', 'Proses Pengerjaan', ' Proses Penggantian tinta printer HP'),
-(18, 2, 'Komputer', 'Lenovo', ' Ganti Baterai\r\n                                ', '2023-06-16 16:24:07', 'Service Dibatalkan', 'Overload'),
-(19, 2, 'Printer', 'Lenovo', 'Service dan ganti tinta\r\n                                ', '2023-06-20 13:23:42', 'Service Dibatalkan', 'Batal                                    '),
-(20, 2, 'Komputer', 'Samsung', 'Install Ulang  Laptop                             ', '2023-06-20 13:29:57', 'Dalam Antrian', ' '),
-(21, 18, 'Komputer', 'Asus ROG', 'Upgrade SSD                                ', '2023-06-21 11:56:21', 'Proses Pengerjaan', ' '),
-(22, 24, 'Komputer', 'Asus Thinkbook', 'Ganti Keyboard                                ', '2023-06-21 12:16:13', 'Proses Pengerjaan', ' Proses ganti keyboard Laptop'),
-(23, 2, 'Komputer', 'Acer', 'Install Ulang                                ', '2023-07-03 22:11:47', 'Proses Pengerjaan', ' ');
+INSERT INTO `service` (`no_service`, `id_pelanggan`, `kategori`, `type`, `keluhan`, `tanggal`, `progres`, `keterangan`, `totharga`, `id_admin`, `id_order`, `tgl_update`) VALUES
+(26, 2, 'Komputer', 'Asus ROG', 'Upgrade SSD                                ', '2023-07-04 21:54:57', 'Selesai Pengerjaan', ' Proses Upgrade SSD ASUS ROG', 480000, 1, 0, '2023-07-05 11:57:18'),
+(27, 2, 'Printer', 'HP', 'Service Printer                                ', '2023-07-04 21:55:17', 'Proses Pengerjaan', ' ', 0, 1, 0, '2023-07-05 12:33:38'),
+(28, 2, 'Komputer', 'Acer', 'Install Ulang                                ', '2023-07-04 21:55:50', 'Di Ambil', ' Proses Install Ulang Laptop Selesai', 30000, 1, 0, '2023-07-05 11:40:10'),
+(29, 27, 'Printer', 'Printer HP', 'Service Printer\r\n                                ', '2023-07-05 13:34:58', 'Dalam Antrian', '', 0, 0, 0, '2023-07-05 13:34:58'),
+(30, 27, 'Komputer', 'Acer Aspire', 'Ganti Batarai\r\n                                ', '2023-07-05 13:42:55', 'Dalam Antrian', '', 0, 0, 0, '2023-07-05 13:42:55');
 
 -- --------------------------------------------------------
 
@@ -189,7 +169,7 @@ INSERT INTO `service` (`no_service`, `id_pelanggan`, `kategori`, `type`, `keluha
 
 CREATE TABLE `transaksi_midtrans` (
   `id_order` int(20) NOT NULL,
-  `id_pelanggan` int(11) NOT NULL,
+  `no_service` int(11) NOT NULL,
   `gross_amount` int(11) NOT NULL,
   `payment_type` varchar(50) NOT NULL,
   `transaction_time` varchar(20) NOT NULL,
@@ -210,19 +190,17 @@ CREATE TABLE `troli` (
   `id_troli` int(11) NOT NULL,
   `no_service` int(11) NOT NULL,
   `id_harga` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `teknisi` varchar(255) NOT NULL,
-  `totharga` int(11) NOT NULL
+  `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `troli`
 --
 
-INSERT INTO `troli` (`id_troli`, `no_service`, `id_harga`, `jumlah`, `teknisi`, `totharga`) VALUES
-(145, 22, 12, 1, 'Defani Ahmad', 0),
-(146, 22, 9, 1, 'Defani Ahmad', 0),
-(169, 23, 10, 1, 'Defani Ahmad', 0);
+INSERT INTO `troli` (`id_troli`, `no_service`, `id_harga`, `jumlah`) VALUES
+(230, 28, 10, 30000),
+(231, 26, 7, 450000),
+(232, 26, 10, 30000);
 
 --
 -- Indexes for dumped tables
@@ -233,12 +211,6 @@ INSERT INTO `troli` (`id_troli`, `no_service`, `id_harga`, `jumlah`, `teknisi`, 
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `detservice`
---
-ALTER TABLE `detservice`
-  ADD PRIMARY KEY (`id_detserv`);
 
 --
 -- Indexes for table `harga`
@@ -270,7 +242,7 @@ ALTER TABLE `service`
 --
 ALTER TABLE `transaksi_midtrans`
   ADD PRIMARY KEY (`id_order`),
-  ADD KEY `customer_id` (`id_pelanggan`);
+  ADD KEY `customer_id` (`no_service`);
 
 --
 -- Indexes for table `troli`
@@ -283,22 +255,22 @@ ALTER TABLE `troli`
 --
 
 --
--- AUTO_INCREMENT for table `detservice`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `detservice`
-  MODIFY `id_detserv` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+ALTER TABLE `admin`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `harga`
 --
 ALTER TABLE `harga`
-  MODIFY `id_harga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_harga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `jasa`
 --
 ALTER TABLE `jasa`
-  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
@@ -310,13 +282,13 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `troli`
 --
 ALTER TABLE `troli`
-  MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+  MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
 
 --
 -- Constraints for dumped tables
