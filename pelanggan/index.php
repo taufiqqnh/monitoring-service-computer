@@ -256,7 +256,7 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
                                 } else {
                                     echo '
                                     <tr>
-                                        <td colspan="4"> Tidak ada data. </td>
+                                        <td colspan="5"> Tidak ada data </td>
                                     <tr>
                                     ';
                                 }
@@ -271,56 +271,6 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
 
     <!-- Section Monitoring -->
     <section id="monitoring" class="monitoring">
-        <!-- Modal Detail -->
-        <div class="modal" tabindex="-1" id="detail">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: #4154f1; color:white;">
-                        <h5 class="modal-title">Detail Service</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table id="tabledetail" class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <td>Nomor Service</td>
-                                    <td>Kategori</td>
-                                    <td>Type</td>
-                                    <td>Keluhan</td>
-                                    <td>Author</td>
-                                    <td>Tanggal Service</td>
-                                </tr>
-                            <tbody>
-                                <?php
-                                $idp = $_SESSION['id_pelanggan'];
-                                $sql = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan') AND id_pelanggan='$idp' ORDER BY no_service desc");
-                                while ($data = mysqli_fetch_array($sql)) {
-                                ?>
-
-                                    <tr>
-                                        <td>DC00<?php echo $data['no_service']; ?></td>
-                                        <td><?php echo $data['kategori']; ?></td>
-                                        <td><?php echo $data['type']; ?></td>
-                                        <td><?php echo $data['keluhan']; ?></td>
-                                        <td> </td>
-                                        <td><?php echo $data['tanggal']; ?></td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-
-                            </tbody>
-                            </thead>
-                        </table>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Payment</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Modal Detail -->
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="col-lg-12 d-flex flex-column justify-content-center">
@@ -365,7 +315,7 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
                                 } else {
                                     echo '
                                     <tr>
-                                        <td colspan="4"> Tidak ada data. </td>
+                                        <td colspan="6"> Tidak ada data </td>
                                     <tr>
                                     ';
                                 }

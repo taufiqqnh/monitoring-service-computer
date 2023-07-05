@@ -86,7 +86,9 @@ function printExampleWarningMessage()
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PAYMENT </title>
+    <title>Payment DFN Computer</title>
+
+    <link href="../../../public/assets/img/home.png" rel="icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 
@@ -96,7 +98,11 @@ function printExampleWarningMessage()
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <p>Selesaikan Pembayaran Sekarang</p>
+                <p>
+                    <b>
+                        Selesaikan Pembayaran Sekarang!!
+                    </b>
+                </p>
                 <button id="pay-button" class="btn btn-primary">PILIH METODE PEMBAYARAN</button>
 
                 <!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->

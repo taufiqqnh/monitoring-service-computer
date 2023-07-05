@@ -95,6 +95,9 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <a type="button" class="btn btn-link btn-success" href="">
                                                     <i class="fa fa-print"></i>
                                                 </a>
+                                                <a type="button" class="btn btn-link btn-danger" href="">
+                                                    <i class="fa fa-download"></i>
+                                                </a>
                                                 <!-- Modal detail Data-->
                                                 <div class="modal fade" id="detail<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl" role="document">
