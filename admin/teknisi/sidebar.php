@@ -73,13 +73,13 @@
 				</li>
 				<li class="nav-item">
 					<a href="monitoring_service.php">
-						<i class="fas fa-bell"></i>
+						<i class="far fa-chart-bar"></i>
 						<p>Monitoring Service</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="transaksi_service.php">
-						<i class="fas fa-money-check-alt"></i>
+						<i class="fas fa-money-check"></i>
 						<p>Transaksi</p>
 					</a>
 				</li>
@@ -91,7 +91,7 @@
 				</li>
 				<li class="nav-item">
 					<a href="layanan.php">
-						<i class="fas fa-money-check-alt"></i>
+						<i class="fas fa-layer-group"></i>
 						<p>Layanan Tersedia</p>
 					</a>
 				</li>

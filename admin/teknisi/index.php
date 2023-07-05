@@ -155,70 +155,43 @@ session_start();
 								</div>
 							</div>
 						</div>
-					</div>
-					<h4 class="page-title">Progress</h4>
-					<div class="row">
-						<div class="col-md-12">
-
-							<ul class="timeline">
-								<li>
-									<div class="timeline-badge"><i class="flaticon-message"></i></div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-											<p><small class="text-muted"><i class="flaticon-message"></i> 11 hours ago via Twitter</small></p>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-body">
+									<div class="card-title">Data Service Masuk</div>
+									<div class="card-category">Daily information about statistics in system</div>
+									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<?php
+											$data1 = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Dalam Antrian')");
+											?>
+											<div id="circles-1"></div>
+											<h6 class="fw-bold mt-3 mb-0">Dalam Antrian</h6>
 										</div>
-										<div class="timeline-body">
-											<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<?php
+											$data2 = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Proses Pengerjaan')");
+											?>
+											<div id="circles-2"></div>
+											<h6 class="fw-bold mt-3 mb-0">Proses Pengerjaan</h6>
 										</div>
-									</div>
-								</li>
-								<li class="timeline-inverted">
-									<div class="timeline-badge warning"><i class="flaticon-alarm-1"></i></div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-											<p><small class="text-muted"><i class="flaticon-message"></i> 11 hours ago via Twitter</small></p>
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<?php
+											$data3 = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Selesai Pengerjaan')");
+											?>
+											<div id="circles-3"></div>
+											<h6 class="fw-bold mt-3 mb-0">Selesai Pengerjaan</h6>
 										</div>
-										<div class="timeline-body">
-											<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-badge danger"><i class="flaticon-error"></i></div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+										<div class="px-2 pb-2 pb-md-0 text-center">
+											<?php
+											$data4 = mysqli_query($koneksi, "SELECT * FROM service WHERE progres IN ('Di Ambil')");
+											?>
+											<div id="circles-4"></div>
+											<h6 class="fw-bold mt-3 mb-0">Di Ambil</h6>
 										</div>
 									</div>
-								</li>
-								<li class="timeline-inverted">
-									<div class="timeline-badge success"><i class="flaticon-credit-card-1"></i></div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="timeline-badge info"><i class="flaticon-price-tag"></i></div>
-									<div class="timeline-panel">
-										<div class="timeline-heading">
-											<h4 class="timeline-title">Mussum ipsum cacilds</h4>
-										</div>
-										<div class="timeline-body">
-											<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-										</div>
-									</div>
-								</li>
-							</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -274,10 +247,10 @@ session_start();
 		Circles.create({
 			id: 'circles-1',
 			radius: 45,
-			value: 60,
-			maxValue: 100,
+			value: <?php echo mysqli_num_rows($data1); ?>,
+			maxValue: 10,
 			width: 7,
-			text: 5,
+			text: <?php echo mysqli_num_rows($data1); ?>,
 			colors: ['#f1f1f1', '#FF9E27'],
 			duration: 400,
 			wrpClass: 'circles-wrp',
@@ -289,10 +262,10 @@ session_start();
 		Circles.create({
 			id: 'circles-2',
 			radius: 45,
-			value: 70,
-			maxValue: 100,
+			value: <?php echo mysqli_num_rows($data2); ?>,
+			maxValue: 10,
 			width: 7,
-			text: 36,
+			text: <?php echo mysqli_num_rows($data2); ?>,
 			colors: ['#f1f1f1', '#2BB930'],
 			duration: 400,
 			wrpClass: 'circles-wrp',
@@ -304,11 +277,26 @@ session_start();
 		Circles.create({
 			id: 'circles-3',
 			radius: 45,
-			value: 40,
-			maxValue: 100,
+			value: <?php echo mysqli_num_rows($data3); ?>,
+			maxValue: 10,
 			width: 7,
-			text: 12,
+			text: <?php echo mysqli_num_rows($data3); ?>,
 			colors: ['#f1f1f1', '#F25961'],
+			duration: 400,
+			wrpClass: 'circles-wrp',
+			textClass: 'circles-text',
+			styleWrapper: true,
+			styleText: true
+		})
+
+		Circles.create({
+			id: 'circles-4',
+			radius: 45,
+			value: <?php echo mysqli_num_rows($data4); ?>,
+			maxValue: 10,
+			width: 7,
+			text: <?php echo mysqli_num_rows($data4); ?>,
+			colors: ['#f1f1f1', '#068FFF'],
 			duration: 400,
 			wrpClass: 'circles-wrp',
 			textClass: 'circles-text',
