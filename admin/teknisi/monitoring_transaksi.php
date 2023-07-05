@@ -32,19 +32,40 @@ if (isset($_GET['no_service'])) {
 ?>
 <?php
 if (isset($_POST['simpan'])) {
-    $sql1 = mysqli_query($koneksi, "SELECT * FROM troli JOIN service on service.no_service = troli.no_service JOIN harga on harga.id_harga = troli.id_harga WHERE troli.no_service='$no_service'");
-    while ($e = mysqli_fetch_array($sql1)) {
-        $total1 += $e['harga'];
-    }
-    $progres  = $_POST['progres'];
-    $keterangan  = $_POST['keterangan'];
 
-    $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan', totharga='$total1' WHERE no_service='$no_service'");
+    $cek = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Member')");
+    if (mysqli_num_rows($cek) == 0) {
+        $progres  = $_POST['progres'];
+        $keterangan  = $_POST['keterangan'];
+        $sql1 = mysqli_query($koneksi, "SELECT * FROM troli JOIN service on service.no_service = troli.no_service JOIN harga on harga.id_harga = troli.id_harga WHERE troli.no_service='$no_service'");
+        while ($e = mysqli_fetch_array($sql1)) {
+            $total1 += $e['harga'];
+        }
 
-    if ($sql) {
-        echo '<script>alert("Berhasil menyimpan data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
+        $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan', totharga='$total1' WHERE no_service='$no_service'");
+
+        if ($sql) {
+            echo '<script>alert("Berhasil menyimpan data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
+        } else {
+            echo '<div class="alert alert-warning">Gagal melakukan proses simpan data.</div>';
+        }
     } else {
-        echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
+        $progres1  = $_POST['progres'];
+        $keterangan1  = $_POST['keterangan'];
+        $sql2 = mysqli_query($koneksi, "SELECT * FROM troli JOIN service on service.no_service = troli.no_service JOIN harga on harga.id_harga = troli.id_harga WHERE troli.no_service='$no_service'");
+        while ($a = mysqli_fetch_array($sql2)) {
+            $total2 += $a['harga'];
+            $diskon = (10 / 100) * $total2;
+            $totdiskon = $total2 - $diskon;
+        }
+
+        $diskon = mysqli_query($koneksi, "UPDATE service SET progres='$progres1', keterangan='$keterangan1', totharga='$totdiskon' WHERE no_service='$no_service'");
+
+        if ($diskon) {
+            echo '<script>alert("Berhasil menyimpan data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
+        } else {
+            echo '<div class="alert alert-warning">Gagal melakukan proses simpan data.</div>';
+        }
     }
 }
 ?>
@@ -283,6 +304,8 @@ if (isset($_POST['Hargatroli'])) {
                                         $total = 0;
                                         while ($d = mysqli_fetch_array($datatroli)) {
                                             $total += $d['harga'];
+                                            $diskon1 = (10 / 100) * $total;
+                                            $totdiskon = $total - $diskon1;
                                         ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
@@ -332,8 +355,12 @@ if (isset($_POST['Hargatroli'])) {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="3" class="text-center"><b>Total</b></th>
-                                <th colspan="2"><b>Rp. <?php echo number_format($total) ?></b></th>
+                                <th class="text-center"><b>Harga</b></th>
+                                <th><b>Rp.<?php echo number_format($total) ?></b></th>
+                                <th class="text-center"><b>Diskon</b></th>
+                                <th><b>Rp.<?php echo number_format($diskon1) ?></b></th>
+                                <th><b>Total Harga</b></th>
+                                <th><b>Rp.<?php echo number_format($totdiskon) ?></b></th>
 
                             </tr>
                             </table>

@@ -13,5 +13,5 @@ if (mysqli_num_rows($cek_email) > 0) {
 	echo '<script>alert("Email Sudah Terdaftar."); document.location="autentication.php";</script>';
 } else {
 	mysqli_query($koneksi, "insert into pelanggan values (NULL,'$nama','$password','$hp','$email','$jk','$alamat', '$status')");
-	echo '<script>alert("Berhasil Mendaftar."); document.location="autentication.php";</script>';
+	echo '<script>alert("Berhasil Mendaftar."); document.location="index.php";</script>';
 }

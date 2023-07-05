@@ -68,25 +68,25 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Nama</label>
-															<input type="text" class="form-control" id="nama" name="nama" required placeholder="Nama" />
+															<input type="text" class="form-control" id="nama" name="nama" required placeholder="Nama" autocomplete="off" />
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Password</label>
-															<input type="password" class="form-control" id="password" name="password" required placeholder="Password" />
+															<input type="password" class="form-control" id="password" name="password" required placeholder="Password" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{7,20}$" title="Harus 8 Karakter Password!!" />
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>No HP</label>
-															<input type="text" class="form-control" id="hp" name="hp" required placeholder="No Hp" />
+															<input type="text" class="form-control" id="hp" name="hp" required placeholder="No Hp" autocomplete="off" />
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Email</label>
-															<input type="email" class="form-control" id="email" name="email" required placeholder="Email Address" />
+															<input type="email" class="form-control" id="email" name="email" required placeholder="Email Address" autocomplete="off" />
 														</div>
 													</div>
 													<div class="col-md-6 pr-0">
@@ -102,7 +102,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Alamat</label>
-															<input type="text" class="form-control" id="alamat" name="alamat" required placeholder="Alamat" />
+															<input type="text" class="form-control" id="alamat" name="alamat" required placeholder="Alamat" autocomplete="off" />
 														</div>
 														<input type="hidden" class="form-control" id="status" name="status" value="Belum Member">
 													</div>
@@ -186,7 +186,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																					<div class="col-sm-12">
 																						<div class="form-group form-group-default">
 																							<label>Password</label>
-																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" required>
+																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{7,20}$" title="Harus 8 Karakter Password!!">
 																						</div>
 																					</div>
 																					<div class=" col-sm-12">
