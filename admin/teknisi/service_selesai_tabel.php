@@ -14,7 +14,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
     <div class="content">
         <div class="page-inner ">
             <div class="page-header">
-                <h4 class="page-title">Data Master</h4>
+                <h4 class="page-title">Transaksi / Ambil Service</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
                         <a href="index.php">
@@ -25,19 +25,13 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Data Master</a>
+                        <a href="#">Transaksi</a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="service.php">Data Service</a>
-                    </li>
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="service_batal_tabel.php">Data Service yang Selesai</a>
+                        <a href="service_batal_tabel.php">Data Service yang Sudah Diambil</a>
                     </li>
                 </ul>
             </div>
@@ -48,7 +42,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h1 class="card-title">Data Service Selesai Pengerjaan</h1>
-                                <a class="btn btn-danger btn-round ml-auto" href="service.php">
+                                <a class="btn btn-danger btn-round ml-auto" href="transaksi_service.php">
                                     <i class="fa fa-arrow-left"></i>
                                     Kembali
                                 </a>
@@ -76,7 +70,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         include '../../koneksi.php';
                                         $no = 1;
                                         $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan','Di Ambil') ORDER BY no_service DESC");
+                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Di Ambil') ORDER BY no_service DESC");
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>

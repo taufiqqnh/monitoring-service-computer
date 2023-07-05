@@ -42,6 +42,11 @@ if (isset($_POST['simpanambil'])) {
                         <a href="#">Transaksi</a>
                     </li>
                 </ul>
+                <div class="col page-header text-right">
+                    <a class="btn btn-info btn-round ml-auto" href="service_selesai_tabel.php">
+                        Data Service Yang Sudah Diambil
+                    </a>
+                </div>
             </div>
             <div class="row ">
                 <div class="col-md-12">
@@ -58,7 +63,7 @@ if (isset($_POST['simpanambil'])) {
                                             <th>TYPE</th>
                                             <th>KELUHAN</th>
                                             <th>PROGRES</th>
-                                            <th>TANGGAL</th>
+                                            <th>TANGGAL MASUK</th>
                                             <th style="width: 10%">ACTION</th>
                                         </tr>
                                     </thead>
@@ -83,15 +88,12 @@ if (isset($_POST['simpanambil'])) {
                                                 <td><?php echo $d['progres']; ?> </td>
                                                 <td><?php echo $d['tanggal']; ?> </td>
                                                 <td>
-                                                    <!-- <a class="btn btn-link btn-primary" href="" role="button">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a> -->
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <!-- Modal Edit Data-->
                                                     <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
+                                                        <div class="modal-dialog modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background-color: blue; color:white;">
                                                                     <h3 class="modal-title">
@@ -106,38 +108,36 @@ if (isset($_POST['simpanambil'])) {
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="pembayaran_act.php" method="post">
+                                                                    <form action="transaksi_service_act.php" method="post">
                                                                         <form>
                                                                             <div class="row">
-
                                                                                 <input id="no_service" type="hidden" name="no_service" class="form-control" value="<?php echo $d['no_service']; ?>">
-
                                                                                 <div class="col-sm-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Nama Pelanggan</label>
                                                                                         <input id="nama" type="text" name="nama" class="form-control" value="<?php echo $d['nama']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Kategori</label>
                                                                                         <input id="kategori" type="text" name="kategori" class="form-control" value="<?php echo $d['kategori']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Type</label>
                                                                                         <input id="type" type="text" name="type" class="form-control" value="<?php echo $d['type']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Keluhan</label>
                                                                                         <input id="keluhan" type="text" name="keluhan" class="form-control" value="<?php echo $d['keluhan']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Progress</label>
                                                                                         <select class="form-control input-border-buttom" name="progres" id="progres">
                                                                                             <option selected><?php echo $d['progres']; ?></option>
@@ -146,15 +146,15 @@ if (isset($_POST['simpanambil'])) {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Keterangan</label>
                                                                                         <input id="keterangan" type="text" name="keterangan" class="form-control" value="<?php echo $d['keterangan']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">
-                                                                                    <div class="form-group form-group-default">
+                                                                                    <div class="form-group">
                                                                                         <label>Harga</label>
-                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="" readonly>
+                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="<?php echo $d['totharga']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

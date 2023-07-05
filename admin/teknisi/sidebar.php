@@ -78,9 +78,21 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="pembayaran.php">
+					<a href="transaksi_service.php">
 						<i class="fas fa-money-check-alt"></i>
 						<p>Transaksi</p>
+					</a>
+				</li>
+				<li class="nav-section">
+					<span class="sidebar-mini-icon">
+						<i class="fa fa-ellipsis-h"></i>
+					</span>
+					<h4 class="text-section">Layanan</h4>
+				</li>
+				<li class="nav-item">
+					<a href="layanan.php">
+						<i class="fas fa-money-check-alt"></i>
+						<p>Layanan Tersedia</p>
 					</a>
 				</li>
 			</ul>

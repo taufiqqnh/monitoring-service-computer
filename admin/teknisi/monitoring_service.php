@@ -70,7 +70,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <td><?php echo $d['progres']; ?> </td>
                                                 <td><?php echo $d['tanggal']; ?> </td>
                                                 <td>
-                                                    <a class="btn btn-link btn-primary" href="transaksi.php?no_service=<?php echo $d['no_service']; ?>" role="button">
+                                                    <a class="btn btn-link btn-primary" href="monitoring_transaksi.php?no_service=<?php echo $d['no_service']; ?>" role="button">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
                                                 <?php

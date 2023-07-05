@@ -42,7 +42,7 @@ if (isset($_POST['simpan'])) {
     $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres', keterangan='$keterangan', totharga='$total1' WHERE no_service='$no_service'");
 
     if ($sql) {
-        echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
+        echo '<script>alert("Berhasil menyimpan data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
     } else {
         echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
     }
@@ -55,7 +55,7 @@ if (isset($_POST['deletekeranjang'])) {
 
     $del = mysqli_query($koneksi, "DELETE FROM troli WHERE id_troli='$id_del'") or die(mysqli_error($koneksi));
     if ($del) {
-        echo '<script>alert("Berhasil menghapus data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
+        echo '<script>alert("Berhasil menghapus data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
     } else {
         echo '<div class="alert alert-warning">Gagal melakukan proses hapus data.</div>';
     }
@@ -75,7 +75,7 @@ if (isset($_POST['Hargatroli'])) {
         $sql = mysqli_query($koneksi, "INSERT INTO troli(id_troli, no_service, id_harga, jumlah ) VALUES('$id_troli','$no_service', '$id_harga','$jumlah')");
 
         if ($sql) {
-            echo '<script>alert("Berhasil menyimpan data."); document.location="transaksi.php?no_service=' . $no_service . '";</script>';
+            echo '<script>alert("Berhasil menyimpan data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
         } else {
             echo '<script>alert("Gagal melakukan proses tambah data.");</script>';
         }
@@ -106,7 +106,7 @@ if (isset($_POST['Hargatroli'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="transaksi.php?no_service=<?php echo $no_service ?>">Data Transaksi</a>
+                        <a href="monitoring_transaksi.php?no_service=<?php echo $no_service ?>">Data Transaksi</a>
                     </li>
                 </ul>
             </div>
@@ -122,7 +122,7 @@ if (isset($_POST['Hargatroli'])) {
                             </center>
                         </div>
                         <div class="card-body">
-                            <form action="transaksi.php?no_service=<?php echo $no_service ?>" method="post">
+                            <form action="monitoring_transaksi.php?no_service=<?php echo $no_service ?>" method="post">
                                 <form>
                                     <div class="mb-3">
                                         <label class="form-label">Nama</label>
@@ -194,7 +194,7 @@ if (isset($_POST['Hargatroli'])) {
                                                 <td><?php echo $d['jenis']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
-                                                <td><?php echo $d['harga']; ?></td>
+                                                <td>RP. <?php echo number_format($d['harga']) ?>,-</td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-target="#tambah_<?php echo $d['id_harga']; ?>">
@@ -216,7 +216,7 @@ if (isset($_POST['Hargatroli'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <form action="transaksi.php?no_service=<?php echo $no_service ?>" method="post">
+                                                                        <form action="monitoring_transaksi.php?no_service=<?php echo $no_service ?>" method="post">
                                                                             <div class="row">
                                                                                 <div class="col-sm-12">
                                                                                     <input type="hidden" name="id_harga" value="<?php echo $d['id_harga']; ?>">
@@ -289,7 +289,7 @@ if (isset($_POST['Hargatroli'])) {
                                                 <td><?php echo $d['jenis']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
-                                                <td><?php echo $d['harga']; ?></td>
+                                                <td>RP. <?php echo number_format($d['harga']) ?>,-</td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <!-- Button trigger modal Hapus-->
@@ -308,7 +308,7 @@ if (isset($_POST['Hargatroli'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <form action="transaksi.php?no_service=<?php echo $no_service ?>" method="post">
+                                                                        <form action="monitoring_transaksi.php?no_service=<?php echo $no_service ?>" method="post">
                                                                             <input type="hidden" name="id_troli" value="<?php echo $d['id_troli']; ?>">
                                                                             Apakah kamu yakin ingin menghapus data <b><?php echo $d['jenis']; ?></b>
                                                                     </div>
