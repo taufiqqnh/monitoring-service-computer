@@ -25,12 +25,6 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Transaksi</a>
-                    </li>
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
                         <a href="service_batal_tabel.php">Data Service yang Sudah Diambil</a>
                     </li>
                 </ul>

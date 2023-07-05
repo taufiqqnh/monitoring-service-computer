@@ -47,19 +47,19 @@
 				</li>
 				<li class="nav-item">
 					<a href="teknisi.php">
-						<i class="fas fa-table"></i>
+						<i class="fas fa-user-friends"></i>
 						<p>Data Teknisi</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="monitoring_teknisi.php">
-						<i class="fas fa-layer-group"></i>
+						<i class="far fa-chart-bar"></i>
 						<p>Monitoring Kerja Teknisi</p>
 					</a>
 				</li>
 				<li class="nav-item">
 					<a href="transaksi_service.php">
-						<i class="fas fa-pen-square"></i>
+						<i class="fas fa-money-check"></i>
 						<p>Laporan Transaksi</p>
 					</a>
 				</li>

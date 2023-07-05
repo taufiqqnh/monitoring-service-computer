@@ -55,7 +55,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
@@ -101,12 +101,12 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
+                                                    <!-- <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
                                                         <i class="fa fa-print"></i>
                                                     </button>
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-danger" data-target="">
                                                         <i class="fa fa-download"></i>
-                                                    </button>
+                                                    </button> -->
 
                                                     <!-- Modal detail Data-->
                                                     <div class="modal fade" id="detail<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -168,7 +168,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                                                 <div class="col-sm-12">
                                                                                     <div class="form-group">
                                                                                         <label>Harga</label>
-                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="<?php echo $d['totharga']; ?>" readonly>
+                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="Rp. <?php echo number_format($d['totharga']); ?>,-" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">

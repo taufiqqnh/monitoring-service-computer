@@ -43,11 +43,11 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <a class="nav-link active" href="transaksi_service.php" role="tab" aria-controls="pills-home" aria-selected="true">Selesai Pengerjaan</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="service_selesai_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
+                                        <a class="nav-link" href="transaksi_service_diambil.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_selesai.php">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
@@ -92,12 +92,12 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
-                                                <a type="button" class="btn btn-link btn-success" href="">
+                                                <!-- <a type="button" class="btn btn-link btn-success" href="">
                                                     <i class="fa fa-print"></i>
                                                 </a>
                                                 <a type="button" class="btn btn-link btn-danger" href="">
                                                     <i class="fa fa-download"></i>
-                                                </a>
+                                                </a> -->
                                                 <!-- Modal detail Data-->
                                                 <div class="modal fade" id="detail<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl" role="document">
@@ -158,7 +158,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                                             <div class="col-sm-12">
                                                                                 <div class="form-group">
                                                                                     <label>Harga</label>
-                                                                                    <input id="harga" type="text" name="harga" class="form-control" value="<?php echo $d['totharga']; ?>" readonly>
+                                                                                    <input id="harga" type="text" name="harga" class="form-control" value="Rp. <?php echo number_format($d['totharga']); ?>,-" readonly>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-sm-12">

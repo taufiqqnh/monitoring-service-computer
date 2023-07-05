@@ -130,7 +130,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                                                 <div class="col-sm-12">
                                                                                     <div class="form-group">
                                                                                         <label>Harga</label>
-                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="<?php echo $d['totharga']; ?>" readonly>
+                                                                                        <input id="harga" type="text" name="harga" class="form-control" value="Rp. <?php echo number_format($d['totharga']); ?>,-" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-12">

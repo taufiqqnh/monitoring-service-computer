@@ -58,7 +58,7 @@ if (isset($_POST['simpanambil'])) {
                                         <a class="nav-link active" href="transaksi_service.php" role="tab" aria-controls="pills-home" aria-selected="true">Selesai Pengerjaan</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="service_selesai_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
+                                        <a class="nav-link" href="transaksi_service_diambil.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
                                     </li>
                                 </ul>
                             </div>
