@@ -64,25 +64,12 @@ $No_Service = $huruf . sprintf("%03s", $urutan + 1);
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#service">Service</a></li>
-                    <?php
-                    if (isset($_SESSION['nama'])) { ?>
-                        <li><a class="nav-link scrollto" href="#monitoring">Monitoring</a></li>
-                    <?php } else {
-                    }
-                    ?>
-                    <?php
-                    if (!isset($_SESSION['nama'])) { ?>
-                        <li><a class="getstarted scrollto" href="login_pelanggan.php">Login</a></li>
-                        <li><a class="getstarted scrollto" href="registrasi.php">Registrasi</a></li>
-                    <?php } else { ?>
-                        <li class="dropdown"><a href="#"><span><?php echo $_SESSION['nama']; ?></span> <i class="bi bi-chevron-down"></i></a>
-                            <ul class="dropdown-active">
-                                <li><a href="../logout.php">Logout</a></li>
-                            </ul>
-                        </li>
-                    <?php
-                    }
-                    ?>
+                    <li><a class="nav-link scrollto" href="#monitoring">Monitoring</a></li>
+                    <li class="dropdown"><a href="#"><span><?php echo $_SESSION['nama']; ?></span> <i class="bi bi-chevron-down"></i></a>
+                        <ul class="dropdown-active">
+                            <li><a href="../logout.php">Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
