@@ -42,11 +42,6 @@ if (isset($_POST['simpanambil'])) {
                         <a href="#">Transaksi</a>
                     </li>
                 </ul>
-                <div class="col page-header text-right">
-                    <a class="btn btn-info btn-round ml-auto" href="service_selesai_tabel.php">
-                        Data Service Yang Sudah Diambil
-                    </a>
-                </div>
             </div>
             <div class="row ">
                 <div class="col-md-12">
@@ -58,6 +53,14 @@ if (isset($_POST['simpanambil'])) {
                                         Selesai Pengerjaan
                                     </b>
                                 </h1>
+                                <ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="transaksi_service.php" role="tab" aria-controls="pills-home" aria-selected="true">Selesai Pengerjaan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="service_selesai_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
+                                    </li>
+                                </ul>
                             </div>
                             <a class="btn btn-success btn-round btn-sm ml-auto" href="">
                                 <i class="fa fa-print"></i>

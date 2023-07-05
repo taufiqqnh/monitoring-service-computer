@@ -41,11 +41,19 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h1 class="card-title">Data Service Sudah di Ambil</h1>
-                                <a class="btn btn-danger btn-round ml-auto" href="transaksi_service.php">
-                                    <i class="fa fa-arrow-left"></i>
-                                    Kembali
-                                </a>
+                                <h1 class="card-title">Data Service
+                                    <b>
+                                        Sudah di Ambil
+                                    </b>
+                                </h1>
+                                <ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="transaksi_service.php" role="tab" aria-controls="pills-home" aria-selected="true">Selesai Pengerjaan</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="service_selesai_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Sudah Di Ambil</a>
+                                    </li>
+                                </ul>
                             </div>
                             <a class="btn btn-success btn-round btn-sm ml-auto" href="">
                                 <i class="fa fa-print"></i>
@@ -90,7 +98,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <td><?php echo $d['keluhan']; ?></td>
                                                 <td><?php echo $d['keterangan']; ?></td>
                                                 <td>
-                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
+                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
@@ -100,8 +108,8 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                         <i class="fa fa-download"></i>
                                                     </button>
 
-                                                    <!-- Modal Edit Data-->
-                                                    <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <!-- Modal detail Data-->
+                                                    <div class="modal fade" id="detail<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background-color: blue; color:white;">
@@ -183,7 +191,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                             </div>
                                                         </div>
                                                         </form>
-                                                        <!-- END Modal Edit Data-->
+                                                        <!-- END Modal detail Data-->
 
                                                     <?php
                                                 }

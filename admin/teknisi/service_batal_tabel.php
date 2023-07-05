@@ -48,10 +48,14 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <div class="card-header">
                             <div class="d-flex align-items-center">
                                 <h1 class="card-title">Data Service yang Dibatalkan</h1>
-                                <a class="btn btn-danger btn-round ml-auto" href="service.php">
-                                    <i class="fa fa-arrow-left"></i>
-                                    Kembali
-                                </a>
+                                <ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="service.php" role="tab" aria-controls="pills-home" aria-selected="true">Dalam Antrian</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="service_batal_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Di Batalkan</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="card-body">

@@ -45,10 +45,15 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 					<div class="card">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<h1> Data Service </h1>
-								<a class="btn btn-danger btn-round ml-auto" href="service_batal_tabel.php">
-									Data Service yang dibatalkan
-								</a>
+								<h1 class="card-title">Data Service</h1>
+								<ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+									<li class="nav-item">
+										<a class="nav-link active" href="service.php" role="tab" aria-controls="pills-home" aria-selected="true">Dalam Antrian</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="service_batal_tabel.php" role="tab" aria-controls="pills-profile" aria-selected="false">Di Batalkan</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 						<div class="card-body">
