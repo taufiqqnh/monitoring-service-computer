@@ -120,8 +120,6 @@ if (isset($_GET['no_service'])) {
                                 $idp = $_SESSION['id_pelanggan'];
                                 $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name FROM service,admin WHERE service.id_admin = admin.id AND progres IN ('Proses Pengerjaan', 'Selesai Pengerjaan', 'Di Ambil') AND id_pelanggan='$idp' AND no_service = '$nomor'");
 
-                                // $sql = mysqli_query($koneksi, "SELECT * FROM detservice JOIN service on service.no_service = detservice.no_service");
-
                                 while ($data = mysqli_fetch_array($sql)) {
                                 ?>
                                     <tr>

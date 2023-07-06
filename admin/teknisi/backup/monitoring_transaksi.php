@@ -33,14 +33,11 @@ if (isset($_GET['no_service'])) {
 <?php
 if (isset($_POST['simpan'])) {
 
-    $idpel = $data['id_pelanggan'];
-    $cek1 = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Member') AND id_pelanggan = '$idpel'") or die(mysqli_error($koneksi));
-
-    if (mysqli_num_rows($cek1) == 0) {
+    $cek = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Member')");
+    if (mysqli_num_rows($cek) == 0) {
         $progres  = $_POST['progres'];
         $keterangan  = $_POST['keterangan'];
         $sql1 = mysqli_query($koneksi, "SELECT * FROM troli JOIN service on service.no_service = troli.no_service JOIN harga on harga.id_harga = troli.id_harga WHERE troli.no_service='$no_service'");
-        $total1 = 0;
         while ($e = mysqli_fetch_array($sql1)) {
             $total1 += $e['harga'];
         }
@@ -56,16 +53,15 @@ if (isset($_POST['simpan'])) {
         $progres1  = $_POST['progres'];
         $keterangan1  = $_POST['keterangan'];
         $sql2 = mysqli_query($koneksi, "SELECT * FROM troli JOIN service on service.no_service = troli.no_service JOIN harga on harga.id_harga = troli.id_harga WHERE troli.no_service='$no_service'");
-        $total2 = 0;
-        while ($e = mysqli_fetch_array($sql2)) {
-            $total2 += $e['harga'];
+        while ($a = mysqli_fetch_array($sql2)) {
+            $total2 += $a['harga'];
             $diskon = (10 / 100) * $total2;
             $totdiskon = $total2 - $diskon;
         }
 
-        $totbiaya = mysqli_query($koneksi, "UPDATE service SET progres='$progres1', keterangan='$keterangan1', totharga='$totdiskon' WHERE no_service='$no_service'");
+        $diskon = mysqli_query($koneksi, "UPDATE service SET progres='$progres1', keterangan='$keterangan1', totharga='$totdiskon' WHERE no_service='$no_service'");
 
-        if ($totbiaya) {
+        if ($diskon) {
             echo '<script>alert("Berhasil menyimpan data."); document.location="monitoring_transaksi.php?no_service=' . $no_service . '";</script>';
         } else {
             echo '<div class="alert alert-warning">Gagal melakukan proses simpan data.</div>';
@@ -360,7 +356,11 @@ if (isset($_POST['Hargatroli'])) {
                         <tfoot>
                             <tr>
                                 <th class="text-center"><b>Harga</b></th>
-                                <th class=""><b>Rp.<?php echo number_format($total) ?></b></th>
+                                <th><b>Rp.<?php echo number_format($total) ?></b></th>
+                                <th class="text-center"><b>Diskon</b></th>
+                                <th><b>Rp.<?php echo number_format($diskon1) ?></b></th>
+                                <th><b>Total Harga</b></th>
+                                <th><b>Rp.<?php echo number_format($totdiskon) ?></b></th>
 
                             </tr>
                             </table>
