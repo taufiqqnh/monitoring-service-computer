@@ -8,6 +8,9 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 	$(document).ready(function() {
 		$('#tablepelanggan').DataTable();
 	});
+	$(document).ready(function() {
+		$('#tableriwayat').DataTable();
+	});
 </script>
 <div class="main-panel">
 	<div class="content">
@@ -74,7 +77,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Password</label>
-															<input type="password" class="form-control" id="password" name="password" required placeholder="Password" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{7,20}$" title="Harus 8 Karakter Password!!" />
+															<input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
 														</div>
 													</div>
 													<div class="col-sm-12">
@@ -155,6 +158,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 														<button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-original-title="Edit" data-target="#editpelanggan_<?php echo $d['id_pelanggan']; ?>">
 															<i class="fa fa-edit"></i>
 														</button>
+
 														<!-- Modal Edit Data-->
 														<div class="modal fade" id="editpelanggan_<?php echo $d['id_pelanggan']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
 															<div class="modal-dialog" role="document">
@@ -186,7 +190,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																					<div class="col-sm-12">
 																						<div class="form-group form-group-default">
 																							<label>Password</label>
-																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{7,20}$" title="Harus 8 Karakter Password!!">
+																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" required>
 																						</div>
 																					</div>
 																					<div class=" col-sm-12">
@@ -239,10 +243,10 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 															</div>
 															</form>
 															<!-- END Modal Edit Data-->
-														<?php
-													}
-														?>
 														</div>
+													<?php
+												}
+													?>
 													</div>
 												</td>
 											</tr>

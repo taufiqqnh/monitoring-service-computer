@@ -40,7 +40,7 @@
                             <input type="text" class="form-control" id="nama" name="nama" autocomplete="off" required placeholder="Nama" />
                         </div>
                         <div class="field-wrap">
-                            <input type="password" class="form-control" id="password" name="password" required placeholder="Password" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{7,20}$" title="Harus 8 Karakter Password!!" />
+                            <input type="password" class="form-control" id="password" name="password" required placeholder="Password" />
                         </div>
                     </div>
                     <div class="top-row">
