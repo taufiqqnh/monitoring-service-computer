@@ -359,9 +359,8 @@ if (isset($_POST['Hargatroli'])) {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="text-center"><b>Harga</b></th>
-                                <th class=""><b>Rp.<?php echo number_format($total) ?></b></th>
-
+                                <th><b>Harga </b></th>
+                                <th><b>Rp.<?php echo number_format($total) ?></b></th>
                             </tr>
                             </table>
                         </div>
