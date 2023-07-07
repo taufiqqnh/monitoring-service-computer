@@ -45,7 +45,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 								<h1 class="card-title">Data Pelanggan</h1>
 								<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#tambahPelanggan">
 									<i class="fa fa-plus"></i>
-									Tambah Data
+									Tambah Pelanggan
 								</button>
 							</div>
 						</div>

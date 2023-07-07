@@ -82,7 +82,11 @@ session_start();
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
 								<h2 class="text-white pb-2 fw-bold">Dashboard Teknisi</h2>
-								<h5 class="text-white op-7 mb-2">Monitoring Service</h5>
+								<h5 class="text-white op-7 mb-2">Monitoring Service DFN Computer</h5>
+							</div>
+							<div class="ml-md-auto py-2 py-md-0">
+								<a href="harga.php" class="btn btn-white btn-border btn-round mr-2">Add Harga</a>
+								<a href="pelanggan.php" class="btn btn-secondary btn-round">Add Pelanggan</a>
 							</div>
 						</div>
 					</div>
@@ -186,16 +190,17 @@ session_start();
 											</div>
 											<div>
 												<?php
-												$belmember = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Member')");
+												$belmember = mysqli_query($koneksi, "SELECT * FROM pelanggan WHERE status IN ('Belum Member')");
 												?>
 												<h6 class="fw-bold text-uppercase text-warning op-8">Total Belum Member</h6>
 												<h3 class="fw-bold"><?php echo mysqli_num_rows($belmember); ?></h3>
 											</div>
 										</div>
-										<div class="col-md-8">
-											<div id="chart-container">
-												<canvas id="totalIncomeChart"></canvas>
-											</div>
+										<div class="px-3 pb-2 pb-md-0 text-center">
+											<div id="circles-5"></div>
+										</div>
+										<div class="px-3 pb-2 pb-md-0 text-center">
+											<div id="circles-6"></div>
 										</div>
 									</div>
 								</div>
@@ -345,53 +350,37 @@ session_start();
 			styleText: true
 		})
 
-		var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
 
-		var mytotalIncomeChart = new Chart(totalIncomeChart, {
-			type: 'bar',
-			data: {
-				labels: ["Member", "Belum Member"],
-				datasets: [{
-					label: "Total Pelanggan",
-					backgroundColor: ['#068FFF', '#FFA41B'],
-					borderColor: 'rgb(23, 125, 255)',
-					data: [<?php echo mysqli_num_rows($member); ?>, <?php echo mysqli_num_rows($belmember); ?>],
-				}],
-			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				legend: {
-					display: false,
-				},
-				scales: {
-					yAxes: [{
-						ticks: {
-							display: false //this will remove only the label
-						},
-						gridLines: {
-							drawBorder: false,
-							display: false
-						}
-					}],
-					xAxes: [{
-						gridLines: {
-							drawBorder: false,
-							display: false
-						}
-					}]
-				},
-			}
-		});
+		// MEMBER
+		Circles.create({
+			id: 'circles-5',
+			radius: 70,
+			value: <?php echo mysqli_num_rows($member); ?>,
+			maxValue: 10,
+			width: 15,
+			text: <?php echo mysqli_num_rows($member); ?>,
+			colors: ['#f1f1f1', '#068FFF'],
+			duration: 700,
+			wrpClass: 'circles-wrp',
+			textClass: 'circles-text',
+			styleWrapper: true,
+			styleText: true
+		})
 
-		$('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
-			type: 'line',
-			height: '70',
-			width: '100%',
-			lineWidth: '2',
-			lineColor: '#ffa534',
-			fillColor: 'rgba(255, 165, 52, .14)'
-		});
+		Circles.create({
+			id: 'circles-6',
+			radius: 70,
+			value: <?php echo mysqli_num_rows($belmember); ?>,
+			maxValue: 10,
+			width: 15,
+			text: <?php echo mysqli_num_rows($belmember); ?>,
+			colors: ['#f1f1f1', '#FBD85D'],
+			duration: 700,
+			wrpClass: 'circles-wrp',
+			textClass: 'circles-text',
+			styleWrapper: true,
+			styleText: true
+		})
 
 
 		var myPieChart = new Chart(pieChart, {

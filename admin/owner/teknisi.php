@@ -49,7 +49,7 @@ if (isset($_POST['deleteteknisi'])) {
                                 <h1 class="card-title">Data Teknisi</h1>
                                 <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#tambahTeknisi">
                                     <i class="fa fa-plus"></i>
-                                    Tambah Data
+                                    Tambah Data Teknisi
                                 </button>
                             </div>
                         </div>
@@ -75,25 +75,25 @@ if (isset($_POST['deleteteknisi'])) {
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Nama</label>
-                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off">
+                                                            <input id="name" name="name" type="text" class="form-control" autocomplete="off" placeholder="Nama">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Username</label>
-                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off">
+                                                            <input id="username" name="username" type="text" class="form-control" autocomplete="off" placeholder="Username">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Password</label>
-                                                            <input id="password" name="password" type="password" class="form-control">
+                                                            <input id="password" name="password" type="password" class="form-control" placeholder="Password">
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>Email</label>
-                                                            <input id="email" type="email" name="email" class="form-control" autocomplete="off">
+                                                            <input id="email" type="email" name="email" class="form-control" autocomplete="off" placeholder="Email">
                                                         </div>
                                                         <input type="hidden" class="form-control" id="level" name="level" value="Teknisi">
                                                     </div>

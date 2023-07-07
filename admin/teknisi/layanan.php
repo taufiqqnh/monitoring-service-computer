@@ -52,7 +52,7 @@ if (isset($_POST['deletejasa'])) {
                                 <h1 class="card-title">Data Jasa yang disediakan DFN Computer</h1>
                                 <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#tambahjasa">
                                     <i class="fa fa-plus"></i>
-                                    Tambah Data
+                                    Tambah Data Layanan
                                 </button>
                             </div>
                         </div>
@@ -90,7 +90,7 @@ if (isset($_POST['deletejasa'])) {
                                                     <div class="col-sm-12">
                                                         <div class="form-group form-group-default">
                                                             <label>keterangan</label>
-                                                            <input type="text" class="form-control" name="keterangan" id="keterangan" required>
+                                                            <input type="text" class="form-control" name="keterangan" id="keterangan" required placeholder="Keterangan" autocomplete="off">
                                                         </div>
                                                     </div>
                                                 </div>

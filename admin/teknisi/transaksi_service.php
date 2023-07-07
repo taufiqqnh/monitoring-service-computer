@@ -107,9 +107,9 @@ if (isset($_POST['simpanambil'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <!-- <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
-                                                        <i class="fa fa-print"></i>
-                                                    </button> -->
+                                                    <a class="btn btn-link btn-success" href="">
+                                                        <i class="fa fa-download"></i>
+                                                    </a>
 
                                                     <!-- Modal Edit Data-->
                                                     <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">

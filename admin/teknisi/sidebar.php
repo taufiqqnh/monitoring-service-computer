@@ -59,13 +59,13 @@
 								</a>
 							</li>
 							<li>
-								<a href="service.php">
-									<span class="sub-item">Data Service</span>
+								<a href="harga.php">
+									<span class="sub-item"> Data Harga</span>
 								</a>
 							</li>
 							<li>
-								<a href="harga.php">
-									<span class="sub-item"> Data Harga</span>
+								<a href="service.php">
+									<span class="sub-item">Data Service</span>
 								</a>
 							</li>
 						</ul>

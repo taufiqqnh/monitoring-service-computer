@@ -59,7 +59,7 @@ if (isset($_POST['deleteharga'])) {
 								<h1 class="card-title">Data Harga</h1>
 								<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#tambahharga">
 									<i class="fa fa-plus"></i>
-									Tambah Data
+									Tambah Data Harga
 								</button>
 							</div>
 						</div>
@@ -86,7 +86,7 @@ if (isset($_POST['deleteharga'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Jenis</label>
-															<input id="jenis" name="jenis" type="text" class="form-control" required>
+															<input id="jenis" name="jenis" type="text" class="form-control" required autocomplete="off">
 															</input>
 														</div>
 													</div>
@@ -104,13 +104,13 @@ if (isset($_POST['deleteharga'])) {
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Type</label>
-															<input type="text" class="form-control" name="type" id="type" required>
+															<input type="text" class="form-control" name="type" id="type" required autocomplete="off">
 														</div>
 													</div>
 													<div class="col-sm-12">
 														<div class="form-group form-group-default">
 															<label>Harga</label>
-															<input type="text" class="form-control" name="harga" id="harga" required>
+															<input type="text" class="form-control" name="harga" id="harga" required autocomplete="off">
 														</div>
 													</div>
 												</div>
