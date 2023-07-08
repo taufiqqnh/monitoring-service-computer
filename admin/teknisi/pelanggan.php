@@ -190,7 +190,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																					<div class="col-sm-12">
 																						<div class="form-group form-group-default">
 																							<label>Password</label>
-																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" required>
+																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" value="<?php echo $d['password']; ?>">
 																						</div>
 																					</div>
 																					<div class=" col-sm-12">
