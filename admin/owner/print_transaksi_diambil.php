@@ -79,7 +79,7 @@ session_start();
         <tr>
             <td><img src='../../public/assets/img/home.png' height="100" width="100"></td>
             <td>
-                <h1>Laporan Transaksi Service Selesai</h1>
+                <h1>Laporan Transaksi Service Selesai DiAmbil</h1>
                 <h2>DFN Computer</h2>
                 <p style="font-size:14px;">
                     <i>Blimbing Rt 04/Rw 06 Wonorejo, Polokarto, Sukoharjo, Indonesia
@@ -115,7 +115,6 @@ session_start();
                 </tr>
                 <?php
                 $no = 1;
-                // $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
                 $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
                 while ($d = mysqli_fetch_array($data)) {
                 ?>

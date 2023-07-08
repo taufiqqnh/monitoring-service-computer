@@ -16,8 +16,10 @@
 				<ul class="dropdown-menu dropdown-user animated fadeIn">
 					<div class="dropdown-user-scroll scrollbar-outer">
 						<li>
-							<div class="user-box">
-								<div class="avatar-lg"><img src="../assets/img/admin.png" alt="image profile" class="avatar-img rounded"></div>
+							<div class="user-box ">
+								<div class="avatar-lg">
+									<img src="../assets/img/admin.png" alt="image profile" class="avatar-img rounded">
+								</div>
 								<div class="u-text">
 									<h4>
 										<?php

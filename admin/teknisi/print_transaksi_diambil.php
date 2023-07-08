@@ -115,7 +115,6 @@ session_start();
                 </tr>
                 <?php
                 $no = 1;
-                // $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
                 $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
                 while ($d = mysqli_fetch_array($data)) {
                 ?>

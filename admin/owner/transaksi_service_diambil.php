@@ -59,10 +59,6 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
-                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="">
-                                <i class="fa fa-download"></i>
-                                Download
-                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -101,12 +97,6 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fas fa-list"></i>
                                                     </button>
-                                                    <!-- <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
-                                                        <i class="fa fa-print"></i>
-                                                    </button>
-                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-danger" data-target="">
-                                                        <i class="fa fa-download"></i>
-                                                    </button> -->
 
                                                     <!-- Modal detail Data-->
                                                     <div class="modal fade" id="detail<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">

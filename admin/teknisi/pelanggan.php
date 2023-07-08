@@ -235,7 +235,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 
 																				</div>
 																				<div class="modal-footer no-bd">
-																					<button type="submit" name="update" id="addRowButton" class="btn btn-primary">Edit</button>
+																					<button type="submit" name="update" id="addRowButton" class="btn btn-primary">Save</button>
 																					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 																				</div>
 																	</div>

@@ -9,8 +9,8 @@
           </a>
           <p>DFN Computer adalah perusahaan di bidang Teknologi Informasi yang mempunyai pelayanan dalam service peralatan komputer yang terpercaya.</p>
           <div class="social-links mt-3">
-            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/defani.ahmadramadhan" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://instagram.com/dfncomp?igshid=MzRlODBiNWFlZA==" target="_blank" class="instagram"><i class="bi bi-instagram"></i></a>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
 
   <div class="container">
     <div class="copyright">
-      &copy; Copyright 2023 <strong><span>Taufiq NurHidayat</span></strong>
+      &copy; Copyright 2023 <strong><a href="https://instagram.com/taufiqqnh_?igshid=MzRlODBiNWFlZA==" target="_blank">Taufiq NurHidayat</a></strong>
     </div>
     <!-- <div class="credits">
        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>

@@ -2,7 +2,7 @@
 	<div class="sidebar-wrapper scrollbar scrollbar-inner">
 		<div class="sidebar-content">
 			<div class="user">
-				<div class="avatar-sm float-left mr-2">
+				<div class="avatar-sm float-left mr-2 avatar avatar-online">
 					<img src="../assets/img/admin.png" alt="..." class="avatar-img rounded-circle">
 				</div>
 				<div class="info">
