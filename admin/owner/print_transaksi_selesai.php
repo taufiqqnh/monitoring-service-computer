@@ -9,6 +9,8 @@ session_start();
     window.print()
 </script>
 <title>Laporan Service</title>
+<link rel="icon" href="../../public/assets/img/home.png" type="image/x-icon" />
+<link rel="stylesheet" href="../assets/css/cetak.css">
 <div id="print">
     <table class='table1'>
         <tr>
