@@ -2,8 +2,7 @@
 include '../../koneksi.php';
 
 $id  = $_POST['id_harga'];
-$jenis  = $_POST['jenis'];
-$jenis  = $_POST['jenis'];
+$jenis  = $_POST['jenis'];;
 $kategori  = $_POST['kategori'];
 $type = $_POST['type'];
 $harga  = $_POST['harga'];
