@@ -74,10 +74,11 @@ session_start();
     }
 </style>
 <title>Laporan Service</title>
+<link rel="icon" href="../../public/assets/img/home.png" type="image/x-icon" />
 <div id="print">
     <table class='table1'>
         <tr>
-            <td><img src='../../public/assets/img/home.png' height="100" width="100"></td>
+            <td><img src='../../public/assets/img/home.png' id="logo" height="100" width="100"></td>
             <td>
                 <h1>Laporan Transaksi Service Selesai</h1>
                 <h2>DFN Computer</h2>
@@ -142,6 +143,7 @@ session_start();
     <table width="450" align="right" class="ttd">
         <tr>
             <td width="100px" style="padding:20px 20px 20px 20px;" align="center">
+                <p><?php date('l, d / M / y') ?></p>
                 <strong>Pemilik DFN Computer</strong>
                 <br><br><br><br>
                 <strong><u>Defani Ahmad</u><br></strong><small></small>

@@ -10,20 +10,6 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
     });
 </script>
 
-<?php
-if (isset($_POST['simpanambil'])) {
-    $progres  = $_POST['progres'];
-
-    $sql = mysqli_query($koneksi, "UPDATE service SET progres='$progres' WHERE no_service='$no_service'");
-
-    if ($sql) {
-        echo '<script>alert("Berhasil menyimpan data."); document.location="pembayaran.php";</script>';
-    } else {
-        echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
-    }
-}
-?>
-
 <div class="main-panel">
     <div class="content">
         <div class="page-inner ">
@@ -83,7 +69,7 @@ if (isset($_POST['simpanambil'])) {
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
                                             <th>KELUHAN</th>
-                                            <th style="width: 5%">ACTION</th>
+                                            <th style="width: 20%">ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,7 +89,7 @@ if (isset($_POST['simpanambil'])) {
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
                                                 <td><?php echo $d['keluhan']; ?></td>
-                                                <td>
+                                                <td style="width: 20%">
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>

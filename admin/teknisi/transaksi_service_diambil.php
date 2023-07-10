@@ -53,7 +53,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
-                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="">
+                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_diambil.php">
                                 <i class="fa fa-download"></i>
                                 Download
                             </a>

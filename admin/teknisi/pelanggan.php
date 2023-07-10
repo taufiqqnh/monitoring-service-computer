@@ -12,6 +12,21 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 		$('#tableriwayat').DataTable();
 	});
 </script>
+
+<?php
+if (isset($_POST['editstatus'])) {
+
+	$idpelanggan = $_POST['id_pelanggan'];
+	$status = $_POST['status'];
+	$sql = mysqli_query($koneksi, "UPDATE pelanggan SET status='$status' WHERE id_pelanggan='$idpelanggan'") or die(mysqli_error($koneksi));
+	if ($sql) {
+		echo '<script>alert("Berhasil menyimpan data."); document.location="pelanggan.php";</script>';
+	} else {
+		echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
+	}
+}
+?>
+
 <div class="main-panel">
 	<div class="content">
 		<div class="page-inner ">
@@ -133,7 +148,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 											<th>JENIS KELAMIN</th>
 											<th>ALAMAT</th>
 											<th>STATUS</th>
-											<th style="width: 10%">ACTION</th>
+											<th style="width: 60%">ACTION</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -151,13 +166,54 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 												<td><?php echo $d['email']; ?></td>
 												<td><?php echo $d['jk']; ?></td>
 												<td><?php echo $d['alamat']; ?></td>
-												<td><?php echo $d['status']; ?> </td>
+												<td><?php echo $d['status']; ?></td>
 												<td>
 													<!-- EDIT MEMBER -->
 													<div class="form-button-action">
 														<button type="button" data-toggle="modal" title="" class="btn btn-link btn-primary" data-original-title="Edit" data-target="#editpelanggan_<?php echo $d['id_pelanggan']; ?>">
 															<i class="fa fa-edit"></i>
 														</button>
+
+														<!-- Button trigger status edit-->
+														<button type="button" class="btn btn-link btn-warning" data-toggle="modal" data-target="#statusedit<?php echo $d['id_pelanggan']; ?>">
+															<i class="fas fa-check-double"></i>
+														</button>
+
+														<!-- Modal status edit-->
+														<div class="modal fade" id="statusedit<?php echo $d['id_pelanggan']; ?>" tabindex="-1" role="dialog" aria-labelledby="statusedit" aria-hidden="true">
+															<div class="modal-dialog" role="document">
+																<div class="modal-content">
+																	<div class="modal-header" style="background-color: Blue; color:white;">
+																		<h3 class="modal-title">
+																			<span class="fw- bold">
+																				Edit Status Pelanggan <?php echo $d['id_pelanggan']; ?>
+																			</span>
+																		</h3>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+																		<form action="pelanggan.php" method="post">
+																			<div class="col-md-12 pr-0">
+																				<div class="form-group form-group-default">
+																					<input type="hidden" name="id_pelanggan" value="<?php echo $d['id_pelanggan']; ?>">
+																					<label>Status</label>
+																					<select class="form-control input-border-buttom" name="status" id="status">
+																						<option selected value="<?php echo $d['status']; ?>">Pilih Status</option>
+																						<option value="Belum Member">Belum Member</option>
+																						<option value="Member">Member</option>
+																					</select>
+																				</div>
+																			</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="submit" name="editstatus" id="addRowButton" class="btn btn-primary">Save</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+														</form>
 
 														<!-- Modal Edit Data-->
 														<div class="modal fade" id="editpelanggan_<?php echo $d['id_pelanggan']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -168,7 +224,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																			<span class="fw- bold">
 																				Form</span>
 																			<span class="fw-light">
-																				Edit data pelanggan
+																				Edit data pelanggan <?php echo $d['id_pelanggan']; ?>
 																			</span>
 																		</h3>
 																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -190,22 +246,16 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																					<div class="col-sm-12">
 																						<div class="form-group form-group-default">
 																							<label>Password</label>
-																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" value="<?php echo $d['password']; ?>">
+																							<input id="password" type="password" name="password" class="form-control" placeholder="Masukan password kembali" required>
 																						</div>
 																					</div>
-																					<div class=" col-sm-12">
+																					<div class=" col-sm-6">
 																						<div class="form-group form-group-default">
 																							<label>No HP</label>
 																							<input id="hp" name="hp" type="text" value="<?php echo $d['hp']; ?>" class="form-control">
 																						</div>
 																					</div>
-																					<div class="col-sm-12">
-																						<div class="form-group form-group-default">
-																							<label>Email</label>
-																							<input id="email" type="email" name="email" value="<?php echo $d['email']; ?>" class="form-control">
-																						</div>
-																					</div>
-																					<div class="col-md-6 pr-0">
+																					<div class="col-md-6">
 																						<div class="form-group form-group-default">
 																							<label>Jenis Kelamin</label>
 																							<select class="form-control input-border-buttom" name="jk" id="jk" required>
@@ -215,16 +265,13 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 																							</select>
 																						</div>
 																					</div>
-																					<div class="col-md-5 pr-0">
+																					<div class="col-sm-12">
 																						<div class="form-group form-group-default">
-																							<label>Status</label>
-																							<select class="form-control input-border-buttom" name="status" id="status">
-																								<option selected value="<?php echo $d['status']; ?>">Pilih Status</option>
-																								<option value="Belum Member">Belum Member</option>
-																								<option value="Member">Member</option>
-																							</select>
+																							<label>Email</label>
+																							<input id="email" type="email" name="email" value="<?php echo $d['email']; ?>" class="form-control">
 																						</div>
 																					</div>
+
 																					<div class="col-sm-12">
 																						<div class="form-group form-group-default">
 																							<label>Alamat</label>

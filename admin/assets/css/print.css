@@ -1,0 +1,92 @@
+body {
+    font-family: bloomsburg;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+#p1 {
+    text-align: right;
+    padding:20px 20px 20px 20px;
+}
+
+#h1,h2,h3,p {
+    margin: 0px 0px 0px 6px;
+    text-align: center;
+}
+
+#table_id {
+    text-align: center;
+}
+
+#logo {
+    width: 100%;
+    height: 180px;
+    padding-top: -10px;
+}
+
+#NoNota {
+    text-align: right;
+    padding-top: -175px;
+    padding-right: 50px;
+}
+
+#tulis {
+    height: 100px;
+    width: 500px;
+}
+
+#tagp {
+    text-align: center;
+}
+
+.table {
+    border-collapse: collapse;
+    border-top: 5px;
+}
+
+.col1 {
+    background-color: url("http://loremflickr.com/212/280");
+    font-size: 13px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.col {
+    background-color: url("http://loremflickr.com/212/280");
+    font-family: "Times New Roman", Times, serif;
+}
+
+.nonota {
+    font-size: 30px;
+    width: 100px;
+    text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+#table1 {
+    padding-top: -10px;
+}
+
+.p1 {
+    position: fixed;
+    font-size: 25px;
+    bottom: 620px;
+    right: -220px;
+}
+
+.tabelttd {
+    padding-left: 280px;
+    padding-top: -130px;
+}
+
+.table4 {
+    position: fixed;
+    padding-left: 20%;
+    margin-top: -460px;
+}
+
+.totalharga {
+    padding-top: -165px;
+    padding-left: 80%;
+}
