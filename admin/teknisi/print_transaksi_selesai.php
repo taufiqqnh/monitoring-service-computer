@@ -7,74 +7,9 @@ session_start();
 <script type="text/javascript">
     window.print()
 </script>
-
-<style type="text/css">
-    #print {
-        margin: auto;
-        text-align: center;
-        font-family: "Calibri", Courier, monospace;
-        width: 1200px;
-        font-size: 14px;
-    }
-
-    #print .title {
-        margin: 20px;
-        text-align: left;
-        font-family: "Calibri", Courier, monospace;
-        font-size: 12px;
-    }
-
-    #print span {
-        text-align: center;
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        font-size: 18px;
-    }
-
-    #print table {
-        border-collapse: collapse;
-        width: 100%;
-        margin: 10px;
-    }
-
-    #print .table1 {
-        border-collapse: collapse;
-        width: 90%;
-        text-align: center;
-        margin: 10px;
-    }
-
-    #print table hr {
-        border: 3px double #000;
-    }
-
-    #print .ttd {
-        float: right;
-        width: 250px;
-        background-position: center;
-        background-size: contain;
-    }
-
-    #print table th {
-        color: #000;
-        font-family: Verdana, Geneva, sans-serif;
-        font-size: 12px;
-    }
-
-    #logo {
-        width: 120px;
-        height: 100px;
-        padding-top: 10px;
-        margin-left: 10px;
-    }
-
-    h2,
-    h3,
-    h1 {
-        margin: 0px 0px 0px 0px;
-    }
-</style>
 <title>Laporan Service</title>
 <link rel="icon" href="../../public/assets/img/home.png" type="image/x-icon" />
+<link rel="stylesheet" href="../assets/css/cetak.css">
 <div id="print">
     <table class='table1'>
         <tr>
@@ -143,7 +78,7 @@ session_start();
     <table width="450" align="right" class="ttd">
         <tr>
             <td width="100px" style="padding:20px 20px 20px 20px;" align="center">
-                <p><?php date('l, d / M / y') ?></p>
+                <p><?php echo date('l, d / M / y') ?></p>
                 <strong>Pemilik DFN Computer</strong>
                 <br><br><br><br>
                 <strong><u>Defani Ahmad</u><br></strong><small></small>

@@ -1,0 +1,63 @@
+#print {
+    margin: auto;
+    text-align: center;
+    font-family: "Calibri", Courier, monospace;
+    width: 1200px;
+    font-size: 14px;
+}
+
+#print .title {
+    margin: 20px;
+    text-align: left;
+    font-family: "Calibri", Courier, monospace;
+    font-size: 12px;
+}
+
+#print span {
+    text-align: center;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+#print table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px;
+}
+
+#print .table1 {
+    border-collapse: collapse;
+    width: 90%;
+    text-align: center;
+    margin: 10px;
+}
+
+#print table hr {
+    border: 3px double #000;
+}
+
+#print .ttd {
+    float: right;
+    width: 250px;
+    background-position: center;
+    background-size: contain;
+}
+
+#print table th {
+    color: #000;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 12px;
+}
+
+#logo {
+    width: 120px;
+    height: 100px;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+h2,
+h3,
+h1 {
+    margin: 0px 0px 0px 0px;
+}
