@@ -14,7 +14,7 @@ session_start();
 <div id="print">
     <table class='table1'>
         <tr>
-            <td><img src='../../public/assets/img/home.png' height="100" width="100"></td>
+            <td><img src='../assets/img/logo_dfncom.png' height="100" width="100"></td>
             <td>
                 <h1>Laporan Transaksi Service Selesai</h1>
                 <h2>DFN Computer</h2>

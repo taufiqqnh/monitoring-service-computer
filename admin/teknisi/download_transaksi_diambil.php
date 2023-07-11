@@ -15,12 +15,9 @@ $html = '<!DOCTYPE html>
     <link rel="stylesheet" href="../assets/css/print.css">
 </head>
 <body>
+<img id="logo" src="../assets/img/kop_dfncom.png" alt="">
 <h1 id="h1" >Data Service Selesai Diambil</h1>
-<h2 id="h2">DFN Computer</h2>
-    <p id="p" style="font-size:14px;">
-        <i>Blimbing Rt 04/Rw 06 Wonorejo, Polokarto, Sukoharjo, Indonesia
-         </i>
-    </p>
+
 <table id="table_id" border=1 class="table-striped jambo_table bulk_action" width="100%" >
     <tr>
         <th width="30">NO</th>
@@ -66,24 +63,23 @@ while ($data = mysqli_fetch_array($sql)) {
     $totharga += $data['totharga'];
 }
 $html .= '
-    <tfoot>
-    <tr>
-    <td colspan="6">Total :</td>
+        <tfoot>
+        <tr>
+        <td colspan="8">Total :</td>
+        <td colspan="2">Rp. ' . number_format($totharga) . ',-</td>
+        </tr>
 
-    <td colspan="4">Rp. ' . number_format($totharga) . ',-</td>
-    </tr>
-    
-    </tfoot>  
-        ';
+        </tfoot>  
+            ';
 
 
 $html .=    '</table>
 <p id="p1" >' . date('l, d / M / y') . '</p>
 <p id="p1">
-                Pemilik DFN Computer
+                Pemilik DFN Computer,
                 <br><br><br><br>
                <br><small>
-               <u>Defani Ahmad</u>
+               <u>Defani Ahmad S.Kom</u>
                </small>
             </p>
 </body>

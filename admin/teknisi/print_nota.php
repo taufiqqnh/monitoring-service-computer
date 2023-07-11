@@ -14,6 +14,7 @@ $html = '<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <title>Print Nota Selesai</title>
+
     <link rel="stylesheet" href="../assets/css/print.css">
     <!-- CSS only -->
 <link href="assets/" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -56,13 +57,11 @@ if (isset($_GET['no_service'])) {
 }
 
 $html .= '
-        <img id="logo" src="" alt="">
-        <p id="no_service">No Service: <b>' . $data['no_service'] . '</b></p>
-        <br>
-        <br>
-    
-        <br>   <br>   <br>
-        <h1 id="h1" >Nota Service</h1>
+        <img id="logo" src="../assets/img/kop_dfncom.png" alt="">
+        <p id="no_service">No Service: <b>DC00' . $data['no_service'] . '</b></p>    
+        <br>   <br>
+        <h1 id="hnota" >Nota Service</h1>
+        <h2 id="h2" >DFN Computer</h2>
         <table class="table" id="table1"  style="width:100%" >
         <tbody>
 
@@ -110,16 +109,26 @@ $html .= '
 
 <br>
 
-<p  style="border: solid 1px #aaa; background: #white; padding: 10px; -moz-border-radius: 15px; -khtml-border-radius: 10px; -webkit-border-radius: 2px; border-radius: 2px; margin: 0; text-align: justify; line-height: 10px; height:60px; width:30%; color: black; font-size: 8px"><b>PERHATIAN</b> <br> + Nota wajib dibawa saat pengambilan service, claim garansi sesuai kesepakatan <br> + Garansi hangus apabila nota hilang / segel rusak / kesalahan pemakaian <br> + Dengan menandatangani ini, pelanggan sudah dianggap menyetujui <br> + Barang yang diservice tidak diambil selama 1 bulan segala kerusakan dan kehilangan diluar tanggung jawab kami.
+<p  style="border: solid 1px #aaa; background: #white; padding: 10px; -moz-border-radius: 15px; -khtml-border-radius: 10px; -webkit-border-radius: 2px; border-radius: 2px; margin: 0; text-align: justify; line-height: 10px; height:60px; width:30%; color: black; font-size: 8px"><b>PERHATIAN</b> <br> + Nota jangan sampai hilang untuk claim garansi <br> + Nota wajib dibawa saat claim garansi sesuai kesepakatan <br> + Garansi hangus apabila nota hilang / segel rusak / kesalahan pemakaian <br> + Dengan menandatangani ini, pelanggan sudah dianggap menyetujui.
 
 
 
 <div class="tabelttd">
 <table>
 <tr>
+<td></td>
+<td></td>
+<td align="center">' . date('l, d / M / y') . '</td>
+</tr>
+<tr>
+<td class="col" height="20px">&emsp;&emsp;</td>
+<td class="col">&emsp;&emsp;</td>
+<td class="col">&emsp;&emsp;</td>
+</tr>
+<tr>
 <td align="center"><b>Pelanggan</td>
 <td align="center">&emsp;&emsp;&emsp;&emsp;</td>
-<td align="center"><b>Hormat Kami</td>
+<td align="center"><b>Hormat Kami,</td>
 </tr>
 <tr>
 <td class="col" height="70px">&emsp;&emsp;</td>
