@@ -89,7 +89,7 @@ session_start();
                 <p><?php echo date('l, d / M / y') ?></p>
                 <strong>Pemilik DFN Computer</strong>
                 <br><br><br><br>
-                <strong><u>Defani Ahmad</u><br></strong><small></small>
+                <strong><u>Defani Ahmad S.Kom</u><br></strong><small></small>
             </td>
         </tr>
     </table>

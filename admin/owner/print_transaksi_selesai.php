@@ -14,7 +14,7 @@ session_start();
 <div id="print">
     <table class='table1'>
         <tr>
-            <td><img src='../../public/assets/img/home.png' height="100" width="100"></td>
+            <td><img src='../assets/img/logo_dfncom.png' id="logo" height="100" width="100"></td>
             <td>
                 <h1>Laporan Transaksi Service Selesai</h1>
                 <h2>DFN Computer</h2>
@@ -53,7 +53,9 @@ session_start();
                 <?php
                 $no = 1;
                 $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Selesai Pengerjaan') ORDER BY no_service ASC");
+                $totalharga = 0;
                 while ($d = mysqli_fetch_array($data)) {
+                    $totalharga += $d['totharga'];
                 ?>
                     <tr>
                         <td>
@@ -70,6 +72,12 @@ session_start();
                         <td>&nbsp;&nbsp;Rp.<?php echo number_format($d['totharga']); ?>,-</td>
                     </tr>
                 <?php } ?>
+                <tfoot>
+                    <tr>
+                        <td colspan="9">&nbsp;&nbsp;Total :</td>
+                        <td colspan="1">&nbsp;&nbsp;Rp.<?php echo number_format($totalharga); ?>,-</td>
+                    </tr>
+                </tfoot>
             </table>
         </td>
     </tr>
@@ -79,9 +87,10 @@ session_start();
     <table width="450" align="right" class="ttd">
         <tr>
             <td width="100px" style="padding:20px 20px 20px 20px;" align="center">
+                <p><?php echo date('l, d / M / y') ?></p>
                 <strong>Pemilik DFN Computer,</strong>
                 <br><br><br><br>
-                <strong><u>Defani Ahmad</u><br></strong><small></small>
+                <strong><u>Defani Ahmad S.Kom</u><br></strong><small></small>
             </td>
         </tr>
     </table>
