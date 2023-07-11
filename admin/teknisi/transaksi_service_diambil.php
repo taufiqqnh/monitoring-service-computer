@@ -95,7 +95,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fas fa-list"></i>
                                                     </button>
-                                                    <a class="btn btn-link btn-success" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>">
+                                                    <a class="btn btn-link btn-danger" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-download"></i>
                                                     </a>
 
