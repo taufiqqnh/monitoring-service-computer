@@ -25,7 +25,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Transaksi</a>
+                        <a href="transaksi_service.php">Transaksi</a>
                     </li>
                 </ul>
             </div>
