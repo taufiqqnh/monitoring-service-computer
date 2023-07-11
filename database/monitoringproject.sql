@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2023 at 10:15 AM
+-- Generation Time: Jul 11, 2023 at 09:55 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -41,10 +41,12 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `username`, `password`, `email`, `level`) VALUES
-(1, 'Taufiq NurHidayat', 'taufiq', 'f4eff635e6dfe584a1a536dbc7718f3d', 'taufiqnurhidayat124@gmail.com', 'Teknisi'),
+(1, 'Taufiq NurHidayat', 'taufiq', '25d55ad283aa400af464c76d713c07ad', 'taufiqnurhidayat124@gmail.com', 'Teknisi'),
 (2, 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@gmail.com', 'Owner'),
 (3, 'Defani Ahmad', 'defani', '10cbda08a0da4de926bf1d3d79673354', 'defani@gmail.com', 'Teknisi'),
-(4, 'Imam', 'imam', 'eaccb8ea6090a40a98aa28c071810371', 'imam@gmail.com', 'Teknisi');
+(4, 'Imam Arif', 'imam', 'eaccb8ea6090a40a98aa28c071810371', 'imam@gmail.com', 'Teknisi'),
+(5, 'Budiar Nadiem', 'budi', '65e3b88a1b1f50a0cf5ab65304dc024c', 'budi223@gmail.com', 'Teknisi'),
+(6, 'Gus', 'gus', '84a26c4612a7f9958174ee6552625282', 'gus@gmail.com', 'Teknisi');
 
 -- --------------------------------------------------------
 
@@ -122,12 +124,15 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `password`, `hp`, `email`, `jk`, `alamat`, `status`) VALUES
-(2, 'Taufiq NurHidayat', 'f4eff635e6dfe584a1a536dbc7718f3d', '089277266266', 't@gmail.com', 'Laki-laki', '   Krangkungan Sukoharjo																																																																																																																																																																																																																																						', 'Member'),
-(18, 'Nur Hamsah', 'b55178b011bfb206965f2638d0f87047', '089277266266', 'n@gmail.com', 'Laki-laki', '     Krangkungan Sukoharjo																																																																																																																			', 'Member'),
-(24, 'Rifki', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'r@gmail.com', 'Laki-laki', '  Klaten																																														', 'Member'),
-(25, 'Rolan', 'f3385c508ce54d577fd205a1b2ecdfb7', '089277266266', 'i@gmail.com', 'Laki-laki', '  Krangkungan Sukoharjo																																														', 'Belum Member'),
-(26, 'Johan', 'd41d8cd98f00b204e9800998ecf8427e', '089277266266', 'johan@gmail.com', 'Laki-laki', ' Sragen																							', 'Belum Member'),
-(27, 'Juki', '87f39ffa3a64fd26beb2ea7442ad701f', '089277266266', 'j@gmail.com', 'Perempuan', 'Klaten', 'Belum Member');
+(2, 'Taufansyah', '25d55ad283aa400af464c76d713c07ad', '089277266266', 't@gmail.com', 'Laki-laki', '   Krangkungan Sukoharjo																																																																																																																																																																																																																																							', 'Member'),
+(18, 'Nur Hamsah', '25d55ad283aa400af464c76d713c07ad', '089277266266', 'n@gmail.com', 'Laki-laki', '      Krangkungan Sukoharjo																																																																																																																																										', 'Member'),
+(24, 'Rifki', '25d55ad283aa400af464c76d713c07ad', '089277266266', 'r@gmail.com', 'Laki-laki', '      Klaten																																																																																																																																																																																																																																																			', 'Member'),
+(25, 'Rolan', '25d55ad283aa400af464c76d713c07ad', '089277266266', 'i@gmail.com', 'Laki-laki', '   Krangkungan Sukoharjo																																																																					', 'Belum Member'),
+(26, 'Johan', '25d55ad283aa400af464c76d713c07ad', '089277266266', 'johan@gmail.com', 'Laki-laki', ' Sragen																																																																																																																																										', 'Belum Member'),
+(27, 'Juki', '25d55ad283aa400af464c76d713c07ad', '089277266266', 'j@gmail.com', 'Perempuan', '    Klaten																																																																																												', 'Member'),
+(28, 'Povian', '25d55ad283aa400af464c76d713c07ad', '085713448550', 'pov@gmail.com', 'perempuan', 'Yogyakarta', 'Member'),
+(30, 'Dije', '25d55ad283aa400af464c76d713c07ad', '089654666777', 'd@gmail.com', 'Laki-laki', '  Solo																																														', 'Member'),
+(31, 'Andi', '25d55ad283aa400af464c76d713c07ad', '098665555555', 'Andi@gmail.com', 'Laki-laki', 'Solo', 'Belum Member');
 
 -- --------------------------------------------------------
 
@@ -155,11 +160,14 @@ CREATE TABLE `service` (
 --
 
 INSERT INTO `service` (`no_service`, `id_pelanggan`, `kategori`, `type`, `keluhan`, `tanggal`, `progres`, `keterangan`, `totharga`, `id_admin`, `id_order`, `tgl_update`) VALUES
-(26, 2, 'Komputer', 'Asus ROG', 'Upgrade SSD                                ', '2023-07-04 21:54:57', 'Selesai Pengerjaan', ' Proses Upgrade SSD ASUS ROG', 480000, 1, 0, '2023-07-05 11:57:18'),
-(27, 2, 'Printer', 'HP', 'Service Printer                                ', '2023-07-04 21:55:17', 'Proses Pengerjaan', ' ', 0, 1, 0, '2023-07-05 12:33:38'),
+(26, 2, 'Komputer', 'Asus ROG', 'Upgrade SSD                                ', '2023-07-04 21:54:57', 'Di Ambil', ' Proses Upgrade SSD ASUS ROG', 480000, 1, 0, '2023-07-09 19:14:03'),
+(27, 2, 'Printer', 'HP', 'Service Printer                                ', '2023-07-04 21:55:17', 'Selesai Pengerjaan', 'Sedang Proses Service Printer', 180000, 1, 0, '2023-07-07 02:12:12'),
 (28, 2, 'Komputer', 'Acer', 'Install Ulang                                ', '2023-07-04 21:55:50', 'Di Ambil', ' Proses Install Ulang Laptop Selesai', 30000, 1, 0, '2023-07-05 11:40:10'),
-(29, 27, 'Printer', 'Printer HP', 'Service Printer\r\n                                ', '2023-07-05 13:34:58', 'Dalam Antrian', '', 0, 0, 0, '2023-07-05 13:34:58'),
-(30, 27, 'Komputer', 'Acer Aspire', 'Ganti Batarai\r\n                                ', '2023-07-05 13:42:55', 'Dalam Antrian', '', 0, 0, 0, '2023-07-05 13:42:55');
+(29, 27, 'Printer', 'Printer HP', 'Service Printer                                ', '2023-07-05 13:34:58', 'Proses Pengerjaan', ' Service Printer', 405000, 1, 0, '2023-07-09 19:34:43'),
+(30, 27, 'Komputer', 'Acer Aspire', 'Ganti Batarai                                ', '2023-07-05 13:42:55', 'Proses Pengerjaan', ' ', 200000, 1, 0, '2023-07-07 02:10:08'),
+(31, 26, 'Komputer', 'Lenovo G480', 'Ganti Baterai                                ', '2023-07-05 15:23:42', 'Di Ambil', 'Ganti baterai', 315000, 1, 0, '2023-07-07 02:12:35'),
+(32, 28, 'Komputer', 'ASUS Zenbook', 'Upgrade RAM                                ', '2023-07-06 03:34:49', 'Selesai Pengerjaan', 'Selesai upgrade RAM', 427500, 4, 0, '2023-07-06 03:39:02'),
+(33, 2, 'Komputer', 'Dell', 'Upgrade RAM\r\n                                ', '2023-07-10 21:23:33', 'Dalam Antrian', '', 0, 0, 0, '2023-07-10 21:23:33');
 
 -- --------------------------------------------------------
 
@@ -198,9 +206,9 @@ CREATE TABLE `troli` (
 --
 
 INSERT INTO `troli` (`id_troli`, `no_service`, `id_harga`, `jumlah`) VALUES
-(230, 28, 10, 30000),
-(231, 26, 7, 450000),
-(232, 26, 10, 30000);
+(260, 27, 15, 200000),
+(261, 30, 15, 200000),
+(264, 29, 14, 450000);
 
 --
 -- Indexes for dumped tables
@@ -258,7 +266,7 @@ ALTER TABLE `troli`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `harga`
@@ -276,19 +284,19 @@ ALTER TABLE `jasa`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_pelanggan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `troli`
 --
 ALTER TABLE `troli`
-  MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
+  MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
 
 --
 -- Constraints for dumped tables
