@@ -12,7 +12,6 @@ tr:nth-child(even) {
 }
 
 #h1,h2,h3,p {
-    margin: 0px 0px 0px 6px;
     text-align: center;
 }
 
@@ -76,8 +75,8 @@ tr:nth-child(even) {
 }
 
 .tabelttd {
-    padding-left: 280px;
-    padding-top: -130px;
+    padding-left: 343px;
+    padding-top: -115px;
 }
 
 .table4 {

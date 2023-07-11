@@ -71,7 +71,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                             <th>TYPE</th>
                                             <th>KELUHAN</th>
                                             <th>KETERANGAN</th>
-                                            <th style="width: 10%">ACTION</th>
+                                            <th style="width: 20%">ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -95,12 +95,9 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fas fa-list"></i>
                                                     </button>
-                                                    <!-- <button type="button" data-toggle="modal" class="btn btn-link btn-success" data-target="">
-                                                        <i class="fa fa-print"></i>
-                                                    </button>
-                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-danger" data-target="">
+                                                    <a class="btn btn-link btn-success" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-download"></i>
-                                                    </button> -->
+                                                    </a>
 
                                                     <!-- Modal detail Data-->
                                                     <div class="modal fade" id="detail<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
