@@ -39,7 +39,7 @@ while ($data = mysqli_fetch_assoc($sql)) {
     foreach ($sql as $data) {
         $html .= '<tr>
             <td>' . $i++ . '</td>
-            <td align="left">' . $data['no_service'] . '</td>
+            <td align="left">DC00' . $data['no_service'] . '</td>
             <td align="left">' . $data['tanggal'] . '</td>
             <td align="left">' . $data['nama'] . '</td>
             <td align="left">' . $data['kategori'] . '</td>
