@@ -94,7 +94,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                         <i class="fa fa-edit"></i>
                                                     </button>
 
-                                                    <a class="btn btn-link btn-success" href="../../vendor/midtrans/midtrans-php/examples/snap/checkout-process.php?no_service=<?php echo $d['no_service']; ?>">
+                                                    <a class="btn btn-link btn-success" href="../../vendor/midtrans/midtrans-php/examples/snap/checkout-process.php?no_service=<?php echo $d['no_service']; ?>" target="_blank">
                                                         <i class="fas fa-money-check-alt"></i>
                                                     </a>
 

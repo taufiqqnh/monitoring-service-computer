@@ -160,8 +160,28 @@ if (isset($_GET['no_service'])) {
                             </thead>
                         </table>
                         <div>
+                            <?php
+                                    $id_order = $data['id_order'];
+                                    $row = mysqli_query($koneksi, "SELECT transaksi_midtrans.* FROM transaksi_midtrans WHERE transaksi_midtrans.id_order = $id_order");
+
+                                    while ($data1 = mysqli_fetch_array($row)) {
+                                        $status = $data1['status_code'];
+                                    }
+                            ?>
                             <a class="btn btn-secondary" href="index.php#monitoring">Close</a>
-                            <a class="btn btn-primary" href="../vendor/midtrans/midtrans-php/examples/snap/checkout-process.php?no_service=<?php echo $data['no_service']; ?>" target="_blank">Payment</a>
+                            <?php
+                                    if (isset($status)) {
+                                        if ($status == 200) {
+                                        } elseif ($status == 202) {
+                                        }
+                                    } else { ?>
+                                <a class="btn btn-primary" href="../midtrans/snap/bayar?no_service=<?php echo $data['no_service']; ?>" target="_blank">Payment</a>
+                            <?php
+                                    }
+                            ?>
+
+
+
                         </div>
                     <?php
                                 }

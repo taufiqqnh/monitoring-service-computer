@@ -1,14 +1,5 @@
 <?php include('../koneksi.php');
 session_start();
-
-$query = mysqli_query($koneksi, "SELECT max(no_service) as kodeTerbesar FROM service");
-$data = mysqli_fetch_array($query);
-$no_Service = $data['kodeTerbesar'];
-$urutan = (int) substr($no_Service, 3, 3);
-$urutan++;
-$huruf = "DC";
-$No_Service = $huruf . sprintf("%03s", $urutan + 1);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
