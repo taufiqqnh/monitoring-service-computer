@@ -49,11 +49,11 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php" target="_blank">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
-                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_diambil.php">
+                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_diambil.php" target="_blank">
                                 <i class="fa fa-download"></i>
                                 Download
                             </a>
@@ -95,7 +95,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fas fa-list"></i>
                                                     </button>
-                                                    <a class="btn btn-link btn-danger" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>">
+                                                    <a class="btn btn-link btn-danger" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>" target="_blank">
                                                         <i class="fa fa-download"></i>
                                                     </a>
 

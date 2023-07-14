@@ -48,11 +48,11 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_selesai.php">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_selesai.php" target="_blank">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
-                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_selesai.php">
+                            <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_selesai.php" target="_blank">
                                 <i class="fa fa-download"></i>
                                 Download
                             </a>
@@ -77,8 +77,14 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         include '../../koneksi.php';
                                         $no = 1;
                                         $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-
-                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
+                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Di Ambil') ORDER BY no_service DESC");
+                                        // $data = mysqli_query($koneksi, "SELECT service.*,
+                                        // pelanggan.id_pelanggan,
+                                        // pelanggan.nama
+                                        // FROM service
+                                        // JOIN pelanggan
+                                        // ON service.id_pelanggan = pelanggan.id_pelanggan
+                                        // WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
@@ -89,13 +95,12 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
                                                 <td><?php echo $d['keluhan']; ?></td>
-                                                <td style="width: 20%">
+                                                <td>
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-
-                                                    <a class="btn btn-link btn-success" href="../../vendor/midtrans/midtrans-php/examples/snap/checkout-process.php?no_service=<?php echo $d['no_service']; ?>" target="_blank">
-                                                        <i class="fas fa-money-check-alt"></i>
+                                                    <a class="btn btn-link btn-danger" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>" target="_blank">
+                                                        <i class="fa fa-download"></i>
                                                     </a>
 
                                                     <!-- Modal Edit Data-->

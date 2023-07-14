@@ -61,7 +61,7 @@ class Snap extends CI_Controller
 			'id' => 'a1',
 			'price' => $total,
 			'quantity' => 1,
-			'name' => "DC00 $no"
+			'name' => "$no"
 		);
 
 		// Optional
