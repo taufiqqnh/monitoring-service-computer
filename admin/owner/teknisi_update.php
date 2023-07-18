@@ -11,8 +11,8 @@ $level = $_POST['level'];
 
 $sql = mysqli_query($koneksi, "UPDATE admin SET name='$name', username='$username', password='$password', email='$email', level='$level' WHERE id='$id'") or die(mysqli_error($koneksi));
 
-
 if ($sql) {
+    // header("location:teknisi.php?alert=berhasil");
     echo '<script>alert("Berhasil menyimpan data."); document.location="teknisi.php";</script>';
 } else {
     echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';

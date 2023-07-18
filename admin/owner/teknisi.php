@@ -22,6 +22,43 @@ if (isset($_POST['deleteteknisi'])) {
     }
 }
 ?>
+
+<?php
+if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == "sukses") {
+
+        echo '<script type ="text/JavaScript">';
+        echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Tambah Teknisi Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+        echo '</script>';
+    } elseif ($_GET['alert'] == "berhasil") {
+
+        echo '<script type ="text/JavaScript">';
+        echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Update Teknisi Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+        echo '</script>';
+    }
+}
+?>
+
 <div class="main-panel">
     <div class="content">
         <div class="page-inner ">

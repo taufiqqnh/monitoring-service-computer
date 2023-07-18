@@ -11,5 +11,6 @@ if (mysqli_num_rows($cek_email) > 0) {
     echo '<script>alert("Email Sudah Terdaftar."); document.location="teknisi.php";</script>';
 } else {
     mysqli_query($koneksi, "insert into admin values (NULL, '$name','$username','$password','$email','$level')");
-    echo '<script>alert("Berhasil Mendaftar."); document.location="teknisi.php";</script>';
+    // echo '<script>alert("Berhasil Mendaftar."); document.location="teknisi.php";</script>';
+    header("location:teknisi.php?alert=sukses");
 }

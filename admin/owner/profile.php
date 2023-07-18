@@ -4,6 +4,28 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
     document.location='../../admin.php'</script>";
 }
 ?>
+
+<?php
+if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == "berhasil") {
+
+        echo '<script type ="text/JavaScript">';
+        echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Update Profile Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+        echo '</script>';
+    }
+}
+?>
+
 <div class="main-panel">
     <div class="content">
         <div class="page-inner ">
