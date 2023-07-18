@@ -202,26 +202,6 @@ session_start();
               <?php
               }
               ?>
-              <!-- <div class="col-md-6" data-aos="zoom-out" data-aos-delay="300">
-                <div class="feature-box d-flex align-items-center">
-                  <i class="bi bi-check"></i>
-                  <h3>Upgrade RAM</h3>
-                </div>
-              </div>
-
-              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
-                <div class="feature-box d-flex align-items-center">
-                  <i class="bi bi-check"></i>
-                  <h3>Upgrade SSD/HDD</h3>
-                </div>
-              </div>
-
-              <div class="col-md-6" data-aos="zoom-out" data-aos-delay="600">
-                <div class="feature-box d-flex align-items-center">
-                  <i class="bi bi-check"></i>
-                  <h3>Service Printer</h3>
-                </div>
-              </div> -->
 
             </div>
           </div>
