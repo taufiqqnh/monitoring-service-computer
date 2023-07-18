@@ -19,7 +19,8 @@ id_admin = '$id'
 WHERE no_service='$noserv'") or die(mysqli_error($koneksi));
 
 if ($sql) {
-    echo '<script>alert("Berhasil menyimpan data."); document.location="service.php";</script>';
+    // echo '<script>alert("Berhasil menyimpan data."); document.location="service.php";</script>';
+    header("location:service.php?alert=berhasil");
 } else {
     echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
 }

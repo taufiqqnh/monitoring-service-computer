@@ -10,6 +10,27 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
     });
 </script>
 
+<?php
+if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == "berhasil") {
+
+        echo '<script type ="text/JavaScript">';
+        echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Update Status Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+        echo '</script>';
+    }
+}
+?>
+
 <div class="main-panel">
     <div class="content">
         <div class="page-inner ">
@@ -56,6 +77,19 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                 <i class="fa fa-download"></i>
                                 Download
                             </a>
+                            <br>
+                            <form action="" method="post">
+                                <table>
+                                    <tr>
+                                        <td>Dari Tanggal</td>
+                                        <td><input type="date" name="dari_tgl" required></td>
+                                        <td>Sampai Tanggal</td>
+                                        <td><input type="date" name="sampai_tgl" required></td>
+                                        <td><input type="submit" class="btn btn-primary btn-sm" name="filter" value="Filter"></td>
+                                    </tr>
+                                </table>
+                            </form>
+
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -64,7 +98,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <tr>
                                             <th>NO</th>
                                             <th>NO SERVICE</th>
-                                            <th>TANGGAL MASUK</th>
+                                            <th>TANGGAL SELESAI</th>
                                             <th>NAMA PELANGGAN</th>
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
@@ -76,21 +110,30 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <?php
                                         include '../../koneksi.php';
                                         $no = 1;
-                                        $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Di Ambil') ORDER BY no_service DESC");
-                                        // $data = mysqli_query($koneksi, "SELECT service.*,
-                                        // pelanggan.id_pelanggan,
-                                        // pelanggan.nama
-                                        // FROM service
-                                        // JOIN pelanggan
-                                        // ON service.id_pelanggan = pelanggan.id_pelanggan
-                                        // WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
+
+                                        if (isset($_POST['filter'])) {
+                                            $dari_tgl = mysqli_real_escape_string($koneksi, $_POST['dari_tgl']);
+                                            $sampai_tgl = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
+                                            $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
+                                            $data = mysqli_query($koneksi, "SELECT * FROM service WHERE tgl_update BETWEEN 'dari_tgl' AND 'sampai_tgl' ORDER BY tgl_update DESC");
+                                        } else {
+
+                                            $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
+                                            $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
+                                            // $data = mysqli_query($koneksi, "SELECT service.*,
+                                            // pelanggan.id_pelanggan,
+                                            // pelanggan.nama
+                                            // FROM service
+                                            // JOIN pelanggan
+                                            // ON service.id_pelanggan = pelanggan.id_pelanggan
+                                            // WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
+                                        }
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td>DC00<?php echo $d['no_service']; ?></td>
-                                                <td><?php echo $d['tanggal']; ?> </td>
+                                                <td><?php echo $d['tgl_update']; ?> </td>
                                                 <td><?php echo $d['nama']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>

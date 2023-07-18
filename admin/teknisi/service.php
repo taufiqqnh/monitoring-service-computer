@@ -13,6 +13,27 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 	});
 </script>
 
+<?php
+if (isset($_GET['alert'])) {
+	if ($_GET['alert'] == "berhasil") {
+
+		echo '<script type ="text/JavaScript">';
+		echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Update Service Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+		echo '</script>';
+	}
+}
+?>
+
 <div class="main-panel">
 	<div class="content">
 		<div class="page-inner ">

@@ -16,9 +16,45 @@ if (isset($_POST['deletejasa'])) {
 
     $del = mysqli_query($koneksi, "DELETE FROM jasa WHERE id_jasa='$id_del'") or die(mysqli_error($koneksi));
     if ($del) {
-        echo '<script>alert("Berhasil menghapus data."); document.location="harga.php";</script>';
+        echo '<script>alert("Berhasil menghapus data."); document.location="layanan.php";</script>';
     } else {
         echo '<div class="alert alert-warning">Gagal melakukan proses hapus data.</div>';
+    }
+}
+?>
+
+<?php
+if (isset($_GET['alert'])) {
+    if ($_GET['alert'] == "sukses") {
+
+        echo '<script type ="text/JavaScript">';
+        echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Tambah Layanan Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+        echo '</script>';
+    } elseif ($_GET['alert'] == "berhasil") {
+
+        echo '<script type ="text/JavaScript">';
+        echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Update Layanan Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+        echo '</script>';
     }
 }
 ?>
@@ -146,7 +182,7 @@ if (isset($_POST['deletejasa'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <form action="harga.php" method="post">
+                                                                        <form action="layanan.php" method="post">
                                                                             <input type="hidden" name="id_jasa" value="<?php echo $d['id_jasa']; ?>">
                                                                             Apakah kamu yakin ingin menghapus data <b><?php echo $d['kategori']; ?></b>
                                                                     </div>

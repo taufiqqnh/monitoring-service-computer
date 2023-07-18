@@ -24,6 +24,42 @@ if (isset($_POST['deleteharga'])) {
 
 ?>
 
+<?php
+if (isset($_GET['alert'])) {
+	if ($_GET['alert'] == "sukses") {
+
+		echo '<script type ="text/JavaScript">';
+		echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Tambah Harga Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+		echo '</script>';
+	} elseif ($_GET['alert'] == "berhasil") {
+
+		echo '<script type ="text/JavaScript">';
+		echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Update Harga Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+		echo '</script>';
+	}
+}
+?>
+
 <div class="main-panel">
 	<div class="content">
 		<div class="page-inner">
