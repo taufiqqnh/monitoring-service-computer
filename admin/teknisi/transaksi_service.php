@@ -121,7 +121,7 @@ if (isset($_GET['alert'])) {
                                             FROM service,pelanggan
                                             WHERE service.id_pelanggan = pelanggan.id_pelanggan
                                             AND progres IN ('Selesai Pengerjaan') 
-                                            AND tgl_update BETWEEN 'dari_tgl' AND 'sampai_tgl'
+                                            AND tgl_update BETWEEN $dari_tgl AND $sampai_tgl
                                             ORDER BY no_service DESC");
                                         } else {
 
@@ -147,7 +147,7 @@ if (isset($_GET['alert'])) {
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
                                                     </button>
-                                                    <a class="btn btn-link btn-danger" href="print_nota.php?no_service=<?php echo $d['no_service']; ?>" target="_blank">
+                                                    <a class="btn btn-link btn-danger" href="print_nota_selesai.php?no_service=<?php echo $d['no_service']; ?>" target="_blank">
                                                         <i class="fa fa-download"></i>
                                                     </a>
 
