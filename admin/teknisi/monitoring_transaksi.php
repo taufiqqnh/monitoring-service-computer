@@ -9,7 +9,6 @@
 </script>
 
 <?php
-
 //jika sudah mendapatkan parameter GET id dari URL
 if (isset($_GET['no_service'])) {
     //membuat variabel $no_service untuk menyimpan no_service dari GET no_service di URL
@@ -28,8 +27,8 @@ if (isset($_GET['no_service'])) {
         $data = mysqli_fetch_assoc($select);
     }
 }
-
 ?>
+
 <?php
 if (isset($_POST['simpan'])) {
 
@@ -73,6 +72,7 @@ if (isset($_POST['simpan'])) {
     }
 }
 ?>
+
 <?php
 
 if (isset($_POST['deletekeranjang'])) {

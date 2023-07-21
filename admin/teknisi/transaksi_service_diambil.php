@@ -65,7 +65,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <tr>
                                             <th>NO</th>
                                             <th>NO SERVICE</th>
-                                            <th>TANGGAL SERVICE</th>
+                                            <th>TANGGAL SELESAI</th>
                                             <th>NAMA PELANGGAN</th>
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
@@ -85,7 +85,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                             <tr>
                                                 <td><?php echo $no++; ?></td>
                                                 <td>DC00<?php echo $d['no_service']; ?></td>
-                                                <td><?php echo $d['tanggal']; ?></td>
+                                                <td><?php echo $d['tgl_update']; ?></td>
                                                 <td><?php echo $d['nama']; ?></td>
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>

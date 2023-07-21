@@ -78,7 +78,7 @@ if (isset($_GET['alert'])) {
                                 Download
                             </a>
                             <br>
-                            <form action="" method="post">
+                            <form method="post">
                                 <table>
                                     <tr>
                                         <td>Dari Tanggal</td>
@@ -114,19 +114,24 @@ if (isset($_GET['alert'])) {
                                         if (isset($_POST['filter'])) {
                                             $dari_tgl = mysqli_real_escape_string($koneksi, $_POST['dari_tgl']);
                                             $sampai_tgl = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
-                                            $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                            $data = mysqli_query($koneksi, "SELECT * FROM service WHERE tgl_update BETWEEN 'dari_tgl' AND 'sampai_tgl' ORDER BY tgl_update DESC");
+
+                                            $data = mysqli_query($koneksi, "SELECT service.*,
+                                            pelanggan.id_pelanggan,
+                                            pelanggan.nama
+                                            FROM service,pelanggan
+                                            WHERE service.id_pelanggan = pelanggan.id_pelanggan
+                                            AND progres IN ('Selesai Pengerjaan') 
+                                            AND tgl_update BETWEEN 'dari_tgl' AND 'sampai_tgl'
+                                            ORDER BY no_service DESC");
                                         } else {
 
-                                            $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                            $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
-                                            // $data = mysqli_query($koneksi, "SELECT service.*,
-                                            // pelanggan.id_pelanggan,
-                                            // pelanggan.nama
-                                            // FROM service
-                                            // JOIN pelanggan
-                                            // ON service.id_pelanggan = pelanggan.id_pelanggan
-                                            // WHERE progres IN ('Selesai Pengerjaan') ORDER BY no_service DESC");
+                                            $data = mysqli_query($koneksi, "SELECT service.*,
+                                            pelanggan.id_pelanggan,
+                                            pelanggan.nama
+                                            FROM service, pelanggan
+                                            WHERE service.id_pelanggan = pelanggan.id_pelanggan
+                                            AND progres IN ('Selesai Pengerjaan') 
+                                            ORDER BY no_service DESC");
                                         }
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>

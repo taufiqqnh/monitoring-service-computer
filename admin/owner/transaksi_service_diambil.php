@@ -14,7 +14,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
     <div class="content">
         <div class="page-inner ">
             <div class="page-header">
-                <h4 class="page-title">Transaksi / Ambil Service</h4>
+                <h4 class="page-title">Laporan Transaksi</h4>
                 <ul class="breadcrumbs">
                     <li class="nav-home">
                         <a href="index.php">
@@ -25,13 +25,13 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Transaksi</a>
+                        <a href="transaksi_service.php">Laporan Transaksi</a>
                     </li>
                     <li class="separator">
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="service_batal_tabel.php">Data Service yang Sudah Diambil</a>
+                        <a href="transaksi_service_diambil.php">Data Service yang Sudah Diambil</a>
                     </li>
                 </ul>
             </div>
@@ -55,7 +55,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php" target="_blank">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>

@@ -24,7 +24,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                         <i class="flaticon-right-arrow"></i>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Transaksi</a>
+                        <a href="transaksi_service.php">Laporan Transaksi</a>
                     </li>
                 </ul>
             </div>
@@ -47,7 +47,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_selesai.php">
+                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_selesai.php" target="_blank">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>

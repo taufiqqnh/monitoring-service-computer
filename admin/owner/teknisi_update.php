@@ -1,6 +1,6 @@
 <?php
 include '../../koneksi.php';
-include 'header.php';
+// include 'header.php';
 
 $id  = $_POST['id'];
 $name  = $_POST['name'];
@@ -12,8 +12,8 @@ $level = $_POST['level'];
 $sql = mysqli_query($koneksi, "UPDATE admin SET name='$name', username='$username', password='$password', email='$email', level='$level' WHERE id='$id'") or die(mysqli_error($koneksi));
 
 if ($sql) {
-    // header("location:teknisi.php?alert=berhasil");
-    echo '<script>alert("Berhasil menyimpan data."); document.location="teknisi.php";</script>';
+    header("location:teknisi.php?alert=sukses");
+    // echo '<script>alert("Berhasil menyimpan data."); document.location="teknisi.php";</script>';
 } else {
     echo '<div class="alert alert-warning">Gagal melakukan proses edit data.</div>';
 }
