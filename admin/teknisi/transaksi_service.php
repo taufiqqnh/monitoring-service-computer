@@ -77,18 +77,18 @@ if (isset($_GET['alert'])) {
                                 <i class="fa fa-download"></i>
                                 Download
                             </a>
-                            <br>
+                            <!-- <br>
                             <form method="post">
                                 <table>
                                     <tr>
                                         <td>Dari Tanggal</td>
-                                        <td><input type="date" name="dari_tgl" required></td>
+                                        <td><input type="datetime" name="dari_tgl" required></td>
                                         <td>Sampai Tanggal</td>
-                                        <td><input type="date" name="sampai_tgl" required></td>
+                                        <td><input type="datetime" name="sampai_tgl" required></td>
                                         <td><input type="submit" class="btn btn-primary btn-sm" name="filter" value="Filter"></td>
                                     </tr>
                                 </table>
-                            </form>
+                            </form> -->
 
                         </div>
                         <div class="card-body">
@@ -111,28 +111,27 @@ if (isset($_GET['alert'])) {
                                         include '../../koneksi.php';
                                         $no = 1;
 
-                                        if (isset($_POST['filter'])) {
-                                            $dari_tgl = mysqli_real_escape_string($koneksi, $_POST['dari_tgl']);
-                                            $sampai_tgl = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
+                                        // if (isset($_POST['filter'])) {
+                                        //     $dari_tgl = mysqli_real_escape_string($koneksi, $_POST['dari_tgl']);
+                                        //     $sampai_tgl = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
 
-                                            $data = mysqli_query($koneksi, "SELECT service.*,
-                                            pelanggan.id_pelanggan,
-                                            pelanggan.nama
-                                            FROM service,pelanggan
-                                            WHERE service.id_pelanggan = pelanggan.id_pelanggan
-                                            AND progres IN ('Selesai Pengerjaan') 
-                                            AND tgl_update BETWEEN $dari_tgl AND $sampai_tgl
-                                            ORDER BY no_service DESC");
-                                        } else {
-
-                                            $data = mysqli_query($koneksi, "SELECT service.*,
+                                        //     $data = mysqli_query($koneksi, "SELECT service.*,
+                                        //     pelanggan.id_pelanggan,
+                                        //     pelanggan.nama
+                                        //     FROM service,pelanggan
+                                        //     WHERE service.id_pelanggan = pelanggan.id_pelanggan
+                                        //     AND progres IN ('Selesai Pengerjaan') 
+                                        //     AND tgl_update BETWEEN $dari_tgl AND $sampai_tgl
+                                        //     ORDER BY no_service DESC");
+                                        // } else {
+                                        // }
+                                        $data = mysqli_query($koneksi, "SELECT service.*,
                                             pelanggan.id_pelanggan,
                                             pelanggan.nama
                                             FROM service, pelanggan
                                             WHERE service.id_pelanggan = pelanggan.id_pelanggan
                                             AND progres IN ('Selesai Pengerjaan') 
                                             ORDER BY no_service DESC");
-                                        }
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>
