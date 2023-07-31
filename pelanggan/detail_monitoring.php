@@ -175,7 +175,7 @@ if (isset($_GET['no_service'])) {
                                         } elseif ($status == 202) {
                                         }
                                     } else { ?>
-                                <a class="btn btn-primary" href="../midtrans/snap/bayar?no_service=<?php echo $data['no_service']; ?>" target="_blank">Payment</a>
+                                <a class="btn btn-primary" href="../midtrans/snap/bayar?no_service=<?php echo $data['no_service']; ?>">Payment</a>
                             <?php
                                     }
                             ?>

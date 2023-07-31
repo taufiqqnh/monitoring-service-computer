@@ -61,7 +61,7 @@ class Snap extends CI_Controller
 			'id' => 'a1',
 			'price' => $total,
 			'quantity' => 1,
-			'name' => "$no"
+			'name' => $no
 		);
 
 		// Optional
@@ -77,29 +77,29 @@ class Snap extends CI_Controller
 
 		// Optional
 		$billing_address = array(
-			'first_name'    => "$nama",
-			'address'       => "$alamat",
+			'first_name'    => $nama,
+			'address'       => $alamat,
 			'city'          => "",
 			'postal_code'   => "",
-			'phone'         => "$hp",
+			'phone'         => $hp,
 			'country_code'  => 'IDN'
 		);
 
 		// Optional
 		$shipping_address = array(
-			'first_name'    => "$nama",
-			'address'       => "$alamat",
+			'first_name'    => $nama,
+			'address'       => $alamat,
 			'city'          => "",
 			'postal_code'   => "",
-			'phone'         => "$hp",
+			'phone'         => $hp,
 			'country_code'  => 'IDN'
 		);
 
 		// Optional
 		$customer_details = array(
-			'first_name'    => "$nama",
-			'email'         => "$email",
-			'phone'         => "$hp",
+			'first_name'    => $nama,
+			'email'         => $email,
+			'phone'         => $hp,
 			'billing_address'  => $billing_address,
 			'shipping_address' => $shipping_address
 		);
@@ -162,9 +162,9 @@ class Snap extends CI_Controller
 		$simpan = $this->db->insert('transaksi_midtrans', $data);
 		$this->db->update('service', $data2, array('no_service' => $no_service));
 		if ($simpan) {
-			header("location:../../../pelanggan/detail_monitoring.php");
+			header("location:../../../pelanggan/index.php");
 		} else {
-			header("location:../../../pelanggan/detail_monitoring.php");
+			header("location:../../../pelanggan/index.php");
 		}
 	}
 }
