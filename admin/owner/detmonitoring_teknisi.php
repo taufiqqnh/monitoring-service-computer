@@ -46,6 +46,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                             <th>NO SERVICE</th>
                                             <th>TANGGAL MASUK</th>
                                             <th>NAMA PELANGGAN</th>
+                                            <th>KATEGORI</th>
                                             <th>PROGRES</th>
                                             <th style="width: 10%">DETAIL</th>
                                         </tr>
@@ -65,13 +66,14 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <td>DC00<?php echo $d['no_service']; ?></td>
                                                 <td><?php echo $d['tanggal']; ?></td>
                                                 <td><?php echo $d['nama']; ?></td>
+                                                <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['progres']; ?> </td>
                                                 <td>
-                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
+                                                    <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-list"></i>
                                                     </button>
                                                     <!-- Modal Edit Data-->
-                                                    <div class="modal fade" id="editservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal fade" id="detservice_<?php echo $d['no_service']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header" style="background-color: blue; color:white;">
