@@ -16,7 +16,7 @@ session_start();
         <tr>
             <td><img src='../assets/img/logo_dfncom.png' height="100" width="100"></td>
             <td>
-                <h1>Laporan Transaksi Service Selesai</h1>
+                <h1>Laporan Transaksi Service Selesai Diambil</h1>
                 <h2>DFN Computer</h2>
                 <p style="font-size:14px;">
                     <i>Blimbing Rt 04/Rw 06 Wonorejo, Polokarto, Sukoharjo, Indonesia
@@ -33,7 +33,7 @@ session_start();
 
     </table>
     <td>
-        <h3>LAPORAN TRANSAKSI SERVICE SELESAI</h3>
+        <h3>LAPORAN TRANSAKSI SERVICE SELESAI DIAMBIL</h3>
     </td>
     <tr>
         <td>
@@ -52,7 +52,15 @@ session_start();
                 </tr>
                 <?php
                 $no = 1;
-                $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
+                if (isset($_SESSION['dari_tgl'])) {
+                    $dari_tgl = $_SESSION['dari_tgl'];
+                    $sampai_tgl = $_SESSION['sampai_tgl'];
+                    $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil')
+                    AND tanggal BETWEEN '$dari_tgl' AND '$sampai_tgl' ORDER BY no_service DESC");
+                } else {
+                    $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
+                }
+                // $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
                 while ($d = mysqli_fetch_array($data)) {
                 ?>
                     <tr>

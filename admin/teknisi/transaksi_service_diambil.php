@@ -49,14 +49,59 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                     </li>
                                 </ul>
                             </div>
-                            <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php" target="_blank">
+                            <?php
+                            if (isset($_POST['filter'])) {
+
+                                $dari_tgll = mysqli_real_escape_string($koneksi, $_POST['dari_tgl']);
+                                $sampai_tgll = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
+                                $_SESSION['dari_tgl'] = $dari_tgll;
+                                $_SESSION['sampai_tgl'] = $sampai_tgll;
+                            ?>
+                                <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php" target="_blank">
+                                    <i class="fa fa-print"></i>
+                                    Print Data
+                                </a>
+
+                                <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_diambil.php" target="_blank">
+                                    <i class="fa fa-download"></i>
+                                    Download
+                                </a>
+
+
+                            <?php } else { ?>
+                                <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php" target="_blank">
+                                    <i class="fa fa-print"></i>
+                                    Print Data
+                                </a>
+
+                                <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_diambil.php" target="_blank">
+                                    <i class="fa fa-download"></i>
+                                    Download
+                                </a>
+                            <?php }
+                            ?>
+
+                            <br>
+                            <form method="post" action="">
+                                <table>
+                                    <tr>
+                                        <td>Dari Tanggal </td>
+                                        <td><input class="form-control" type="date" value="<?= $dari_tgll ?>" name="dari_tgl" required></td>
+                                        <td>Sampai Tanggal </td>
+                                        <td><input class="form-control" type="date" value="<?= $sampai_tgll ?>" name="sampai_tgl" required></td>
+                                        <td><input type="submit" class="btn btn-primary btn-sm" name="filter" value="Filter"></td>
+                                    </tr>
+                                </table>
+                            </form>
+
+                            <!-- <a class="btn btn-success btn-round btn-sm ml-auto" href="print_transaksi_diambil.php" target="_blank">
                                 <i class="fa fa-print"></i>
                                 Print Data
                             </a>
                             <a class="btn btn-danger btn-round btn-sm ml-auto" href="download_transaksi_diambil.php" target="_blank">
                                 <i class="fa fa-download"></i>
                                 Download
-                            </a>
+                            </a> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -78,8 +123,25 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                         <?php
                                         include '../../koneksi.php';
                                         $no = 1;
-                                        $data = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-                                        $data = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Di Ambil') ORDER BY no_service DESC");
+                                        if (isset($_POST['filter'])) {
+                                            $dari_tgl = mysqli_real_escape_string($koneksi, $_POST['dari_tgl']);
+                                            $sampai_tgl = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
+                                            $data = mysqli_query($koneksi, "SELECT service.*,
+                                            pelanggan.id_pelanggan,
+                                            pelanggan.nama
+                                            FROM service,pelanggan
+                                            WHERE service.id_pelanggan = pelanggan.id_pelanggan
+                                            AND progres IN ('Di Ambil') 
+                                            AND tanggal BETWEEN '$dari_tgl' AND '$sampai_tgl' ORDER BY no_service DESC");
+                                        } else {
+                                            $data = mysqli_query($koneksi, "SELECT service.*,
+                                            pelanggan.id_pelanggan,
+                                            pelanggan.nama
+                                            FROM service, pelanggan
+                                            WHERE service.id_pelanggan = pelanggan.id_pelanggan
+                                            AND progres IN ('Di Ambil') 
+                                            ORDER BY no_service DESC");
+                                        }
                                         while ($d = mysqli_fetch_array($data)) {
                                         ?>
                                             <tr>

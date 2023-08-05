@@ -3,6 +3,7 @@
 
 <?php
 include '../../koneksi.php';
+session_start();
 
 require_once __DIR__ . '/../assets/vendor/autoload.php';
 
@@ -33,7 +34,15 @@ $html = '<!DOCTYPE html>
     </tr>
     
     ';
-$sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
+if (isset($_SESSION['dari_tgl'])) {
+    $dari_tgl = $_SESSION['dari_tgl'];
+    $sampai_tgl = $_SESSION['sampai_tgl'];
+    $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil')
+            AND tanggal BETWEEN '$dari_tgl' AND '$sampai_tgl' ORDER BY no_service DESC");
+} else {
+    $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
+}
+// $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
 while ($data = mysqli_fetch_assoc($sql)) {
     $i = 1;
     foreach ($sql as $data) {
