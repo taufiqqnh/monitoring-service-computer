@@ -46,7 +46,6 @@ if (isset($_SESSION['dari_tgl'])) {
 while ($data = mysqli_fetch_assoc($sql)) {
     $i = 1;
     $totharga = 0;
-    $totharga += $data['totharga'];
     foreach ($sql as $data) {
         $html .= '<tr>
             <td>' . $i++ . '</td>
@@ -60,18 +59,19 @@ while ($data = mysqli_fetch_assoc($sql)) {
             <td align="left">' . $data['tgl_update'] . '</td>
             <td align="left">Rp.' . number_format($data['totharga']) . ',-</td>
             </tr>';
+        $totharga += $data['totharga'];
     }
+    $html .= '
+            <tfoot>
+            <tr>
+            <td colspan="8">Total :</td>
+            <td colspan="2">Rp. ' . number_format($totharga) . ',-</td>
+            </tr>
+    
+            </tfoot>  
+                ';
 }
 
-$html .= '
-        <tfoot>
-        <tr>
-        <td colspan="8">Total :</td>
-        <td colspan="2">Rp. ' . number_format($totharga) . ',-</td>
-        </tr>
-
-        </tfoot>  
-            ';
 
 
 $html .=    '</table>
