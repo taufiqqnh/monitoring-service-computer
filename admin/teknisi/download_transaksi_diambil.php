@@ -42,9 +42,11 @@ if (isset($_SESSION['dari_tgl'])) {
 } else {
     $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
 }
-// $sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
+
 while ($data = mysqli_fetch_assoc($sql)) {
     $i = 1;
+    $totharga = 0;
+    $totharga += $data['totharga'];
     foreach ($sql as $data) {
         $html .= '<tr>
             <td>' . $i++ . '</td>
@@ -61,16 +63,6 @@ while ($data = mysqli_fetch_assoc($sql)) {
     }
 }
 
-$html .=    ' 
-
-';
-$total = $_POST['totharga'];
-$sql = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Di Ambil') ORDER BY no_service ASC");
-$totharga = 0;
-
-while ($data = mysqli_fetch_array($sql)) {
-    $totharga += $data['totharga'];
-}
 $html .= '
         <tfoot>
         <tr>
