@@ -127,6 +127,7 @@ if (isset($_GET['alert'])) {
                                             <th>KATEGORI</th>
                                             <th>TYPE</th>
                                             <th>KELUHAN</th>
+                                            <th>STATUS BAYAR</th>
                                             <th style="width: 20%">ACTION</th>
                                         </tr>
                                     </thead>
@@ -140,18 +141,24 @@ if (isset($_GET['alert'])) {
                                             $sampai_tgl = mysqli_real_escape_string($koneksi, $_POST['sampai_tgl']);
                                             $data = mysqli_query($koneksi, "SELECT service.*,
                                             pelanggan.id_pelanggan,
-                                            pelanggan.nama
-                                            FROM service,pelanggan
+                                            pelanggan.nama,
+                                            transaksi_midtrans.id_order,
+                                            transaksi_midtrans.status_code
+                                            FROM service,pelanggan, transaksi_midtrans
                                             WHERE service.id_pelanggan = pelanggan.id_pelanggan
+                                            AND service.id_order = transaksi_midtrans.id_order
                                             AND progres IN ('Selesai Pengerjaan') 
                                             AND tanggal BETWEEN '$dari_tgl' AND '$sampai_tgl' ORDER BY no_service DESC");
                                         } else {
                                             $data = mysqli_query($koneksi, "SELECT service.*,
                                             pelanggan.id_pelanggan,
-                                            pelanggan.nama
-                                            FROM service, pelanggan
+                                            pelanggan.nama,
+                                            transaksi_midtrans.id_order,
+                                            transaksi_midtrans.status_code
+                                            FROM service, pelanggan, transaksi_midtrans
                                             WHERE service.id_pelanggan = pelanggan.id_pelanggan
                                             AND progres IN ('Selesai Pengerjaan') 
+                                            AND service.id_order = transaksi_midtrans.id_order
                                             ORDER BY no_service DESC");
                                         }
                                         while ($d = mysqli_fetch_array($data)) {
@@ -164,6 +171,16 @@ if (isset($_GET['alert'])) {
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
                                                 <td><?php echo $d['keluhan']; ?></td>
+                                                <td>
+                                                    <?php
+                                                    $status = $d['status_code'];
+                                                    if ($status == 200) {
+                                                        echo "Sudah Bayar";
+                                                    } else {
+                                                        echo "Belum Bayar";
+                                                    }
+                                                    ?>
+                                                </td>
                                                 <td>
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#editservice_<?php echo $d['no_service']; ?>">
                                                         <i class="fa fa-edit"></i>
@@ -233,10 +250,23 @@ if (isset($_GET['alert'])) {
                                                                                         <input id="keterangan" type="text" name="keterangan" class="form-control" value="<?php echo $d['keterangan']; ?>" readonly>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-sm-12">
+                                                                                <div class="col-sm-6">
                                                                                     <div class="form-group">
                                                                                         <label>Harga</label>
                                                                                         <input id="harga" type="text" name="harga" class="form-control" value="Rp. <?php echo number_format($d['totharga']); ?> ,-" readonly>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="form-group">
+                                                                                        <label>Tanggal Masuk</label>
+                                                                                        <input id="status_code" type="text" name="status_code" class="form-control" value="<?php
+
+
+                                                                                                                                                                            if ($status == 200) {
+                                                                                                                                                                                echo "Sudah Bayar";
+                                                                                                                                                                            } else {
+                                                                                                                                                                                echo "Belum Bayar";
+                                                                                                                                                                            }                                                                                                            ?>" readonly>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-sm-6">

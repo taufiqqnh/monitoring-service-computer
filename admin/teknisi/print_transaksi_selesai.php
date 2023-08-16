@@ -55,10 +55,12 @@ session_start();
                 if (isset($_SESSION['dari_tgl'])) {
                     $dari_tgl = $_SESSION['dari_tgl'];
                     $sampai_tgl = $_SESSION['sampai_tgl'];
-                    $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Selesai Pengerjaan')
+                    $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama,transaksi_midtrans.id_order,
+                    transaksi_midtrans.status_code FROM service,admin,pelanggan,transaksi_midtrans WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND service.id_order = transaksi_midtrans.id_order AND progres IN ('Selesai Pengerjaan')
                     AND tanggal BETWEEN '$dari_tgl' AND '$sampai_tgl' ORDER BY no_service DESC");
                 } else {
-                    $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama FROM service,admin,pelanggan WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND progres IN ('Selesai Pengerjaan') ORDER BY no_service ASC");
+                    $data = mysqli_query($koneksi, "SELECT service.*,admin.id,admin.name,pelanggan.id_pelanggan,pelanggan.nama,transaksi_midtrans.id_order,
+                    transaksi_midtrans.status_code FROM service,admin,pelanggan,transaksi_midtrans WHERE service.id_admin = admin.id AND service.id_pelanggan = pelanggan.id_pelanggan AND service.id_order = transaksi_midtrans.id_order AND progres IN ('Selesai Pengerjaan') ORDER BY no_service ASC");
                 }
                 $totalharga = 0;
                 while ($d = mysqli_fetch_array($data)) {

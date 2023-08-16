@@ -3,6 +3,14 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 	echo "<script>alert('Maaf, Anda Harus Login Terlebih dahulu! Terimakasih!!');
     document.location='../../admin.php'</script>";
 }
+
+// $query = mysqli_query($koneksi, "SELECT max(no_service) as kodeTerbesar FROM service");
+// $data = mysqli_fetch_array($query);
+// $no_Service = $data['kodeTerbesar'];
+// $urutan = (int) substr($no_Service, 3, 3);
+// $urutan++;
+// $No_Service = sprintf("%03s", $urutan + 1);
+
 ?>
 <script>
 	$(document).ready(function() {
@@ -15,7 +23,22 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
 
 <?php
 if (isset($_GET['alert'])) {
-	if ($_GET['alert'] == "berhasil") {
+	if ($_GET['alert'] == "sukses") {
+
+		echo '<script type ="text/JavaScript">';
+		echo 'swal({
+
+                title: "Berhasil!",
+
+                text: "Tambah Service Berhasil",
+
+                icon: "success",
+
+                button: true
+
+            });';
+		echo '</script>';
+	} elseif ($_GET['alert'] == "berhasil") {
 
 		echo '<script type ="text/JavaScript">';
 		echo 'swal({
@@ -65,9 +88,14 @@ if (isset($_GET['alert'])) {
 				<div class="col-md-12">
 					<div class="card">
 						<div class="card-header">
+							<button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#tambahService">
+								<i class="fa fa-plus"></i>
+								Tambah Service
+							</button>
 							<div class="d-flex align-items-center">
 								<h1 class="card-title">Data Service</h1>
 								<ul class="nav nav-pills nav-secondary ml-auto" id="pills-tab" role="tablist">
+
 									<li class="nav-item">
 										<a class="nav-link active" href="service.php" role="tab" aria-controls="pills-home" aria-selected="true">Dalam Antrian</a>
 									</li>
@@ -78,6 +106,78 @@ if (isset($_GET['alert'])) {
 							</div>
 						</div>
 						<div class="card-body">
+							<!-- Modal Tambah Data-->
+							<div class="modal fade" id="tambahService" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header" style="background-color: blue; color:white;">
+											<h3 class="modal-title">
+												<span class="fw- bold">
+													Form Tambah data service
+												</span>
+											</h3>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form action="daftarservice_act.php" method="post">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group form-group-default">
+															<label>Nama Pelanggan</label>
+															<select class="form-control" name="id_pelanggan" required>
+																<?php
+																$dataa1 = mysqli_query($koneksi, "SELECT * FROM pelanggan");
+																while ($dataa = mysqli_fetch_array($dataa1)) {
+																?>
+																	<option value="<?php echo $dataa['id_pelanggan']; ?>"><?php echo $dataa['nama']; ?></option>
+																<?php
+																}
+																?>
+															</select>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="col-md-3 col-sm-3">
+															<input type="hidden" class="form-control" name="no_service" id="no_service" value="<?php echo $No_Service ?>" readonly>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group form-group-default">
+															<label>Kategori</label>
+															<select class="form-control" name="kategori" required>
+																<option value="" selected>Pilih Kategori</option>
+																<option value="Komputer">Komputer</option>
+																<option value="Printer">Printer</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group form-group-default">
+															<label class="form-label">Type</label>
+															<input type="text" class="form-control" name="type" id="type" autocomplete="off" required>
+															<input type="hidden" class="form-control" name="progres" id="progres" value="Dalam Antrian">
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group form-group-default">
+															<label class="form-label">Keluhan</label>
+															<textarea type="text" class="form-control" name="keluhan" id="keluhan" required>
+															</textarea>
+														</div>
+													</div>
+												</div>
+										</div>
+										<div class="modal-footer no-bd">
+											<button type="submit" id="addRowButton" class="btn btn-primary">Daftar Service</button>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- END Modal Tambah Data-->
 							<div class="table-responsive">
 								<table id="tableservice" class="display table table-striped table-hover">
 									<thead>
