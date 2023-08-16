@@ -152,7 +152,7 @@ if (empty($_SESSION['name']) or empty($_SESSION['level'])) {
                                                 <td><?php echo $d['kategori']; ?></td>
                                                 <td><?php echo $d['type']; ?></td>
                                                 <td><?php echo $d['keluhan']; ?></td>
-                                                <td><?php echo $d['keterangan']; ?></td>
+                                                <td><?php echo substr($d['keterangan'], 0, 30) ?></td>
                                                 <td>
                                                     <button type="button" data-toggle="modal" class="btn btn-link btn-primary" data-target="#detail<?php echo $d['no_service']; ?>">
                                                         <i class="fas fa-list"></i>
