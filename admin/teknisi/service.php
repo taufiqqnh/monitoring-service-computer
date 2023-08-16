@@ -198,7 +198,7 @@ if (isset($_GET['alert'])) {
 										include '../../koneksi.php';
 										$no = 1;
 										$data1 = mysqli_query($koneksi, "SELECT * FROM pelanggan");
-										$data1 = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Dalam Antrian') ORDER BY no_service DESC");
+										$data1 = mysqli_query($koneksi, "SELECT * FROM service JOIN pelanggan on pelanggan.id_pelanggan = service.id_pelanggan WHERE progres IN ('Dalam Antrian') ORDER BY no_service ASC");
 										while ($data = mysqli_fetch_array($data1)) {
 										?>
 											<tr>

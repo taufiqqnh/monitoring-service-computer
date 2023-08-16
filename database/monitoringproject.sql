@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2023 at 04:34 AM
+-- Generation Time: Aug 16, 2023 at 04:58 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -162,7 +162,8 @@ INSERT INTO `service` (`no_service`, `id_pelanggan`, `kategori`, `type`, `keluha
 (39, 33, 'Printer', 'HP', 'Service dan ganti tinta                                ', '2023-08-14', 'Selesai Pengerjaan', 'Proses pengerjaan service , segera membayar dan mengambil perangkat', 225000, 3, 962704556, '2023-08-14 15:04:43'),
 (40, 33, 'Komputer', 'Lenovo Thinkbook', 'Install Ulang                                ', '2023-08-15', 'Selesai Pengerjaan', 'Proses Service Selesai', 25000, 1, 1147907509, '2023-08-15 11:01:12'),
 (41, 34, 'Komputer', 'Asus', 'Tambah RAM                                ', '2023-08-15', 'Di Ambil', ' Selesai Upgrade RAM', 300000, 1, 1554099660, '2023-08-15 13:33:22'),
-(42, 34, 'Printer', 'HP', 'Ganti Tinta                                ', '2023-08-15', 'Dalam Antrian', ' ', 0, 1, 0, '2023-08-16 01:50:17');
+(42, 34, 'Printer', 'HP', 'Ganti Tinta                                ', '2023-08-15', 'Dalam Antrian', ' ', 0, 1, 0, '2023-08-16 01:50:17'),
+(58, 34, 'Komputer', 'Acer', 'Service														', '2023-08-16', 'Dalam Antrian', '', 0, 0, 0, '2023-08-16 09:51:19');
 
 -- --------------------------------------------------------
 
@@ -308,23 +309,13 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `no_service` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `troli`
 --
 ALTER TABLE `troli`
   MODIFY `id_troli` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `service`
---
-ALTER TABLE `service`
-  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
